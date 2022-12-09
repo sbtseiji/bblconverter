@@ -170,11 +170,11 @@ def bbl_to_yml(bbl_contents):
   return bbl_data
 
 # === 出力して確認
-yaml = ruamel.yaml.YAML()
-bbl_contents = load_bbl('../jpa-style.bbl')
-bbl_data = bbl_to_yml(bbl_contents)
-with open('out.yml', 'w') as stream:
-    yaml.dump(bbl_data, stream=stream)
+# yaml = ruamel.yaml.YAML()
+# bbl_contents = load_bbl('../jpa-style.bbl')
+# bbl_data = bbl_to_yml(bbl_contents)
+# with open('out.yml', 'w') as stream:
+#     yaml.dump(bbl_data, stream=stream)
 
 
 
