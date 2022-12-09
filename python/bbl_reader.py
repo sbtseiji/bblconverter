@@ -24,8 +24,8 @@ class BblFlags:
     self.is_name = False
     self.is_list = False
     self.is_first_element =False
-    self.label_name = True
-    self.label_list = True
+    # self.label_name = True
+    # self.label_list = True
 
 # ========== bblファイルの読み込み ==========
 def load_bbl(file_path):
@@ -41,10 +41,10 @@ def handle_name(line, flag):
   match_obj = re.search(r'\\name\{(.*?)\}',line)
   if match_obj:
     name_type = match_obj.group(1)
-    if flag.label_name:
-      res.append(YAML_INDENT+'name:')
-      flag.label_name = False
-    res.append(YAML_INDENT*2+name_type+':')
+    # if flag.label_name:
+    #   res.append(YAML_INDENT+'name:')
+    #   flag.label_name = False
+    res.append(YAML_INDENT+name_type+':')
     flag.is_list = False
     flag.is_name = True
     flag.is_first_element = True
@@ -58,10 +58,10 @@ def handle_name(line, flag):
       if match_obj :
         item_content = match_obj.group(1).replace('\\bibinitperiod',BIBINITPERIOD).replace('\\bibinitdelim',BIBINITDELIM).replace('\\bibnamedelimi',BIBNAMEDELIMI).replace('\\bibnamedelim',BIBNAMEDELIM)
         if flag.is_first_element :
-          res.append(YAML_INDENT*3+'- '+item+': '+item_content)
+          res.append(YAML_INDENT*2+'- '+item+': '+item_content)
           flag.is_first_element = False
         else :
-          res.append(YAML_INDENT*4+item+': '+item_content)
+          res.append(YAML_INDENT*3+item+': '+item_content)
     if re.search(r'\}\}\%', line):
       flag.is_first_element = True
   return res
@@ -73,10 +73,10 @@ def handle_list(line, flag):
   match_obj = re.search(r'\\list\{(.*?)\}',line)
   if match_obj:
     list_type = match_obj.group(1)
-    if flag.label_list:
-      res.append(YAML_INDENT+'list:')
-      flag.label_list = False
-    res.append(YAML_INDENT*2+list_type+':')
+    # if flag.label_list:
+    #   res.append(YAML_INDENT+'list:')
+    #   flag.label_list = False
+    res.append(YAML_INDENT+list_type+':')
     flag.is_list = True
     flag.is_name = False
     flag.is_first_element = True
@@ -87,7 +87,7 @@ def handle_list(line, flag):
     match_obj = re.search(r'\s*\{+(.*?)\}+\%', line)
     if match_obj :
       item_content = match_obj.group(1)
-      res.append(YAML_INDENT*3+'- '+item_content)
+      res.append(YAML_INDENT*2+'- '+item_content)
 
   return res
 
@@ -128,6 +128,7 @@ def handle_others(line, flag):
 def convert_to_yaml(yml_str):
   yaml = ruamel.yaml.YAML()
   bby_yml_str = '\n'.join(yml_str)
+  print(bby_yml_str)
   bbl_data = yaml.load(bby_yml_str)
   return bbl_data
 
@@ -169,9 +170,11 @@ def bbl_to_yml(bbl_contents):
   return bbl_data
 
 # === 出力して確認
-# yaml = ruamel.yaml.YAML()
-# with open('out.yml', 'w') as stream:
-#     yaml.dump(bbl_data, stream=stream)
+yaml = ruamel.yaml.YAML()
+bbl_contents = load_bbl('../jpa-style.bbl')
+bbl_data = bbl_to_yml(bbl_contents)
+with open('out.yml', 'w') as stream:
+    yaml.dump(bbl_data, stream=stream)
 
 
 
