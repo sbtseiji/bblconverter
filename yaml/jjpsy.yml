@@ -1,0 +1,63 @@
+# format:
+#   name:
+#   author:
+#   editor:
+#   editora:
+#   translator:
+#   year:
+#   endyear:
+#   title:
+#   subtitle:
+#   journaltitle:
+#   volume:
+#   volumes:
+var::maxnames: 20
+var::minnames: 19
+
+
+parenyear: &parenyeardot
+  - if::greater[var::current,2]:
+    - text::", "
+  - text::"("
+  - value::year
+  - text::"). "
+
+family-giveni: &family-giveni 
+  - value::family
+  - text::", "
+  - value::giveni
+
+
+type:
+  article:
+    - author 
+    - year
+    - title/subtitle
+    - journaltitle
+    - volume/number
+    - pages
+
+format:
+  article:
+    author: *family-giveni
+    year: *parenyeardot
+    title/subtitle: 
+      - value::title
+      - ifdef::subtitle:
+          - delim::colon
+          - delim::space
+          - value::subtitle
+      - punct::". "
+    journaltitle:
+      - value::journaltitle::italic
+      - text::", "
+    volume/number:
+      - value::volume::italic
+      - ifdef::number:
+          - text::"("
+          - value::number
+          - text::")"
+      - text::", "
+    pages:
+      - value::pages
+      - text::"."
