@@ -2,156 +2,177 @@ import re
 import ruamel
 import ruamel.yaml
 
-bbl_file_path = '../jpa-style.bbl'
-
 # BibLaTeXの記号の置き換え
-bibinitperiod = '.'
-bibinitdelim =''
-bibnamedelim =''
-bibnamedelimi =''
-bibrangedash = '--'
+BIBINITPERIOD = '.'
+BIBINITDELIM =''
+BIBNAMEDELIM =''
+BIBNAMEDELIMI =''
+BIBRANGEDASH = '--'
 
 # YAMLのインデント
-yml_indent = '  '
+YAML_INDENT = '  '
 
 # YAML作成用リスト
-string_list_for_creating_yml = []
+strlist_yml = []
 
-# エントリ処理用のフラグ
-is_entry = False
-is_name = False
-is_list = False
-
-# nameラベルを表示するかどうかのフラグ
-label_name = True
-# listラベルを表示するかどうかのフラグ
-label_list = True
-
-# nameやiistの最初の要素かどうかのフラグ
-is_first_element =False
-
-# nameおよびlistのタイプ
-name_type = ''
-list_type = ''
-
-# BibLaTeXファイルのYAML格納用変数
-bbl_yml = ''
-
-# ========== 各種変数・フラッグの初期化 ==========
-def reset_flags():
-  is_entry = False
-  is_name = False
-  is_list = False
-  label_name = True
-  label_list = True
-  is_first_element =False
-  name_type = ''
-  list_type = ''
+# ========== 各種フラッグ ==========
+class BblFlags:
+  def __init__(self):
+    self.reset()
+  def reset(self):
+    self.is_entry = False
+    self.is_name = False
+    self.is_list = False
+    self.is_first_element =False
+    self.label_name = True
+    self.label_list = True
 
 # ========== bblファイルの読み込み ==========
-bbl_contents =[]
-with open(bbl_file_path) as f:
-  bbl_contents = f.readlines()
+def load_bbl(file_path):
+  bbl_contents =[]
+  with open(file_path) as f:
+    bbl_contents = f.readlines()
+    return bbl_contents
 
+# ========== nameフィールドの処理 ==========
+def handle_name(line, flag):
+  res = []
+  # フラッグの処理
+  match_obj = re.search(r'\\name\{(.*?)\}',line)
+  if match_obj:
+    name_type = match_obj.group(1)
+    if flag.label_name:
+      res.append(YAML_INDENT+'name:')
+      flag.label_name = False
+    res.append(YAML_INDENT*2+name_type+':')
+    flag.is_list = False
+    flag.is_name = True
+    flag.is_first_element = True
+    flag.label_list = True
 
-# ========== ファイル内容の変換処理 ==========
-for line in bbl_contents:
-
-  # エントリデータ処理中の場合
-  if is_entry:
-    # ========== フラグの処理 ==========
-    # \endentry でエントリ終了
-    if re.search(r'.*\\endentry',line):
-      is_entry = False
-
-    # \name でname処理へのフラグを立てる
-    match_obj = re.search(r'\\name\{(.*?)\}',line)
-    if match_obj:
-      name_type = match_obj.group(1)
-      if label_name:
-        print(yml_indent+'name:')
-        string_list_for_creating_yml.append(yml_indent+'name:')
-        label_name = False
-      print(yml_indent*2+name_type+':')
-      is_list = False
-      is_name = True
-      is_first_element = True
-      label_list = True
-
-    # \list でlist処理へのフラグを立てる
-    match_obj = re.search(r'\\list\{(.*?)\}',line)
-    if match_obj:
-      list_type = match_obj.group(1)
-      if label_list:
-        print(yml_indent+'list:')
-        string_list_for_creating_yml.append(yml_indent+'list:')
-        label_list = False
-      print(yml_indent*2+list_type+':')
-      string_list_for_creating_yml.append(yml_indent*2+list_type+':')
-      is_list = True
-      is_name = False
-      is_first_element = True
-      label_name = True
-
-    # \field でnameとlistのフラグをおろす
-    # かつ，fieldの内容を処理する
-    match_obj = re.search(r'\\field\{(.*?)\}\{(.*?)\}',line)
-    if match_obj:
-      is_list = False
-      is_name = False
-      label_name = True
-      label_list = True
-      item_content = match_obj.group(2).replace('\\bibrangedash ',bibrangedash)
-      print(yml_indent+match_obj.group(1)+':',item_content)
-      string_list_for_creating_yml.append(yml_indent+match_obj.group(1)+': '+item_content)
-
-    # \string でnameとlistのフラグをおろす
-    if re.search(r'\\string',line):
-      is_list = False
-      is_name = False
-
-    # ========== パース処理 ==========
-
-    # name
-    if is_name:
-      name_part=['family','familyi','given','giveni']
-      for item in name_part:
-        match_obj = re.search(item+r'=\{+(.*?)\}+', line)
-        if match_obj :
-          item_content = match_obj.group(1).replace('\\bibinitperiod',bibinitperiod).replace('\\bibinitdelim',bibinitdelim).replace('\\bibnamedelimi',bibnamedelim).replace('\\bibnamedelim',bibnamedelimi)
-          if is_first_element :
-            print(yml_indent*3+'- '+item+':',item_content)
-            string_list_for_creating_yml.append(yml_indent*3+'- '+item+': '+item_content)
-            is_first_element = False
-          else :
-            print(yml_indent*4+item+':',item_content)
-            string_list_for_creating_yml.append(yml_indent*4+item+': '+item_content)
-      if re.search(r'\}\}\%', line):
-        is_first_element = True
-
-    # list
-    if is_list:
-      match_obj = re.search(r'\s*\{+(.*?)\}+\%', line)
+  # nameフィールドの中身の処理
+  if flag.is_name:
+    name_part=['family','familyi','given','giveni']
+    for item in name_part:
+      match_obj = re.search(item+r'=\{+(.*?)\}+', line)
       if match_obj :
-        item_content = match_obj.group(1)
-        print(yml_indent*3+'- '+item_content)
-        string_list_for_creating_yml.append(yml_indent*3+'- '+item_content)
+        item_content = match_obj.group(1).replace('\\bibinitperiod',BIBINITPERIOD).replace('\\bibinitdelim',BIBINITDELIM).replace('\\bibnamedelimi',BIBNAMEDELIMI).replace('\\bibnamedelim',BIBNAMEDELIM)
+        if flag.is_first_element :
+          res.append(YAML_INDENT*3+'- '+item+': '+item_content)
+          flag.is_first_element = False
+        else :
+          res.append(YAML_INDENT*4+item+': '+item_content)
+    if re.search(r'\}\}\%', line):
+      flag.is_first_element = True
+  return res
+
+# ========== listフィールドの処理 ==========
+def handle_list(line, flag):
+  res = []
+  # フラグの処理
+  match_obj = re.search(r'\\list\{(.*?)\}',line)
+  if match_obj:
+    list_type = match_obj.group(1)
+    if flag.label_list:
+      res.append(YAML_INDENT+'list:')
+      flag.label_list = False
+    res.append(YAML_INDENT*2+list_type+':')
+    flag.is_list = True
+    flag.is_name = False
+    flag.is_first_element = True
+    flag.label_name = True
+
+  # nameフィールドの中身の処理
+  if flag.is_list:
+    match_obj = re.search(r'\s*\{+(.*?)\}+\%', line)
+    if match_obj :
+      item_content = match_obj.group(1)
+      res.append(YAML_INDENT*3+'- '+item_content)
+
+  return res
+
+# ========== fieldフィールドの処理 ==========
+def handle_field(line, flag):
+  res = []
+  match_obj = re.search(r'\\field\{(.*?)\}\{(.*?)\}',line)
+  if match_obj:
+    flag.is_list = False
+    flag.is_name = False
+    flag.label_name = True
+    flag.label_list = True
+    item_content = match_obj.group(2).replace('\\bibrangedash ',BIBRANGEDASH)
+    res.append(YAML_INDENT+match_obj.group(1)+': '+item_content)
+    return res
+
+# ========== stringフィールドの処理 ==========
+def handle_string(line, flag):
+  if re.search(r'\\string',line):
+    flag.is_list = False
+    flag.is_name = False
+    return
+
+# ========== エントリ外の処理 ==========
+def handle_others(line, flag):
+  res = []
+  match_obj = re.search(r'\\entry\{',line)
+  if match_obj:
+    flag.reset()
+    flag.is_entry = True
+    entry_type = line.split('}{')[1]
+    skip_bib = 'true' if re.search(r'skipbib',line) else 'false'
+    res.append('- type: '+ entry_type)
+    res.append(YAML_INDENT+'skip: '+skip_bib)
+    return res
+
+# ========== YAMLを作成してデータに変換 ==========
+def convert_to_yaml(yml_str):
+  yaml = ruamel.yaml.YAML()
+  bby_yml_str = '\n'.join(yml_str)
+  bbl_data = yaml.load(bby_yml_str)
+  return bbl_data
+
+# ========== bblをyamlに変換 ==========
+def bbl_to_yml(bbl_contents):
+  bbl_flags = BblFlags()
+  # bbl_contents = load_bbl('../jpa-style.bbl')
+
+  for line in bbl_contents:
+    if bbl_flags.is_entry: # エントリ内の処理
+      if re.search(r'.*\\endentry',line): # \endentry でエントリ終了
+        bbl_flags.is_entry = False
+
+      # nameの処理
+      res = handle_name(line, bbl_flags)
+      if res:
+        strlist_yml.extend(res)
+
+      # listの処理
+      res = handle_list(line, bbl_flags)
+      if res:
+        strlist_yml.extend(res)
+
+      # fieldの処理
+      res = handle_field(line, bbl_flags)
+      if res:
+        strlist_yml.extend(res)
+
+      # stringの処理
+      res = handle_string(line, bbl_flags)
+
+    else: # エントリ外の処理
+      res = handle_others(line, bbl_flags)
+      if res:
+        strlist_yml.extend(res)
+
+  # YAMLデータに変換
+  bbl_data = convert_to_yaml(strlist_yml)
+  return bbl_data
+
+# === 出力して確認
+# yaml = ruamel.yaml.YAML()
+# with open('out.yml', 'w') as stream:
+#     yaml.dump(bbl_data, stream=stream)
 
 
-  # エントリデータ処理中以外の場合
-  else:
-    match_obj = re.search(r'\\entry\{',line)
-    if match_obj:
-      entry_type = line.split('}{')[1]
-      print('- type:', entry_type)
-      string_list_for_creating_yml.append('- type: '+ entry_type)
-      skip_bib = 'true' if re.search(r'skipbib',line) else 'false'
-      print(yml_indent+'skip: '+skip_bib)
-      string_list_for_creating_yml.append(yml_indent+'skip: '+skip_bib)
-      reset_flags()
-      is_entry = True
 
-# ========== リストからYAMLを作成 ==========
-yaml = ruamel.yaml.YAML()
-bby_yml_str = '\n'.join(string_list_for_creating_yml)
-bbl_yml = yaml.load(bby_yml_str)
+
