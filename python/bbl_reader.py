@@ -128,7 +128,6 @@ def handle_others(line, flag):
 def convert_to_yaml(yml_str):
   yaml = ruamel.yaml.YAML()
   bby_yml_str = '\n'.join(yml_str)
-  print(bby_yml_str)
   bbl_data = yaml.load(bby_yml_str)
   return bbl_data
 
