@@ -19,6 +19,44 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{Abrams2020}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f17fddcec4d76d438661b401aa1019e0}{%
+           family={Abrams},
+           familyi={A\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{organization}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{f17fddcec4d76d438661b401aa1019e0}
+      \strng{fullhash}{f17fddcec4d76d438661b401aa1019e0}
+      \strng{bibnamehash}{f17fddcec4d76d438661b401aa1019e0}
+      \strng{authorbibnamehash}{f17fddcec4d76d438661b401aa1019e0}
+      \strng{authornamehash}{f17fddcec4d76d438661b401aa1019e0}
+      \strng{authorfullhash}{f17fddcec4d76d438661b401aa1019e0}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Building a safe space in the pandemic}
+      \field{urlday}{31}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.apa.org/topics/covid-19/pandemic-safe-space#
+      \endverb
+      \verb{url}
+      \verb https://www.apa.org/topics/covid-19/pandemic-safe-space#
+      \endverb
+    \endentry
     \entry{Adler1970}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=a4e132fab651ba62e051557227672cda}{%
@@ -255,8 +293,73 @@
       \field{dateera}{ce}
       \field{related}{7b20af74749cb5ff6167e521e21868ca}
     \endentry
+    \entry{長谷川99}{article}{}
+      \name{author}{7}{ul=2}{%
+        {{un=0,uniquepart=base,hash=1b9a77b2fbab9fa68a3bf0ecf3d6976a}{%
+           family={長谷川},
+           familyi={長\bibinitperiod},
+           given={龍樹},
+           giveni={龍\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c690dcf59a6875647f60a83114b44ec6}{%
+           family={多田},
+           familyi={多\bibinitperiod},
+           given={奏恵},
+           giveni={奏\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b564de83c985b35a18fdbcef8c4bd58d}{%
+           family={米満},
+           familyi={米\bibinitperiod},
+           given={文哉},
+           giveni={文\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=75b38baca2d8d136ae15cf47a100f563}{%
+           family={池田},
+           familyi={池\bibinitperiod},
+           given={鮎美},
+           giveni={鮎\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4b89e96f0a47571b5bf354fab58916f5}{%
+           family={山田},
+           familyi={山\bibinitperiod},
+           given={祐樹},
+           giveni={祐\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b9bd53e1802b074fd7746f57888fd217}{%
+           family={高橋},
+           familyi={高\bibinitperiod},
+           given={康介},
+           giveni={康\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6af136018c5f2cdd692d944f7ac78ff8}{%
+           family={近藤},
+           familyi={近\bibinitperiod},
+           given={洋史},
+           giveni={洋\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{b90de72d8dd5e2bde064c01dd46663cf}
+      \strng{fullhash}{c261ac73481cdfe5631c3494e9715241}
+      \strng{bibnamehash}{c261ac73481cdfe5631c3494e9715241}
+      \strng{authorbibnamehash}{c261ac73481cdfe5631c3494e9715241}
+      \strng{authornamehash}{b90de72d8dd5e2bde064c01dd46663cf}
+      \strng{authorfullhash}{c261ac73481cdfe5631c3494e9715241}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{心理学研究}
+      \field{pubstate}{印刷中}
+      \field{subtitle}{OSF事前登録チュートリアル}
+      \field{title}{実証的研究の事前登録の現状と実践}
+      \true{nocite}
+    \endentry
     \entry{長谷川2016}{book}{}
-      \name{author}{5}{}{%
+      \name{author}{5}{ul=2}{%
         {{un=0,uniquepart=base,hash=e8a0f1d40dd3aad1f392c1d3386dbe61}{%
            family={長谷川},
            familyi={長\bibinitperiod},
@@ -294,11 +397,11 @@
       \list{publisher}{1}{%
         {有斐閣}%
       }
-      \strng{namehash}{497286fef3bc7f6a796c6155e398b805}
+      \strng{namehash}{62481c00da9d3832ecacb4875abd7999}
       \strng{fullhash}{8477e529b1f8ebf958a767cb75e8bd75}
       \strng{bibnamehash}{8477e529b1f8ebf958a767cb75e8bd75}
       \strng{authorbibnamehash}{8477e529b1f8ebf958a767cb75e8bd75}
-      \strng{authornamehash}{497286fef3bc7f6a796c6155e398b805}
+      \strng{authornamehash}{62481c00da9d3832ecacb4875abd7999}
       \strng{authorfullhash}{8477e529b1f8ebf958a767cb75e8bd75}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
@@ -408,6 +511,35 @@
       \field{dateera}{ce}
       \true{nocite}
     \endentry
+    \entry{法務総合研究所2019}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d85f889855749803d872791a28f53681}{%
+           family={法務総合研究所},
+           familyi={法\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {昭和情報プロセス}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{d85f889855749803d872791a28f53681}
+      \strng{fullhash}{d85f889855749803d872791a28f53681}
+      \strng{bibnamehash}{d85f889855749803d872791a28f53681}
+      \strng{authorbibnamehash}{d85f889855749803d872791a28f53681}
+      \strng{authornamehash}{d85f889855749803d872791a28f53681}
+      \strng{authorfullhash}{d85f889855749803d872791a28f53681}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{subtitle}{平成の刑事政策}
+      \field{title}{令和元年版 犯罪白書}
+      \field{year}{2019}
+      \field{dateera}{ce}
+    \endentry
     \entry{一川2016}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=674fe073e56b44309a52c9f59baed032}{%
@@ -506,6 +638,110 @@
       \field{dateera}{ce}
       \field{origdateera}{ce}
     \endentry
+    \entry{金政2021}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=4de3d356160570be150dc9da4773aa7c}{%
+           family={金政},
+           familyi={金\bibinitperiod},
+           given={祐司},
+           giveni={祐\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2e45d1f70fa9770c81ac3eb9c5c83d47}{%
+           family={古村},
+           familyi={古\bibinitperiod},
+           given={健太郎},
+           giveni={健\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=648df2aa94a436502747473f4cf8bcb7}{%
+           family={浅野},
+           familyi={浅\bibinitperiod},
+           given={良輔},
+           giveni={良\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=499c39f42d830d2d397abe0f1b06c03c}{%
+           family={荒井},
+           familyi={荒\bibinitperiod},
+           given={崇史},
+           giveni={崇\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{eea72d0852fac9441b54483544259b5f}
+      \strng{fullhash}{688dafd0fe86d92a1fbff68f77884be5}
+      \strng{bibnamehash}{688dafd0fe86d92a1fbff68f77884be5}
+      \strng{authorbibnamehash}{688dafd0fe86d92a1fbff68f77884be5}
+      \strng{authornamehash}{eea72d0852fac9441b54483544259b5f}
+      \strng{authorfullhash}{688dafd0fe86d92a1fbff68f77884be5}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Advance online publication}
+      \field{journaltitle}{心理学研究}
+      \field{subtitle}{恋愛関係と夫婦関係の縦断調査から}
+      \field{title}{愛着不安は親密な関係内の暴力の先行要因となり得るのか？}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \true{nocite}
+      \verb{doi}
+      \verb 10.4992/jjpsy.92.20013
+      \endverb
+    \endentry
+    \entry{Katahira2020}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=f6ea509262daff8e78da72df1958d22f}{%
+           family={Katahira},
+           familyi={K\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ca3979c03ac62b6472156e13561a40b0}{%
+           family={Kunisato},
+           familyi={K\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4688fe8b1af03450457579368178ee8d}{%
+           family={Yamashita},
+           familyi={Y\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f81456578b1a464b58791ce12148f841}{%
+           family={Suzuki},
+           familyi={S\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b4d5871a463c60cad4495937485868ac}
+      \strng{fullhash}{1b4d6726b04ed5096e655cdd3ba7a24a}
+      \strng{bibnamehash}{1b4d6726b04ed5096e655cdd3ba7a24a}
+      \strng{authorbibnamehash}{1b4d6726b04ed5096e655cdd3ba7a24a}
+      \strng{authornamehash}{b4d5871a463c60cad4495937485868ac}
+      \strng{authorfullhash}{1b4d6726b04ed5096e655cdd3ba7a24a}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Frontiers in Big Data}
+      \field{title}{Commentary: ``A robust data-driven approach identifies four personality types across four large data sets.''}
+      \field{volume}{3}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \true{nocite}
+      \field{pages}{8}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3389/fdata.2020.00008
+      \endverb
+    \endentry
     \entry{ec641d9f245a2228db81a66eb3726322}{book}{skipbib=true,skipbiblist=true,skiplab=true}
       \name{author}{1}{}{%
         {{hash=1bc327a0b98bb32be7df942a36261fb4}{%
@@ -572,6 +808,43 @@
       \field{year}{1935}
       \field{dateera}{ce}
       \field{related}{ec641d9f245a2228db81a66eb3726322}
+    \endentry
+    \entry{川上2019}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=114fe2ed8c7514475d50866b9242e1b5}{%
+           family={川上},
+           familyi={川\bibinitperiod},
+           given={直秋},
+           giveni={直\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{114fe2ed8c7514475d50866b9242e1b5}
+      \strng{fullhash}{114fe2ed8c7514475d50866b9242e1b5}
+      \strng{bibnamehash}{114fe2ed8c7514475d50866b9242e1b5}
+      \strng{authorbibnamehash}{114fe2ed8c7514475d50866b9242e1b5}
+      \strng{authornamehash}{114fe2ed8c7514475d50866b9242e1b5}
+      \strng{authorfullhash}{114fe2ed8c7514475d50866b9242e1b5}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{心理学研究}
+      \field{number}{1}
+      \field{subtitle}{スマートフォン使用と単語の感情価の関係}
+      \field{title}{指先が変える単語の意味}
+      \field{volume}{91}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{pages}{23\bibrangedash 33}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.4992/jjpsy.91.18060
+      \endverb
     \endentry
     \entry{Lamb2015}{incollection}{}
       \name{author}{1}{}{%
@@ -670,6 +943,39 @@
       \field{year}{2010}
       \field{dateera}{ce}
     \endentry
+    \entry{森川2010}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=aeb30cd2d8da468ee15bccc76bf99409}{%
+           family={森川},
+           familyi={森\bibinitperiod},
+           given={和則},
+           giveni={和\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{aeb30cd2d8da468ee15bccc76bf99409}
+      \strng{fullhash}{aeb30cd2d8da468ee15bccc76bf99409}
+      \strng{bibnamehash}{aeb30cd2d8da468ee15bccc76bf99409}
+      \strng{authorbibnamehash}{aeb30cd2d8da468ee15bccc76bf99409}
+      \strng{authornamehash}{aeb30cd2d8da468ee15bccc76bf99409}
+      \strng{authorfullhash}{aeb30cd2d8da468ee15bccc76bf99409}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{心理学ワールド}
+      \field{number}{51}
+      \field{subtitle}{38年間のトレンド}
+      \field{title}{知覚心理学は右肩下がりか，右肩上がりか}
+      \field{year}{2010}
+      \field{dateera}{ce}
+      \field{pages}{5\bibrangedash 8}
+      \range{pages}{4}
+    \endentry
     \entry{Morioka2018}{inbook}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=4472d2400a55a9f39a5651ff7beb9367}{%
@@ -722,6 +1028,39 @@
       \true{nocite}
       \field{pages}{206\bibrangedash 219}
       \range{pages}{14}
+    \endentry
+    \entry{向田2009}{thesis}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c0c1a77f6659471699a5af3afde5157d}{%
+           family={向田},
+           familyi={向\bibinitperiod},
+           given={久美子},
+           giveni={久\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {白百合女子大学大学院}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{c0c1a77f6659471699a5af3afde5157d}
+      \strng{fullhash}{c0c1a77f6659471699a5af3afde5157d}
+      \strng{bibnamehash}{c0c1a77f6659471699a5af3afde5157d}
+      \strng{authorbibnamehash}{c0c1a77f6659471699a5af3afde5157d}
+      \strng{authornamehash}{c0c1a77f6659471699a5af3afde5157d}
+      \strng{authorfullhash}{c0c1a77f6659471699a5af3afde5157d}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{subtitle}{文化圏間比較と世代間比較を通して}
+      \field{title}{語りに見るライフ・スクリプトの文化心理学的研究}
+      \field{type}{博士論文}
+      \field{year}{2009}
+      \field{dateera}{ce}
     \endentry
     \entry{内藤2018}{inbook}{}
       \name{author}{1}{}{%
@@ -779,6 +1118,39 @@
       \field{pages}{77\bibrangedash 96}
       \range{pages}{20}
     \endentry
+    \entry{中道2019}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=3e4de3be6ff5103b30774f818c16df75}{%
+           family={中道},
+           familyi={中\bibinitperiod},
+           given={圭人},
+           giveni={圭\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{3e4de3be6ff5103b30774f818c16df75}
+      \strng{fullhash}{3e4de3be6ff5103b30774f818c16df75}
+      \strng{bibnamehash}{3e4de3be6ff5103b30774f818c16df75}
+      \strng{authorbibnamehash}{3e4de3be6ff5103b30774f818c16df75}
+      \strng{authornamehash}{3e4de3be6ff5103b30774f818c16df75}
+      \strng{authorfullhash}{3e4de3be6ff5103b30774f818c16df75}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{千葉大学教育学部研究紀要}
+      \field{title}{幼児における他者の感情推測のための表情と身体的手がかりの利用}
+      \field{volume}{67}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \true{nocite}
+      \field{pages}{285\bibrangedash 292}
+      \range{pages}{8}
+    \endentry
     \entry{中沢1978}{article}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=0cf3aea7207594d4a812ae69498ef71a}{%
@@ -824,6 +1196,44 @@
       \field{pages}{131\bibrangedash 136}
       \range{pages}{6}
     \endentry
+    \entry{日本心理学会2022}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e37b7dd836727046c7f2a695d2018982}{%
+           family={日本心理学会},
+           familyi={日\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \list{organization}{1}{%
+        {日本心理学会}%
+      }
+      \strng{namehash}{e37b7dd836727046c7f2a695d2018982}
+      \strng{fullhash}{e37b7dd836727046c7f2a695d2018982}
+      \strng{bibnamehash}{e37b7dd836727046c7f2a695d2018982}
+      \strng{authorbibnamehash}{e37b7dd836727046c7f2a695d2018982}
+      \strng{authornamehash}{e37b7dd836727046c7f2a695d2018982}
+      \strng{authorfullhash}{e37b7dd836727046c7f2a695d2018982}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{執筆・投稿の手びき2022年版}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://psych.or.jp/manual/
+      \endverb
+      \verb{url}
+      \verb https://psych.or.jp/manual/
+      \endverb
+    \endentry
     \entry{野島2018}{mvbook}{}
       \name{editor}{2}{}{%
         {{un=0,uniquepart=base,hash=f822c90cd8f28c61e950d74009d6e8fb}{%
@@ -862,6 +1272,74 @@
       \field{volumes}{全23巻}
       \field{year}{2018}
       \field{enddateera}{ce}
+      \field{dateera}{ce}
+      \true{nocite}
+    \endentry
+    \entry{OSeaghdha99}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=24931b990635fccad30c48faded0c521}{%
+           family={O'Seaghdha},
+           familyi={O\bibinitperiod},
+           given={P.\bibnamedelimi G.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{24931b990635fccad30c48faded0c521}
+      \strng{fullhash}{24931b990635fccad30c48faded0c521}
+      \strng{bibnamehash}{24931b990635fccad30c48faded0c521}
+      \strng{authorbibnamehash}{24931b990635fccad30c48faded0c521}
+      \strng{authornamehash}{24931b990635fccad30c48faded0c521}
+      \strng{authorfullhash}{24931b990635fccad30c48faded0c521}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Japanese Psychological Research}
+      \field{pubstate}{in press}
+      \field{subtitle}{Proximate units at the lexical-phonological interface}
+      \field{title}{Across the great divide}
+    \endentry
+    \entry{Oe2016}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c5269e7f58d6c64bb69e7072aa9de83c}{%
+           family={Oe},
+           familyi={O\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3aab8f795dcb9cde18da8cd819b7b781}{%
+           family={Aoki},
+           familyi={A\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d55563c054b8aa5a74cdcdda8e51684e}{%
+           family={Numazaki},
+           familyi={N\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {San Diego, CA.}%
+      }
+      \strng{namehash}{de056e59a0a5fb691135c8ade2ae0621}
+      \strng{fullhash}{e9b458586e1d2aad572f89ff8ebf822a}
+      \strng{bibnamehash}{e9b458586e1d2aad572f89ff8ebf822a}
+      \strng{authorbibnamehash}{e9b458586e1d2aad572f89ff8ebf822a}
+      \strng{authornamehash}{de056e59a0a5fb691135c8ade2ae0621}
+      \strng{authorfullhash}{e9b458586e1d2aad572f89ff8ebf822a}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eventtitle}{The 17th Annual Meeting of the Society for Personality and Social Psychology}
+      \field{title}{Perceived causal attributions of body temperature increase as a moderator of the effects of physical warmth on implicit associations of social warmth}
+      \field{type}{Poster presentation}
+      \field{year}{2016}
       \field{dateera}{ce}
       \true{nocite}
     \endentry
@@ -942,6 +1420,188 @@
       \field{year}{2015}
       \field{dateera}{ce}
       \field{related}{2ab10236a36d3e38d24a8a9c91492041}
+    \endentry
+    \entry{大谷2022}{article}{}
+      \name{author}{25}{}{%
+        {{un=0,uniquepart=base,hash=061b25f7a4562d1dc3f9fbf8bb811439}{%
+           family={大谷},
+           familyi={大\bibinitperiod},
+           given={美貴},
+           giveni={美\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6009f7f4f9930ae69f7d0c78de496cd9}{%
+           family={岡田},
+           familyi={岡\bibinitperiod},
+           given={あかり},
+           giveni={あ\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=379cc7c5f9274dd7572661a4bfbc5454}{%
+           family={丸山},
+           familyi={丸\bibinitperiod},
+           given={直樹},
+           giveni={直\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=043bc027c4ce19be90a8e7ae50df704e}{%
+           family={松井},
+           familyi={松\bibinitperiod},
+           given={奈緒美},
+           giveni={奈\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7cb13e29fbd7a1e1d54ae468227e08c8}{%
+           family={眞鍋},
+           familyi={眞\bibinitperiod},
+           given={久美子},
+           giveni={久\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3c3e4446a8446ac780ef0edddbc47cce}{%
+           family={坂本},
+           familyi={坂\bibinitperiod},
+           given={諒},
+           giveni={諒\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=98bbdae87ce61d0782f33dcf3b11c280}{%
+           family={山本},
+           familyi={山\bibinitperiod},
+           given={淳一},
+           giveni={淳\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5a24102f7c3a087d9d20790d470ef7fd}{%
+           family={西村},
+           familyi={西\bibinitperiod},
+           given={一也},
+           giveni={一\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bf0caa5f92816a400e6115c6831d84a0}{%
+           family={春日},
+           familyi={春\bibinitperiod},
+           given={麻衣},
+           giveni={麻\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6b9e92450fafbe8fbe2a785305cb729e}{%
+           family={清水},
+           familyi={清\bibinitperiod},
+           given={真},
+           giveni={真\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=198b9a62d1ce6b248d9481064caa37cc}{%
+           family={阿部},
+           familyi={阿\bibinitperiod},
+           given={竜太},
+           giveni={竜\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3cf97e59478201085f9f19283034dc0a}{%
+           family={島田},
+           familyi={島\bibinitperiod},
+           given={悠},
+           giveni={悠\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8ef4cd7497b185932708c45ac685e53d}{%
+           family={谷口},
+           familyi={谷\bibinitperiod},
+           given={幸治},
+           giveni={幸\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=79c45e35db10f2e93271847b1bcde2c4}{%
+           family={上田},
+           familyi={上\bibinitperiod},
+           given={久美子},
+           giveni={久\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7df56c2d69ca5c22afdce703415821f}{%
+           family={小林},
+           familyi={小\bibinitperiod},
+           given={里恵},
+           giveni={里\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=90fd53bff7399b8ad074eed8710d6b47}{%
+           family={岡本},
+           familyi={岡\bibinitperiod},
+           given={有香},
+           giveni={有\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e568a298d2b661f89ff3436f9876302c}{%
+           family={白井},
+           familyi={白\bibinitperiod},
+           given={太郎},
+           giveni={太\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c4844a1589ff30720e018f246eb27c7e}{%
+           family={鈴木},
+           familyi={鈴\bibinitperiod},
+           given={敏行},
+           giveni={敏\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a56349367003d5509207f12302cb9fc6}{%
+           family={佐々木},
+           familyi={佐\bibinitperiod},
+           given={智恵美},
+           giveni={智\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7be2a19b81737befdb07e543bd7230ee}{%
+           family={山田},
+           familyi={山\bibinitperiod},
+           given={徹},
+           giveni={徹\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=85577b630ce7a714318f59c3ddfc5f6b}{%
+           family={多田},
+           familyi={多\bibinitperiod},
+           given={剛},
+           giveni={剛\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dfa6408f570f99da5998711a1d080dcf}{%
+           family={中島},
+           familyi={中\bibinitperiod},
+           given={奈津子},
+           giveni={奈\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ca29923bdbc21dfd468668b934231c6e}{%
+           family={谷口},
+           familyi={谷\bibinitperiod},
+           given={昭彦},
+           giveni={昭\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e013bd1928ee25a465cb941148c0c9c4}{%
+           family={野田},
+           familyi={野\bibinitperiod},
+           given={愛},
+           giveni={愛\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=347785b5cbed92565f88a9f9142c83bb}{%
+           family={高木},
+           familyi={高\bibinitperiod},
+           given={由紀子},
+           giveni={由\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{3c909595f4cbb9989adf3f787043014c}
+      \strng{fullhash}{110f7c6248b9b868ce46cd60aec8b15d}
+      \strng{bibnamehash}{110f7c6248b9b868ce46cd60aec8b15d}
+      \strng{authorbibnamehash}{110f7c6248b9b868ce46cd60aec8b15d}
+      \strng{authornamehash}{3c909595f4cbb9989adf3f787043014c}
+      \strng{authorfullhash}{110f7c6248b9b868ce46cd60aec8b15d}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{架空心理学研究}
+      \field{number}{3}
+      \field{subtitle}{20を超えると何かが起こる}
+      \field{title}{マジカルナンバー20}
+      \field{volume}{32}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \true{nocite}
+      \field{pages}{80\bibrangedash 89}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 35.3582/fmp-2pahm
+      \endverb
     \endentry
     \entry{Rosen2015}{book}{}
       \name{author}{3}{}{%
@@ -1060,6 +1720,39 @@
       \field{dateera}{ce}
       \field{related}{a69b52af7daa466df5b1015726534d6e}
     \endentry
+    \entry{齊藤2019}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f4ff6ac65cf799f2589eafa522d202e1}{%
+           family={齊藤},
+           familyi={齊\bibinitperiod},
+           given={慈子},
+           giveni={慈\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{f4ff6ac65cf799f2589eafa522d202e1}
+      \strng{fullhash}{f4ff6ac65cf799f2589eafa522d202e1}
+      \strng{bibnamehash}{f4ff6ac65cf799f2589eafa522d202e1}
+      \strng{authorbibnamehash}{f4ff6ac65cf799f2589eafa522d202e1}
+      \strng{authornamehash}{f4ff6ac65cf799f2589eafa522d202e1}
+      \strng{authorfullhash}{f4ff6ac65cf799f2589eafa522d202e1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{心理学ワールド}
+      \field{number}{86}
+      \field{subtitle}{38年間のトレンド}
+      \field{title}{時に手を抜くイクメン，マーモセットのパパ}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{pages}{25\bibrangedash 26}
+      \range{pages}{2}
+    \endentry
     \entry{坂本2013}{inbook}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=70a07e4c8c2bacda5a0e45659abf3a4c}{%
@@ -1109,6 +1802,580 @@
       \field{dateera}{ce}
       \field{pages}{16\bibrangedash 50}
       \range{pages}{35}
+    \endentry
+    \entry{サトウ2013}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=ed02ce28458b98ca3fb1225f7cec923c}{%
+           family={サトウ},
+           familyi={サ\bibinitperiod},
+           given={タツヤ},
+           giveni={タ\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{ed02ce28458b98ca3fb1225f7cec923c}
+      \strng{fullhash}{ed02ce28458b98ca3fb1225f7cec923c}
+      \strng{bibnamehash}{ed02ce28458b98ca3fb1225f7cec923c}
+      \strng{authorbibnamehash}{ed02ce28458b98ca3fb1225f7cec923c}
+      \strng{authornamehash}{ed02ce28458b98ca3fb1225f7cec923c}
+      \strng{authorfullhash}{ed02ce28458b98ca3fb1225f7cec923c}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{7月8日夕刊}
+      \field{journaltitle}{読売新聞}
+      \field{subtitle}{悩み事 どうやって打開？}
+      \field{title}{ちょっとココロ学}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{pages}{7}
+      \range{pages}{1}
+    \endentry
+    \entry{Takahashi2017}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=837a25ba882ec1ec6e438d81555b0de1}{%
+           family={Takahashi},
+           familyi={T\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=33105039ae99bae50821c9c668f1103a}{%
+           family={Isaka},
+           familyi={I\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5467fb216200fc3ea3a9de29808aaec4}{%
+           family={Yamamoto},
+           familyi={Y\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=09dd2ddfd359a35038f97b77a5d17a33}{%
+           family={Nakamura},
+           familyi={N\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9b9c060a6e2e6140e021de8e0b3bbe46}
+      \strng{fullhash}{81fbb681d3b4317c03aa403f9abb7367}
+      \strng{bibnamehash}{81fbb681d3b4317c03aa403f9abb7367}
+      \strng{authorbibnamehash}{81fbb681d3b4317c03aa403f9abb7367}
+      \strng{authornamehash}{9b9c060a6e2e6140e021de8e0b3bbe46}
+      \strng{authorfullhash}{81fbb681d3b4317c03aa403f9abb7367}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Deaf Studies and Deaf Education}
+      \field{number}{1}
+      \field{title}{Vocabulary and Grammar Differences Between Deaf and Hearing Students}
+      \field{volume}{22}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \true{nocite}
+      \field{pages}{88\bibrangedash 104}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1093/deafed/enw055
+      \endverb
+    \endentry
+    \entry{Tsukamoto2015}{thesis}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=4402bac0001f1430e0947c00c2c58b73}{%
+           family={Tsukamoto},
+           familyi={T\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Kyoto University}%
+      }
+      \strng{namehash}{4402bac0001f1430e0947c00c2c58b73}
+      \strng{fullhash}{4402bac0001f1430e0947c00c2c58b73}
+      \strng{bibnamehash}{4402bac0001f1430e0947c00c2c58b73}
+      \strng{authorbibnamehash}{4402bac0001f1430e0947c00c2c58b73}
+      \strng{authornamehash}{4402bac0001f1430e0947c00c2c58b73}
+      \strng{authorfullhash}{4402bac0001f1430e0947c00c2c58b73}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Role of Psychological Essentialism in Intergroup Attitude Formation}
+      \field{type}{Unpublished master's thesis}
+      \field{year}{2015}
+      \field{dateera}{ce}
+    \endentry
+    \entry{都築2018}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=05598244f52efb40ebadb9ddc546aeb5}{%
+           family={都築},
+           familyi={都\bibinitperiod},
+           given={誉史},
+           giveni={誉\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5145d5047db99d2b6658985ad30ab621}{%
+           family={武田},
+           familyi={武\bibinitperiod},
+           given={裕司},
+           giveni={裕\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9d86b395e822d64e987a903f80389055}{%
+           family={千葉},
+           familyi={千\bibinitperiod},
+           given={元気},
+           giveni={元\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{4961fc984930fdea31170166034ecdeb}
+      \strng{fullhash}{e69fb886eb0ec6518f39d7f07eb76dbf}
+      \strng{bibnamehash}{e69fb886eb0ec6518f39d7f07eb76dbf}
+      \strng{authorbibnamehash}{e69fb886eb0ec6518f39d7f07eb76dbf}
+      \strng{authornamehash}{4961fc984930fdea31170166034ecdeb}
+      \strng{authorfullhash}{e69fb886eb0ec6518f39d7f07eb76dbf}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{日本心理学会第82回大会発表論文集}
+      \field{subtitle}{聴覚プローブ法を用いた実験的検討}
+      \field{title}{認知資源が多肢選択意思決定における魅力効果に及ぼす影響}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \true{nocite}
+      \field{pages}{493}
+      \range{pages}{1}
+    \endentry
+    \entry{Wiskunde2019}{article}{}
+      \name{author}{25}{}{%
+        {{un=0,uniquepart=base,hash=f4c61897ae63acdfa9dd86bc2dd0e13e}{%
+           family={Wiskunde},
+           familyi={W\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d7929bb077d528cc45c0e337f4fa5a70}{%
+           family={Arslan},
+           familyi={A\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0a7919e797ea52c2fcb95ad305247fc1}{%
+           family={Fischer},
+           familyi={F\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=77db4394636d4376cde228664170ecb4}{%
+           family={Nowak},
+           familyi={N\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c0834e87cbd733c67a2ecd3ecd4f4e1e}{%
+           family={Van\bibnamedelimb den\bibnamedelima Berg},
+           familyi={V\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e9d7cdb46d5b551d6bc551f0c3201623}{%
+           family={Coetzee},
+           familyi={C\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e31bdecbbcfb86ae7b6620f443570e5a}{%
+           family={Ju\'{a}rez},
+           familyi={J\bibinitperiod},
+           given={U.},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ec31d3a3c904afa57e4c916e45a18da1}{%
+           family={Riyaziyyat},
+           familyi={R\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=466ce84bc5093e2ec73b823c573ad026}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fa96ab49a92e7cb79649d304c9de4788}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a494467233dc99d0be6a30678b7aca5a}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8c657657f073a8564342be972344fdf0}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cde9846cd9785cded705e9e8cb22f9bb}{%
+           family={Kumar},
+           familyi={K\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9d11e4ed10cefeb373b7a04864c902f5}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6ad1eecfc334252530f1a1eb6146fbdb}{%
+           family={Martinez},
+           familyi={M\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a66386dd1d65256fd00d26f296822dc2}{%
+           family={McIntosh},
+           familyi={M\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9545f047a682660956d3d799ebc96cf2}{%
+           family={Ib\'{a}\~{n}ez},
+           familyi={I\bibinitperiod},
+           given={L.\bibnamedelimi M.},
+           giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f15b892b170c88af88e90aefad3f85c1}{%
+           family={M\"{a}kinen},
+           familyi={M\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fa177eda30c1c486c7e2dae3779a1d85}{%
+           family={Virtanen},
+           familyi={V\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e17df7719091ca7e0ee2e754a45d3be6}{%
+           family={Kristine},
+           familyi={K\bibinitperiod},
+           given={Simisola},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a2bdd06d12eda02186960abd92048d6d}{%
+           family={M\'{e}abh},
+           familyi={M\bibinitperiod},
+           given={Neasa},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7e070ddbb0c4bdb4198c7eb74532cf86}{%
+           family={Moana},
+           familyi={M\bibinitperiod},
+           given={Sebasti\~{a}o},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=83cdb9f28045fb2dec83550d4cd566f8}{%
+           family={Livia},
+           familyi={L\bibinitperiod},
+           given={Kamala},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f558a1fd04efa4bd4d494b0fa5154bb0}{%
+           family={C\'{e}leste},
+           familyi={C\bibinitperiod},
+           given={Bruno},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e685048f342d43bcda6f82d6b52292be}{%
+           family={Kov\'{a}cs},
+           familyi={K\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{345723a87c2c5f1522b643e45fd375a1}
+      \strng{fullhash}{d70edd083651c6153762ce27492ab88a}
+      \strng{bibnamehash}{d70edd083651c6153762ce27492ab88a}
+      \strng{authorbibnamehash}{d70edd083651c6153762ce27492ab88a}
+      \strng{authornamehash}{345723a87c2c5f1522b643e45fd375a1}
+      \strng{authorfullhash}{d70edd083651c6153762ce27492ab88a}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Improbable Mathematics}
+      \field{number}{1}
+      \field{subtitle}{Twenty One Pilots, Nicolas Bourbaki, and the empty set}
+      \field{title}{Indie pop rocks mathematics}
+      \field{volume}{27}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \true{nocite}
+      \field{pages}{1935\bibrangedash 1968}
+      \range{pages}{34}
+      \verb{doi}
+      \verb 10.0000/3mp7y-537
+      \endverb
+    \endentry
+    \entry{矢嶋2013}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=fb55ad19c5903355a2c3a91e68510c8a}{%
+           family={矢嶋},
+           familyi={矢\bibinitperiod},
+           given={美保},
+           giveni={美\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=12f9403598f1411341c5805b9b055588}{%
+           family={長谷川},
+           familyi={長\bibinitperiod},
+           given={晃},
+           giveni={晃\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{64ec79e7e61d91ad37a407a1f2572235}
+      \strng{fullhash}{64ec79e7e61d91ad37a407a1f2572235}
+      \strng{bibnamehash}{64ec79e7e61d91ad37a407a1f2572235}
+      \strng{authorbibnamehash}{64ec79e7e61d91ad37a407a1f2572235}
+      \strng{authornamehash}{64ec79e7e61d91ad37a407a1f2572235}
+      \strng{authorfullhash}{64ec79e7e61d91ad37a407a1f2572235}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{感情心理学研究}
+      \field{number}{3}
+      \field{subtitle}{日本の親子のデータを用いた検討}
+      \field{title}{家族機能が中学生の社交不安に及ぼす影響}
+      \field{volume}{27}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{pages}{83\bibrangedash 94}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.4092/jsre.27.3_83
+      \endverb
+    \endentry
+    \entry{Yokoyama2020}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=a307402848115a082f288991f0ef0476}{%
+           family={Yokoyama},
+           familyi={Y\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=410dc7536df2353fdeab1aefaa3fa118}{%
+           family={Kato},
+           familyi={K\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3379ccfa80ed4d8f91c6d9c029168a53}{%
+           family={Inoue},
+           familyi={I\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0217ccc616c35a783a4bc870a6f3789a}{%
+           family={Takeda},
+           familyi={T\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{21a97eccc2b656b09349d7b867746495}
+      \strng{fullhash}{8b989272c6f94e818bdf747379ecf523}
+      \strng{bibnamehash}{8b989272c6f94e818bdf747379ecf523}
+      \strng{authorbibnamehash}{8b989272c6f94e818bdf747379ecf523}
+      \strng{authornamehash}{21a97eccc2b656b09349d7b867746495}
+      \strng{authorfullhash}{8b989272c6f94e818bdf747379ecf523}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Advance online publication}
+      \field{journaltitle}{Japanese Psychological Research}
+      \field{title}{Cuing Effects by Biologically and Behaviorally Relevant Symbolic Cues}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1111/jpr.12318
+      \endverb
+    \endentry
+    \entry{Yoshimura2021}{online}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=042601628d4cf394c306e358d2694ab4}{%
+           family={Yoshimura},
+           familyi={Y\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7b2c3ad49671c86e0eecb4d13647994d}{%
+           family={Morimoto},
+           familyi={M\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=985b6dd43b2229d5638def7fdcca8ad5}{%
+           family={Murai},
+           familyi={M\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c817d31c8883e99bb784b1e0b8df7b3d}{%
+           family={Kihara},
+           familyi={K\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aa9dd06b7fc77cbfe0267bbf768c7c69}{%
+           family={Marmolejo-Ramos},
+           familyi={M\bibinithyphendelim R\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=799fce225861b18cbc659475bc8bec85}{%
+           family={Kubik},
+           familyi={K\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3154a7a9f12588aa523e75262c93179d}{%
+           family={Yamada},
+           familyi={Y\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e5b39676500cc05957efdb7556f12549}
+      \strng{fullhash}{15ce3c13319dfdd1f0e0492289ef3061}
+      \strng{bibnamehash}{15ce3c13319dfdd1f0e0492289ef3061}
+      \strng{authorbibnamehash}{15ce3c13319dfdd1f0e0492289ef3061}
+      \strng{authornamehash}{e5b39676500cc05957efdb7556f12549}
+      \strng{authorfullhash}{15ce3c13319dfdd1f0e0492289ef3061}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{PsyArXiv}
+      \field{subtitle}{A cross-cultural replication report of Ganel and Goodale (2018)}
+      \field{title}{Age of smile}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \true{nocite}
+      \verb{doi}
+      \verb 10.31234/osf.io/dtx6
+      \endverb
+    \endentry
+    \entry{坂野1994}{article}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=ce42a7da32747370c356484f6145aa48}{%
+           family={坂野},
+           familyi={坂\bibinitperiod},
+           given={雄二},
+           giveni={雄\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=806252045f243e3fab406e34b74cdef8}{%
+           family={福井},
+           familyi={福\bibinitperiod},
+           given={知美},
+           giveni={知\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=affd9cd546d206d7abd56a7e3a756a86}{%
+           family={熊野},
+           familyi={熊\bibinitperiod},
+           given={宏昭},
+           giveni={宏\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=02ce264933475f05c54f4cb2bc1ab0b3}{%
+           family={堀江},
+           familyi={堀\bibinitperiod},
+           given={はるみ},
+           giveni={は\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9d2d8237dfd93c63e74e7fb544ca3896}{%
+           family={川原},
+           familyi={川\bibinitperiod},
+           given={健資},
+           giveni={健\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=64074fefb6e82234f2aab6ebec1bd7fb}{%
+           family={山本},
+           familyi={山\bibinitperiod},
+           given={晴義},
+           giveni={晴\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7494e137e6a4abcd3a7a4affc69ae063}{%
+           family={野村},
+           familyi={野\bibinitperiod},
+           given={忍},
+           giveni={忍\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=62ae7c7d790fc9bd067743cf725e3fe2}{%
+           family={末松},
+           familyi={末\bibinitperiod},
+           given={弘行},
+           giveni={弘\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {japanese}%
+      }
+      \strng{namehash}{3f8a95563e242ff1c44a556883c8c7e8}
+      \strng{fullhash}{91e1b8f7ba17a127526668da8f0021f0}
+      \strng{bibnamehash}{91e1b8f7ba17a127526668da8f0021f0}
+      \strng{authorbibnamehash}{91e1b8f7ba17a127526668da8f0021f0}
+      \strng{authornamehash}{3f8a95563e242ff1c44a556883c8c7e8}
+      \strng{authorfullhash}{91e1b8f7ba17a127526668da8f0021f0}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{心身医学}
+      \field{number}{8}
+      \field{title}{新しい気分調査票の開発とその信頼性・妥当性の検討}
+      \field{volume}{34}
+      \field{year}{1994}
+      \field{dateera}{ce}
+      \field{pages}{629\bibrangedash 636}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.15064/jjpm.34.8_629
+      \endverb
     \endentry
     \entry{7b20af74749cb5ff6167e521e21868ca}{mvbook}{skipbib=true,skipbiblist=true,skiplab=true}
       \name{editor}{1}{}{%
