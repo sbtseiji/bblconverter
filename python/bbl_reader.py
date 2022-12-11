@@ -1,6 +1,7 @@
 import re
 import ruamel
 import ruamel.yaml
+import LaTexAccents as utfconverter
 
 # BibLaTeXの記号の置き換え
 BIBINITPERIOD = '.'
@@ -8,6 +9,9 @@ BIBINITDELIM =''
 BIBNAMEDELIM =''
 BIBNAMEDELIMI =''
 BIBRANGEDASH = '--'
+
+# colon(:)のエスケープ
+CHAR_COLON = '&#58;'
 
 # YAMLのインデント
 YAML_INDENT = '  '
@@ -24,8 +28,6 @@ class BblFlags:
     self.is_name = False
     self.is_list = False
     self.is_first_element =False
-    # self.label_name = True
-    # self.label_list = True
 
 # ========== bblファイルの読み込み ==========
 def load_bbl(file_path):
@@ -41,14 +43,10 @@ def handle_name(line, flag):
   match_obj = re.search(r'\\name\{(.*?)\}',line)
   if match_obj:
     name_type = match_obj.group(1)
-    # if flag.label_name:
-    #   res.append(YAML_INDENT+'name:')
-    #   flag.label_name = False
     res.append(YAML_INDENT+name_type+':')
     flag.is_list = False
     flag.is_name = True
     flag.is_first_element = True
-    flag.label_list = True
 
   # nameフィールドの中身の処理
   if flag.is_name:
@@ -80,7 +78,6 @@ def handle_list(line, flag):
     flag.is_list = True
     flag.is_name = False
     flag.is_first_element = True
-    flag.label_name = True
 
   # nameフィールドの中身の処理
   if flag.is_list:
@@ -98,11 +95,24 @@ def handle_field(line, flag):
   if match_obj:
     flag.is_list = False
     flag.is_name = False
-    flag.label_name = True
-    flag.label_list = True
     item_content = match_obj.group(2).replace('\\bibrangedash ',BIBRANGEDASH)
     res.append(YAML_INDENT+match_obj.group(1)+': '+item_content)
     return res
+
+# ========== verbフィールドの処理 ==========
+def handle_verb(line, flag, verb_type):
+  res = []
+  match_obj = re.search(r'\\verb\{(.*?)\}',line)
+  if match_obj:
+    flag.is_list = False
+    flag.is_name = False
+    verb_type = match_obj.group(1)
+    return res, verb_type
+  else:
+    match_obj = re.search(r'\\verb\s+(.*?)$',line)
+    if match_obj:
+      res.append(YAML_INDENT+verb_type+': '+match_obj.group(1))
+    return res, verb_type
 
 # ========== stringフィールドの処理 ==========
 def handle_string(line, flag):
@@ -118,9 +128,12 @@ def handle_others(line, flag):
   if match_obj:
     flag.reset()
     flag.is_entry = True
+    match_obj = re.search(r'\\entry\{(.*?)\}',line)
+    entry_key = match_obj[1]
+    res.append('- entry: '+ entry_key)
     entry_type = line.split('}{')[1]
     skip_bib = 'true' if re.search(r'skipbib',line) else 'false'
-    res.append('- type: '+ entry_type)
+    res.append('  entrytype: '+ entry_type)
     res.append(YAML_INDENT+'skip: '+skip_bib)
     return res
 
@@ -134,9 +147,14 @@ def convert_to_yaml(yml_str):
 # ========== bblをyamlに変換 ==========
 def bbl_to_yml(bbl_contents):
   bbl_flags = BblFlags()
-  # bbl_contents = load_bbl('../jpa-style.bbl')
-
+  converter = utfconverter.AccentConverter()
+  
+  verb_type = ''
   for line in bbl_contents:
+    # colonを置き換え
+    line = line.replace(':',CHAR_COLON)
+    line = converter.decode_Tex_Accents(line, utf8_or_ascii=1)
+
     if bbl_flags.is_entry: # エントリ内の処理
       if re.search(r'.*\\endentry',line): # \endentry でエントリ終了
         bbl_flags.is_entry = False
@@ -156,6 +174,12 @@ def bbl_to_yml(bbl_contents):
       if res:
         strlist_yml.extend(res)
 
+      # verbの処理
+      res = handle_verb(line, bbl_flags, verb_type)
+      verb_type = res[1]
+      if res[0]:
+        strlist_yml.extend(res[0])
+
       # stringの処理
       res = handle_string(line, bbl_flags)
 
@@ -172,7 +196,7 @@ def bbl_to_yml(bbl_contents):
 # yaml = ruamel.yaml.YAML()
 # bbl_contents = load_bbl('../jpa-style.bbl')
 # bbl_data = bbl_to_yml(bbl_contents)
-# with open('out.yml', 'w') as stream:
+# with open('../yaml/out.yml', 'w') as stream:
 #     yaml.dump(bbl_data, stream=stream)
 
 
