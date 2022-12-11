@@ -30,7 +30,7 @@ family-giveni: &family-giveni
           - 
             - text::""
           -
-            - text::", & "
+            - text::", "
   - count::1
 
 jname: &jname 
@@ -65,9 +65,9 @@ jname: &jname
 format:
   japanese:
     article:
-      - author: *jname
-      - year: *parenyeardot
-      - title: 
+      author: *jname
+      year: *parenyeardot
+      title: 
         - value::title
         -
           - cond::ifdef[field::subtitle,true]
@@ -78,9 +78,9 @@ format:
             - delim::EMDASH
             - delim::EMDASH
         - punct::" "
-      - journaltitle:
+      journaltitle:
         - value::journaltitle
-      - volume:
+      volume:
         - 
           - cond::ifdef[field::volume,true]
           -
@@ -97,7 +97,7 @@ format:
             -
               - text::", No."
               - value::number
-      - pages:
+      pages:
         -
           - cond::ifdef[field::pages,true]
           -
@@ -105,7 +105,7 @@ format:
             - value::pages
             - text::"."
         - punct::""
-      - doi:
+      doi:
         - 
           - cond::ifdef[field::doi,true]
           - 
@@ -113,9 +113,9 @@ format:
             - url::["https://doi.org/",value::doi]
   other:
     article:
-      - author: *family-giveni
-      - year: *parenyeardot
-      - title: 
+      author: *family-giveni
+      year: *parenyeardot
+      title: 
         - value::title
         -
           - cond::ifdef[field::subtitle,true]
@@ -124,9 +124,9 @@ format:
             - delim::SPACE
             - value::subtitle
         - punct::". "
-      - journaltitle:
+      journaltitle:
         - value::journaltitle::italic
-      - volume:
+      volume:
         - 
           - cond::ifdef[field::volume,true]
           -
@@ -143,7 +143,7 @@ format:
             -
               - text::"No."
               - value::number
-      - pages:
+      pages:
         -
           - cond::ifdef[field::pages,true]
           -

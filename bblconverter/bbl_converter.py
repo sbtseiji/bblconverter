@@ -179,27 +179,33 @@ for bibentry in bib_data:
     else:
       bib_formatter = bib_format['format'].get('other')
 
+
     # # 文献タイプ（article, book, etc.）の定義
     format_def = bib_formatter.get(bibentry['entrytype'])
     formatted_list =[] # yamlの変換結果を入れるためのリスト
-    if format_def:
-      for item in format_def:
-        res_str = ''
-        if isinstance(bibentry.get(item),list):
-          listcount = 1
-          listtotal = len(bibentry.get(item))
-          for listitem in bibentry.get(item):
-            res = expand_format(format_def.get(item),listitem,res_str,listcount,listtotal)
-            res_str = res[0]
-            listcount = res[1]
 
-        else:
-          listcount = 1
-          res = expand_format(format_def.get(item),bibentry,res_str,listcount,listtotal)
-          res_str = res[0]
-          
-        formatted_list.append(res_str) 
-        
+    if format_def:
+      for field in format_def:
+        for item in field:
+          res_str = ''
+          if isinstance(bibentry.get(item),list):
+            listcount = 1
+            listtotal = len(bibentry.get(item))
+
+            for listitem in bibentry.get(item):
+              print('listitem',listitem)
+              res = expand_format(field.get(item),listitem,res_str,listcount,listtotal)
+              res_str = res[0]
+              listcount = res[1]
+
+          else:
+            print('cdddccc',item)
+            listcount = 1
+            res = expand_format(field.get(item),bibentry,res_str,listcount,listtotal)
+            res_str = res[0]
+            
+          formatted_list.append(res_str) 
+
     res_entry = "".join(formatted_list)
     if res_entry:
       bib_list.append([bibentry.get('entry'), res_entry])
