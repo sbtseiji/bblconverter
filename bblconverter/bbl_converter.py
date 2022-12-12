@@ -25,6 +25,12 @@ NAMES = ['author','editor','editora','translator','translatora','origauthor']
 NAMEPART = ['family','familyi','given','giveni']
 
 
+# 対象の文献情報全体：entry_data
+# 特定フィールドのデータ:field_data
+# 特定フィールドのキー:field_key
+# 文献タイプの書式情報：driver_format
+# 特定フィールドの書式情報：field_format
+
 # ========== ymlファイルの読み込み ==========
 def load_yml(file_path):
   bib_contents =[]
@@ -185,6 +191,9 @@ cite_key = '' # 引用キー
 
 for bibentry in bib_data:
 
+  # 条件文なら条件文の処理
+  # テキストなら出力
+  # フィールドデータならキーで値を取得して処理
   def begin_with_cond(bib_format,bib_data,out,listcount,listtotal): # 最初に条件文がある場合の処理
     res = expand_format(field.get(item),bibentry,res_str,listcount,listtotal)
     return res
@@ -194,13 +203,13 @@ for bibentry in bib_data:
   if not bibentry.get('skip'): # skipしないエントリの場合のみ
     if 'language' in bibentry:
       biblanguage = bibentry.get('language')[0]
-      bib_formatter = bib_format['format'].get(biblanguage)
+      bib_driver = bib_format['driver'].get(biblanguage)
     else:
-      bib_formatter = bib_format['format'].get('other')
+      bib_driver = bib_format['driver'].get('other')
 
 
     # # 文献タイプ（article, book, etc.）の定義
-    format_def = bib_formatter.get(bibentry['entrytype'])
+    format_def = bib_driver.get(bibentry['entrytype'])
     formatted_list =[] # yamlの変換結果を入れるためのリスト
 
     if format_def:
@@ -211,7 +220,7 @@ for bibentry in bib_data:
             res = handle_cond(field.split('::')[1],bibentry)
             print(res)
           else: # 文字列の場合
-          pass
+            pass
         else:
           for item in field:
             res_str = ''
