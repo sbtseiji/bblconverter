@@ -22,15 +22,29 @@ family-giveni: &family-giveni
       -
         - text::""
       -
-        - value::family
-        - text::", "
-        - value::giveni
+        - cond::ifequal[listcount,1]
+        - 
+          - value::family
+          - text::", "
+          - value::giveni
         -
-          - cond::ifequal[listcount,listtotal]
-          - 
-            - text::""
+          - cond::ifless[listcount,maxnames]
           -
-            - text::", & "
+            - cond::ifequal[listcount,listtotal]
+            -
+              - text::", & "
+              - value::family
+              - text::", "
+              - value::giveni
+            -
+              - text::", "
+              - value::family
+              - text::", "
+              - value::giveni                
+          -
+            - value::family
+            - text::", "
+            - value::giveni
   - count::1
 
 jname: &jname 
@@ -61,6 +75,57 @@ jname: &jname
             - value::given
 
   - count::1
+
+bookpart: &book
+  - author: 
+    -
+      - cond::ifdef[field::author,true]
+      -
+        *jname
+  - authortype:
+    - 
+      - cond::ifdef[field::author,true]
+      -
+        - cond::ifdef[field::authortype,true]
+        -
+          - text::"("
+          - value::authortype
+          - text::") "
+  - editor: 
+    -
+      - cond::ifdef[field::editor,true]
+      -
+        *jname
+
+  - editortype:
+    - 
+      - cond::ifdef[field::editor,true]
+      -
+        - cond::ifdef[field::editortype,true]
+        -
+          - text::"("
+          - value::editortype
+          - text::")"
+        -
+          - text::"(編)"
+  - year: *parenyeardot
+  - title: 
+    - value::title
+    -
+      - cond::ifdef[field::subtitle,true]
+      - 
+        - delim::EMDASH
+        - delim::EMDASH
+        - value::subtitle
+        - delim::EMDASH
+        - delim::EMDASH
+    - punct::" "
+    -
+      - cond::ifdef[field::edition,true]
+      -
+        - value::edition
+    - value::publisher
+
 
 format:
   japanese:
@@ -111,6 +176,17 @@ format:
           - 
             - delim::LINEBREAK
             - url::["https://doi.org/",value::doi]
+    book: 
+      # - text::"hoge"
+        - cond::ifdef[field::related,false]
+        -
+          - cond::ifdef[field::translator,false]
+          -
+            - editor: 
+              - value::family
+      # - text::"gge"
+      # - text::"hoge"
+
   other:
     article:
       - author: *family-giveni
