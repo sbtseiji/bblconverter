@@ -33,10 +33,9 @@ def load_yml(file_path):
     return yml_data
 
 # ========== formatデータの展開 ==========
-def expand_format(field_format,entry_data,listcount=1,listtotal=1):
+def expand_format(field_format,entry_data,listcount,listtotal):
+  # print(field_format,entry_data)
   outstr = ''
-  tmp = []
-  # print(type(field_format), len(field_format),field_format)
   for item in field_format:
     if isinstance(item, str):
       if '::' in item: # 出力
@@ -55,30 +54,34 @@ def expand_format(field_format,entry_data,listcount=1,listtotal=1):
           case _:
             # print("hogehoge",tmp[0])
             pass
+      elif isinstance(entry_data,list): # name リストの場合の処理
+        listcount = 1
+        listtotal = len(entry_data)
+        name_format = field_format.get(item)
+        for name_item in entry_data:
+          outstr += expand_format(name_format,name_item,listcount,listtotal)
+          listcount += 1
       else:
-        print("エルス",field_format, "ほげ", entry_data)
         if entry_data.get(item):
           field_data = entry_data.get(item)
           if isinstance(field_data,str):
             outstr += field_data
           else:
-            outstr += expand_format(field_format,field_data,1,len(field_data))
-          
+            outstr += expand_format(field_format,field_data,listcount,len(field_data))
+    elif isinstance(item, list):
+      if 'cond::' in item[0]:
+        outstr += handle_cond(item, entry_data,listcount, listtotal)
     else:
       if isinstance(item, dict):
-        print('dict',item)
-
-        outstr = expand_format(list(item.items()),entry_data,listcount,listtotal)
+        #  print('dict',item.items())
+         outstr = expand_format(dict(item.items()),entry_data,listcount,listtotal)
       else:
         print('list',item)
-        outstr = expand_format(item,entry_data,)
+        outstr = expand_format(item,entry_data,listcount, listtotal)
 
   # outstr = str(outstr)
   return outstr
 
-def handle_name(field_format, name_list):
-  print("monmon",field_format)
-  return
 
 def handle_field():
   pass
@@ -115,7 +118,7 @@ def print_text(text_str):
     outstr += '\\'+text_style+"}"
   
   else: # 書式設定なしの場合はそのまま
-    outstr += str(text_value.strip().replace('\"',''))
+    outstr += str(text_str.strip().replace('\"',''))
   return outstr
 
 def handle_punct(punct_str):
@@ -137,30 +140,27 @@ def handle_url(url_str): # urlはタグで囲む
   outstr += "\\url{"+str(url_content)+"\\url}"
   return outstr
 
-def handle_cond(cond_list, entry_data):
+def handle_cond(cond_list, entry_data,listcount, listtotal):
   res = ''
-  # print(cond_list, entry_data)
   # 複数条件かどうかを確認
   cond_str = cond_list[0].split('::',1)[1] # 「cond::」を削除
-
   if "&&" in cond_str:
     multi_cond_str = cond_str.split("&&")
-    res = ifthenelse(multi_cond_str[0],entry_data) and ifthenelse(multi_cond_str[1],entry_data)
+    res = ifthenelse(multi_cond_str[0],entry_data,listcount,listtotal) and ifthenelse(multi_cond_str[1],entry_data,listcount,listtotal)
   elif "||" in cond_str:
     multi_cond_str = cond_str.split("||")
-    res = ifthenelse(multi_cond_str[0],entry_data) or ifthenelse(multi_cond_str[1],entry_data)
+    res = ifthenelse(multi_cond_str[0],entry_data,listcount,listtotal) or ifthenelse(multi_cond_str[1],entry_data,listcount,listtotal)
   else:
-    res = ifthenelse(cond_str,entry_data)
-
+    res = ifthenelse(cond_str,entry_data,listcount,listtotal)
 
   if res: # 結果が真の場合は次のステップを実施して終了
-    return expand_format(cond_list[1],entry_data,'')
+    return expand_format(cond_list[1],entry_data,listcount,listtotal)
   else:
     if len(cond_list)>2 :
-      return expand_format(cond_list[2],entry_data,'')
+      return expand_format(cond_list[2],entry_data,listcount,listtotal)
 
 # cond関数の処理
-def ifthenelse(cond_str,entry_data):
+def ifthenelse(cond_str,entry_data,listcount,listtotal):
   # 文字列から条件式とパラメタを構成
   cond_function = cond_str.split('[',1)[0]
 
@@ -170,12 +170,17 @@ def ifthenelse(cond_str,entry_data):
     param1 = match_obj[1].split(',')[0]
     param2 = match_obj[1].split(',')[1]
 
-  if param1 in globals() :
+  if param1 in locals() :
+    param1 = locals()[param1]
+  elif param1 in globals() :
     param1 = globals()[param1]
   else:
     if '::' in param1:
       param1 = param1.split('::')[1]
-  if param2 in globals() :
+ 
+  if param2 in locals() :
+    param2 = locals()[param2]
+  elif param2 in globals() :
       param2 = globals()[param2]
   else:
     if '::' in param2:
@@ -237,9 +242,6 @@ for key, value in bib_variables.items():
 # ネームリストを処理
 bib_names = bib_yml['names']
 
-listcount = 0
-listtotal = 0
-
 bib_list = [] # 最終的な変換結果を入れるためのリスト
 cite_key = '' # 引用キー
 # 文献ファイル全体のデータ：bib_data
@@ -268,9 +270,8 @@ for entry_data in bib_data:
 
     if driver_format: # articleやbookなどの処理
       for field_format in driver_format: # 順番にフィールドを処理
-        print("field_format",field_format)
-        bib_item += expand_format(field_format, entry_data)
-
+        bib_item += expand_format(field_format, entry_data,0,0)
+  print(bib_item)
   if bib_item:
     bib_list.append(bib_item)
 # export_latex(bib_list)
