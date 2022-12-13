@@ -24,13 +24,6 @@ BIBFIELDS = ['author','editor','editora','translator','translatora',
 NAMES = ['author','editor','editora','translator','translatora','origauthor']
 NAMEPART = ['family','familyi','given','giveni']
 
-
-# 対象の文献情報全体：entry_data
-# 特定フィールドのデータ:field_data
-# 特定フィールドのキー:field_key
-# 文献タイプの書式情報：driver_format
-# 特定フィールドの書式情報：field_format
-
 # ========== ymlファイルの読み込み ==========
 def load_yml(file_path):
   bib_contents =[]
@@ -39,80 +32,135 @@ def load_yml(file_path):
     yml_data = yaml.load(f)
     return yml_data
 
-# ========== dictデータの展開 ==========
-def expand_format(bib_format,bib_data,out,listcount,listtotal):
-  outstr = out
+# ========== formatデータの展開 ==========
+def expand_format(field_format,entry_data,listcount=1,listtotal=1):
+  outstr = ''
   tmp = []
-  for item in bib_format:
+  # print(type(field_format), len(field_format),field_format)
+  for item in field_format:
     if isinstance(item, str):
-      tmp = item.split('::',1)
-      match tmp[0]:
-        case 'value':
-          if '::' in tmp[1]: # 書式設定がある場合
-            field_value = bib_data.get(tmp[1].split('::')[0])
-            if type(field_value) == CommentedSeq:
-              field_value=field_value[0]
-            outstr += '\\'+str(tmp[1].split('::')[1])+"{"
-            outstr += str(field_value).strip()
-            outstr += '\\'+str(tmp[1].split('::')[1])+"}"
-          else: # 書式設定なしの場合はそのまま
-            field_value = bib_data.get(tmp[1])
-            if type(field_value) == CommentedSeq:
-              field_value=field_value[0]
-            outstr += str(field_value).strip()
-        case 'text': # textの内容はそのまま
-          outstr += str(tmp[1].replace('\"',''))
-        case 'delim': # delimは対応する文字列に置き換え
-          outstr += str(globals()[tmp[1]])
-        case 'punct': # 
-          punct_char =tmp[1].replace('\"','')
-          outstr = outstr.rstrip(punct_char) # 同じマークが連続しないようにする
-          if punct_char =="　": # 全角スペースの場合は空白を削除
-            outstr = outstr.rstrip()
-          if outstr == outstr.rstrip('?'): # 末尾が?でないならマークを追加
-            outstr += punct_char
-        case 'url': # urlの場合はタグで囲む
-          match_obj = re.search(r"\[\"(.*?)\"\s*,\s*(.*?)\]",tmp[1])
-          url_content = expand_format([match_obj[2]],bib_data,match_obj[1],listcount,listtotal)
-          outstr += "\\url{"+str(url_content[0])+"\\url}"
-        case 'cond':
-          # 複数条件かどうかを確認
-          cond_list=[]
-
-          if "&&" in tmp[1]:
-            cond_list = tmp[1].split("&&")
-            res = handle_cond(cond_list[0],bib_data) and handle_cond(cond_list[1],bib_data)
-          elif "||" in tmp[1]:
-            cond_list = tmp[1].split("||")
-            res = handle_cond(cond_list[0],bib_data) or handle_cond(cond_list[1],bib_data)
+      if '::' in item: # 出力
+        tmp = item.split('::',1)
+        match tmp[0]:
+          case 'value': # フィールドから値を取得
+            outstr += retrieve_value(tmp[1], entry_data)
+          case 'text': # テキストの出力
+            outstr += print_text(tmp[1])
+          case 'delim': # delimは対応する文字列に置き換え
+            outstr += str(globals()[tmp[1]])
+          case 'punct': # ユニット区切りの処理
+            outstr += handle_punct(tmp[1])
+          case 'url': # URL
+            outstr += handle_url(tmp[1])
+          case _:
+            # print("hogehoge",tmp[0])
+            pass
+      else:
+        print("エルス",field_format, "ほげ", entry_data)
+        if entry_data.get(item):
+          field_data = entry_data.get(item)
+          if isinstance(field_data,str):
+            outstr += field_data
           else:
-            res = handle_cond(tmp[1],bib_data)
-          if res: # 結果が真の場合は次のステップを実施して終了
-            res = expand_format(bib_format[1],bib_data,outstr,listcount,listtotal)
-            outstr = res[0]
-            break
-          else:
-            if len(bib_format)>2 :
-              res = expand_format(bib_format[2],bib_data,outstr,listcount,listtotal)
-              outstr = res[0]
-            break
-        case 'count':
-          listcount += int(tmp[1])
-        case _:
-          pass
+            outstr += expand_format(field_format,field_data,1,len(field_data))
+          
     else:
       if isinstance(item, dict):
-        res = expand_format(list(item.items()),bib_data,outstr,listcount,listtotal)
-        outstr = res[0]
+        print('dict',item)
+
+        outstr = expand_format(list(item.items()),entry_data,listcount,listtotal)
       else:
-        res = expand_format(item,bib_data,outstr,listcount,listtotal)
-        outstr = res[0]
+        print('list',item)
+        outstr = expand_format(item,entry_data,)
 
   # outstr = str(outstr)
-  return [outstr, listcount]
+  return outstr
+
+def handle_name(field_format, name_list):
+  print("monmon",field_format)
+  return
+
+def handle_field():
+  pass
+
+# value:: の処理
+def retrieve_value(value_str, entry_data):
+  field_value = ''
+  outstr = ''
+
+  if '::' in value_str: # 書式設定がある場合
+    field_value = entry_data.get(value_str.split('::')[0])
+    if type(field_value) == CommentedSeq:
+      field_value=field_value[0]
+    outstr += '\\'+str(value_str.split('::')[1])+"{"
+    outstr += str(field_value).strip()
+    outstr += '\\'+str(value_str.split('::')[1])+"}"
+  else: # 書式設定なしの場合はそのまま
+    field_value = entry_data.get(value_str)
+    if type(field_value) == CommentedSeq:
+      field_value=field_value[0]
+    outstr += str(field_value).strip()
+  return outstr
+
+# text:: の処理
+def print_text(text_str):
+  text_value = ''
+  text_style = ''
+  outstr = ''
+  if '::' in text_str:
+    text_value = text_str.split('::')[0].strip()
+    text_style = text_str.split('::')[1]
+    outstr += '\\'+text_style+"{"
+    outstr += str(text_value.replace('\"',''))
+    outstr += '\\'+text_style+"}"
+  
+  else: # 書式設定なしの場合はそのまま
+    outstr += str(text_value.strip().replace('\"',''))
+  return outstr
+
+def handle_punct(punct_str):
+  outstr = ''
+
+  punct_char = punct_str.replace('\"','')
+  outstr = outstr.rstrip(punct_char) # 同じマークが連続しないようにする
+  if punct_char =="　": # 全角スペースの場合は空白を削除
+    outstr = outstr.rstrip()
+  if outstr == outstr.rstrip('?'): # 末尾が?でないならマークを追加
+    outstr += punct_char
+  return outstr            
+
+def handle_url(url_str): # urlはタグで囲む
+  outstr= ''
+
+  match_obj = re.search(r"\[\"(.*?)\"\s*,\s*(.*?)\]",url_str)
+  url_content = match_obj[1]
+  outstr += "\\url{"+str(url_content)+"\\url}"
+  return outstr
+
+def handle_cond(cond_list, entry_data):
+  res = ''
+  # print(cond_list, entry_data)
+  # 複数条件かどうかを確認
+  cond_str = cond_list[0].split('::',1)[1] # 「cond::」を削除
+
+  if "&&" in cond_str:
+    multi_cond_str = cond_str.split("&&")
+    res = ifthenelse(multi_cond_str[0],entry_data) and ifthenelse(multi_cond_str[1],entry_data)
+  elif "||" in cond_str:
+    multi_cond_str = cond_str.split("||")
+    res = ifthenelse(multi_cond_str[0],entry_data) or ifthenelse(multi_cond_str[1],entry_data)
+  else:
+    res = ifthenelse(cond_str,entry_data)
+
+
+  if res: # 結果が真の場合は次のステップを実施して終了
+    return expand_format(cond_list[1],entry_data,'')
+  else:
+    if len(cond_list)>2 :
+      return expand_format(cond_list[2],entry_data,'')
 
 # cond関数の処理
-def handle_cond(cond_str,bib_data):
+def ifthenelse(cond_str,entry_data):
   # 文字列から条件式とパラメタを構成
   cond_function = cond_str.split('[',1)[0]
 
@@ -147,12 +195,13 @@ def handle_cond(cond_str,bib_data):
     case 'iflesseq':
       return True if int(param1)<=int(param2) else False
     case 'ifdef':
-      if param2 =='true' and param1 in bibentry:
+      if param2 =='true' and param1 in entry_data:
         return True
-      elif param2 =='false' and param1 not in bibentry:
+      elif param2 =='false' and param1 not in entry_data:
         return True
       else:
         return False
+
 
 # LaTeXのbibitemとして出力
 def export_latex(biblist):
@@ -171,78 +220,57 @@ def export_latex(biblist):
 # メインの処理
 
 # 文献データ
-bib_contents = bbl.load_bbl('../jpa-style.bbl')
-bib_data = bbl.bbl_to_yml(bib_contents)
+# bib_contents = bbl.load_bbl('../jpa-style.bbl')
+yaml = ruamel.yaml.YAML(typ='safe')
+bib_data = load_yml('../yaml/test.yml')
+# bib_data = bbl.bbl_to_yml(bib_contents)
 
 # 文献リストの書式
 yaml = ruamel.yaml.YAML(typ='safe')
-bib_format = load_yml('../yaml/jjpsy.yml')
+bib_yml = load_yml('../yaml/jjpsy.yml')
 
 # 変数を処理
-bib_variables = bib_format['constants']
+bib_variables = bib_yml['constants']
 for key, value in bib_variables.items():
   exec("%s = %s" % (key,value)) # keyの値を変数名，valueを変数値として処理
+
+# ネームリストを処理
+bib_names = bib_yml['names']
 
 listcount = 0
 listtotal = 0
 
 bib_list = [] # 最終的な変換結果を入れるためのリスト
 cite_key = '' # 引用キー
+# 文献ファイル全体のデータ：bib_data
+# 対象の文献情報全体：entry_data
+# 特定フィールドのデータ:field_data
+# 特定フィールドのキー:field_key
+# 文献タイプの書式情報：driver_format
+# 特定フィールドの書式情報：field_format
 
-for bibentry in bib_data:
+for entry_data in bib_data:
 
-  # 条件文なら条件文の処理
-  # テキストなら出力
-  # フィールドデータならキーで値を取得して処理
-  def begin_with_cond(bib_format,bib_data,out,listcount,listtotal): # 最初に条件文がある場合の処理
-    res = expand_format(field.get(item),bibentry,res_str,listcount,listtotal)
-    return res
+  bib_item = None # 変換後の文献リスト項目
 
-  # cite_key = bibentry.get('language')[0]
-  # bibentryの言語を調べ，言語が指定されていればそちらのフォーマットを選択
-  if not bibentry.get('skip'): # skipしないエントリの場合のみ
-    if 'language' in bibentry:
-      biblanguage = bibentry.get('language')[0]
-      bib_driver = bib_format['driver'].get(biblanguage)
+  if not entry_data.get('skip'): # skipしないエントリの場合のみ
+    bib_item = ''
+
+    # entryの言語を調べ，言語が指定されていればそちらのdriverを選択
+    if 'language' in entry_data:
+      entry_language = entry_data.get('language')[0]
+      bib_driver = bib_yml['driver'].get(entry_language)
     else:
-      bib_driver = bib_format['driver'].get('other')
+      bib_driver = bib_yml['driver'].get('other')
 
+    # # 文献タイプ（article, book, etc.）の書式を取得
+    driver_format = bib_driver.get(entry_data['entrytype'])
 
-    # # 文献タイプ（article, book, etc.）の定義
-    format_def = bib_driver.get(bibentry['entrytype'])
-    formatted_list =[] # yamlの変換結果を入れるためのリスト
+    if driver_format: # articleやbookなどの処理
+      for field_format in driver_format: # 順番にフィールドを処理
+        print("field_format",field_format)
+        bib_item += expand_format(field_format, entry_data)
 
-    if format_def:
-      for field in format_def:
-        if not isinstance(field,dict): # 条件式や文字列などの場合
-          print(field)
-          if field.startswith('cond::'): # 条件式の場合
-            res = handle_cond(field.split('::')[1],bibentry)
-            print(res)
-          else: # 文字列の場合
-            pass
-        else:
-          for item in field:
-            res_str = ''
-            if isinstance(bibentry.get(item),list):
-              listcount = 1
-              listtotal = len(bibentry.get(item))
-
-              for listitem in bibentry.get(item):
-                res = expand_format(field.get(item),listitem,res_str,listcount,listtotal)
-                res_str = res[0]
-                listcount = res[1]
-
-            else:
-              listcount = 1
-              res = expand_format(field.get(item),bibentry,res_str,listcount,listtotal)
-              res_str = res[0]
-            
-          formatted_list.append(res_str)
-
-
-    res_entry = "".join(formatted_list)
-    if res_entry:
-      bib_list.append([bibentry.get('entry'), res_entry])
-
-export_latex(bib_list)
+  if bib_item:
+    bib_list.append(bib_item)
+# export_latex(bib_list)

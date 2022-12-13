@@ -1,6 +1,12 @@
 constants:
   maxnames: 20
 
+names:
+  - author
+  - editor
+  - editora
+  - translator
+  - origauthor
 
 parenyear: &parenyeardot
   - text::"("
@@ -45,36 +51,66 @@ family-giveni: &family-giveni
             - value::family
             - text::", "
             - value::giveni
-  - count::1
+  # - count::1
 
 jname: &jname 
-  - 
+  -
     - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
     -
       - text::"..."
     -
-      - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
-      -
-        - text::""
-      -
-        - cond::ifequal[listcount,1]
-        - 
-          - value::family
-          - text::" "
-          - value::given
+      - 
+        - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
         -
-          - cond::ifless[listcount,maxnames]
-          -
-            - text::"・"
-            - value::family
-            - text::" "
-            - value::given
-          -
-            - value::family
-            - text::" "
-            - value::given
+          - text::""
+        -
+          - 
+            - cond::ifequal[listcount,1]
+            - 
+              - value::family
+              - text::" "
+              - value::given
+            -
+              -
+                - cond::ifless[listcount,maxnames]
+                -
+                  - text::"・"
+                  - value::family
+                  - text::" "
+                  - value::given
+                -
+                  - value::family
+                  - text::" "
+                  - value::given
 
-  - count::1
+# jname: &jname 
+#   - 
+#     - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
+#     -
+#       - text::"..."
+#     -
+#       - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
+#       -
+#         - text::""
+#       -
+#         - cond::ifequal[listcount,1]
+#         - 
+#           - value::family
+#           - text::" ぐ"
+#           - value::given
+#         -
+#           - cond::ifless[listcount,maxnames]
+#           -
+#             - text::"・"
+#             - value::family
+#             - text::" が"
+#             - value::given
+#           -
+#             - value::family
+#             - text::" ぎ"
+#             - value::given
+
+  # - count::1
 
 bookpart: &book
   - author: 
@@ -177,13 +213,19 @@ driver:
             - delim::LINEBREAK
             - url::["https://doi.org/",value::doi]
     book: 
-      # - text::"hoge"
+      -
+        editor: *jname
+      -
         - cond::ifdef[field::related,false]
         -
           - cond::ifdef[field::translator,false]
           -
-            - editor: 
-              - value::family
+            - editor: *jname
+        -
+          - text::"hohoho"
+      - title: 
+        - value::title
+
       # - text::"gge"
       # - text::"hoge"
 
