@@ -12,10 +12,8 @@ parenyear: &parenyeardot
   - text::"("
   - 
     - cond::ifdef[year,true]
-    -
-      - value::year
-    -
-      - value::pubstate
+    - value::year
+    - value::pubstate
   - text::"). "
 
 
@@ -55,34 +53,30 @@ family-giveni: &family-giveni
   # - count::1
 
 jname: &jname 
-  -
     - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
     -
       - text::"..."
     -
+      - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
+      -
+        - text::""
       - 
-        - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
+        - cond::ifequal[listcount,1]
+        - 
+          - value::family
+          - text::" "
+          - value::given
         -
-          - text::""
-        -
-          - 
-            - cond::ifequal[listcount,1]
-            - 
-              - value::family
-              - text::" "
-              - value::given
-            -
-              -
-                - cond::ifless[listcount,maxnames]
-                -
-                  - text::"・"
-                  - value::family
-                  - text::" "
-                  - value::given
-                -
-                  - value::family
-                  - text::" "
-                  - value::given
+          - cond::ifless[listcount,maxnames]
+          -
+            - text::"・"
+            - value::family
+            - text::" "
+            - value::given
+          -
+            - value::family
+            - text::" "
+            - value::given
 
 
 bookpart: &book
@@ -103,8 +97,7 @@ bookpart: &book
   - editor: 
     -
       - cond::ifdef[field::editor,true]
-      -
-        *jname
+      -  *jname
 
   - editortype:
     - 
@@ -115,8 +108,7 @@ bookpart: &book
           - text::"("
           - value::editortype
           - text::")"
-        -
-          - text::"(編)"
+        - text::"(編)"
   - year: *parenyeardot
   - title: 
     - value::title
@@ -186,93 +178,57 @@ driver:
             - delim::LINEBREAK
             - url::["https://doi.org/",value::doi]
     book: 
-      -
-        - cond::ifdef[field::related,false]
+      - author: 
         -
-          - 
-            - cond::ifdef[field::translator,false]
+          - cond::ifdef[field::author,true]
+          -
+            *jname
+      - authortype:
+        - 
+          - cond::ifdef[field::author,true]
+          -
+            - cond::ifdef[field::authortype,true]
             -
-              - author: 
-                -
-                  - cond::ifdef[field::author,true]
-                  -
-                    *jname
-              - authortype:
-                - 
-                  - cond::ifdef[field::author,true]
-                  -
-                    - cond::ifdef[field::authortype,true]
-                    -
-                      - text::"("
-                      - value::authortype
-                      - text::") "
-              - editor: 
-                -
-                  - cond::ifdef[field::editor,true]
-                  -
-                    *jname
+              - text::"("
+              - value::authortype
+              - text::") "
+      - editor: 
+        -
+          - cond::ifdef[field::editor,true]
+          -
+            *jname
 
-              - editortype:
-                - 
-                  - cond::ifdef[field::editor,true]
-                  -
-                    - cond::ifdef[field::editortype,true]
-                    -
-                      - text::"("
-                      - value::editortype
-                      - text::")"
-                    -
-                      - text::"(編)"
-              - year: *parenyeardot
-              - title: 
-                - value::title
-                -
-                  - cond::ifdef[field::subtitle,true]
-                  - 
-                    - delim::EMDASH
-                    - delim::EMDASH
-                    - value::subtitle
-                    - delim::EMDASH
-                    - delim::EMDASH
-                - punct::" "
-                -
-                  - cond::ifdef[field::edition,true]
-                  -
-                    - value::edition
-                - value::publisher
+      - editortype:
+        - 
+          - cond::ifdef[field::editor,true]
+          -
+            - cond::ifdef[field::editortype,true]
+            -
+              - text::"("
+              - value::editortype
+              - text::")"
+            -
+              - text::"(編)"
+      - year: *parenyeardot
+      - title: 
+        - value::title
+        -
+          - cond::ifdef[field::subtitle,true]
+          - 
+            - delim::EMDASH
+            - delim::EMDASH
+            - value::subtitle
+            - delim::EMDASH
+            - delim::EMDASH
+        - punct::" "
+      -
+        - cond::ifdef[field::edition,true]
+        - edition:
+          - value::edition
+          - text::"hoge"
+      - publisher:
+        - value::publisher
 
-
-            # - editortype:
-            #   - 
-            #     - cond::ifdef[field::editor,true]
-            #     -
-            #       - cond::ifdef[field::editortype,true]
-            #       -
-            #         - text::"("
-            #         - value::editortype
-            #         - text::")"
-            #       -
-            #         - text::"(編)"
-            # - year: *parenyeardot
-            # - title: 
-            #   - value::title
-            #   -
-            #     - cond::ifdef[field::subtitle,true]
-            #     - 
-            #       - delim::EMDASH
-            #       - delim::EMDASH
-            #       - value::subtitle
-            #       - delim::EMDASH
-            #       - delim::EMDASH
-            #   - punct::" "
-            #   -
-            #     - cond::ifdef[field::edition,true]
-            #     -
-            #       - value::edition
-            #   - value::publisher
-
-      # - text::"gge"
-      # - text::"hoge"
 
   other:
     article:

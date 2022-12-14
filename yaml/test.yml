@@ -24,3 +24,27 @@
   title: 最新心理学事典
   year: 2013
   dateera: ce
+# - entry: 箱田2012
+#   entrytype: book
+#   skip: false
+#   editor:
+#   - family: 箱田
+#     familyi: 箱.
+#     given: 裕司
+#     giveni: 裕.
+#   language:
+#   - japanese
+#   publisher:
+#   - 誠信書房
+#   sortinit: H
+#   sortinithash: 23a3aa7c24e56cfa16945d55545109b5
+#   extradatescope: labelyear
+#   labeldatesource:
+#   labelnamesource: editor
+#   labeltitlesource: title
+#   number: 2
+#   relatedtype: mvbook
+#   title: 認知
+#   year: 2012
+#   dateera: ce
+#   related: 7b20af74749cb5ff6167e521e21868ca

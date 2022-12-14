@@ -47,101 +47,90 @@ def expand_format(field_format, bib_entry):
   # print(bib_entry.field_data)
   outstr = ''
   print("フォーマット",field_format)
-  if isinstance(field_format, list): 
-    if 'cond::' in field_format[0]:
-      res = handle_cond(field_format, bib_entry)
-      if res:
-        outstr += res
+  if isinstance(field_format, list): # list型の場合
+    print("list型:", field_format, bib_entry.field_data)
 
-  for item in field_format:
-    # print("フィールドアイテム", item)
+    if isinstance(bib_entry.field_data,list): # name リストの場合の処理
+      bib_entry.listcount = 1
+      bib_entry.listtotal = 1
+      if not isinstance(bib_entry.field_data, int):
+        bib_entry.listtotal = len(bib_entry.field_data)
+      name_format = field_format.get(item)
+      print('ネーム書式',name_format,'リスト：',bib_entry.field_data)
 
-    if isinstance(item, list):
-      if 'cond::' in item[0]:
-        print("条件分岐",item)
-        res = handle_cond(item, bib_entry)
-        if res:
-          outstr += res
+      for name_item in bib_entry.field_data:
+        print('ネームアイテム', name_item)
+        bib_entry.field_data = name_item
+        outstr += expand_format(name_format,bib_entry)
+        bib_entry.listcount += 1
+    elif handle_list(field_format, bib_entry):
+      outstr += handle_list(field_format, bib_entry)
 
-    elif isinstance(item, str):
-      if '::' in item: # 出力
-        tmp = item.split('::',1)
-        match tmp[0]:
-          case 'value': # フィールドから値を取得
-            if not (tmp[1] in NAMES or tmp[1] in NAMEPART):
-              if bib_entry.entry_data.get(tmp[1]):
-                bib_entry.field_data = bib_entry.entry_data.get(tmp[1])
-            outstr += retrieve_value(tmp[1], bib_entry.field_data)
-          case 'text': # テキストの出力
-            outstr += print_text(tmp[1])
-          case 'delim': # delimは対応する文字列に置き換え
-            outstr += str(globals()[tmp[1]])
-          case 'punct': # ユニット区切りの処理
-            outstr += handle_punct(tmp[1])
-          case 'url': # URL
-            outstr += handle_url(tmp[1])
-          case _:
-            # print("hogehoge",tmp[0])
-            pass
+  elif isinstance(field_format, dict): # dict型の場合
+    print("dict型:", field_format, bib_entry.field_data)
+    if handle_dict(field_format, bib_entry):
+      outstr += handle_dict(field_format, bib_entry)
 
-      elif isinstance(bib_entry.field_data,list): # name リストの場合の処理
-        bib_entry.listcount = 1
-        bib_entry.listtotal = 1
-        if not isinstance(bib_entry.field_data, int):
-          bib_entry.listtotal = len(bib_entry.field_data)
-        name_format = field_format.get(item)
-        print('ネーム書式',name_format,'リスト：',bib_entry.field_data)
-
-        for name_item in bib_entry.field_data:
-          print('ネームアイテム', name_item)
-          bib_entry.field_data = name_item
-          outstr += expand_format(name_format,bib_entry)
-          bib_entry.listcount += 1
-
-      else:
-        if bib_entry.field_data.get(item):
-          bib_entry.field_data = bib_entry.field_data.get(item)
-          print("フィールドデータ",bib_entry.field_data)
-          if isinstance(bib_entry.field_data,str):
-            outstr += bib_entry.field_data
+  elif isinstance(field_format, str): # 文字列の場合
+    if '::' in field_format: # 出力
+      tmp = field_format.split('::',1)
+      match tmp[0]:
+        case 'value': # フィールドから値を取得
+          if not (tmp[1] in NAMES or tmp[1] in NAMEPART):
+            if bib_entry.entry_data.get(tmp[1]):
+              bib_entry.field_data = bib_entry.entry_data.get(tmp[1])
           else:
-            print("ほげ:",item,field_format)
-            if not isinstance(bib_entry.field_data, int):
-              bib_entry.listtotal = len(bib_entry.field_data)
-            outstr += expand_format(field_format,bib_entry)
+            print('ネームアイテム', tmp[1])
+          outstr += retrieve_value(tmp[1], bib_entry.field_data)
+        case 'text': # テキストの出力
+          outstr += print_text(tmp[1])
+        case 'delim': # delimは対応する文字列に置き換え
+          outstr += str(globals()[tmp[1]])
+        case 'punct': # ユニット区切りの処理
+          outstr += handle_punct(tmp[1])
+        case 'url': # URL
+          outstr += handle_url(tmp[1])
+        case _:
+          # print("hogehoge",tmp[0])
+          pass
 
-    else:
-      if isinstance(item, dict):
-        for key, value in item.items():
-          print('辞書キー',key,"　値：",value)
-          field_exist = bib_entry.entry_data.get(key)
-          if field_exist:
-            print("フィールドデータ",field_exist)
-            bib_entry.field_data = field_exist
-            bib_entry.listcount = 1 
-            if not isinstance(bib_entry.field_data, int):
-              bib_entry.listtotal = len(bib_entry.field_data)
-            if isinstance(bib_entry.field_data,list) and bib_entry.listtotal > 1:
-              for name_item in bib_entry.field_data:
-                bib_entry.field_data = name_item
-                res = expand_format(value,bib_entry)
-                if res:
-                  outstr += res
-                  bib_entry.listcount += 1
-            else:
-              res = expand_format(value,bib_entry)
-              if res:
-                outstr += res
-        print("結果",outstr)
-      else:
-        print('list',item)
-        outstr += expand_format(item,bib_entry)
   print(outstr)
   return outstr
 
+# list型の場合の処理
+def handle_list(field_format, bib_entry):
+  res = ''
+  if 'cond::' in field_format[0]:
+    return handle_cond(field_format, bib_entry)
+  else:
+    # for list_item in field_format:
+    #   res = expand_format(list_item, bib_entry)
+    return expand_format(field_format[0], bib_entry)
 
-def handle_field():
-  pass
+
+def handle_dict(field_format, bib_entry):
+  res = ''
+  for key, value in field_format.items():
+    print('辞書キー',key,"　値：",value)
+    field_exist = bib_entry.entry_data.get(key)
+    if field_exist:
+      print("フィールドデータ",field_exist)
+      bib_entry.field_data = field_exist
+      bib_entry.listcount = 1 
+      if not isinstance(bib_entry.field_data, int):
+        bib_entry.listtotal = len(bib_entry.field_data)
+      if isinstance(bib_entry.field_data,list) and bib_entry.listtotal > 1:
+        for name_item in bib_entry.field_data:
+          bib_entry.field_data = name_item
+          if expand_format(value,bib_entry):
+            res += expand_format(value,bib_entry)
+            bib_entry.listcount += 1
+      else:
+        if expand_format(value,bib_entry):
+          res += expand_format(value,bib_entry)
+  return res
+
+
 
 # value:: の処理
 def retrieve_value(value_str, entry_data):
@@ -150,8 +139,6 @@ def retrieve_value(value_str, entry_data):
 
   if isinstance(entry_data,list):
     entry_data = entry_data[0]
-
-  print("値", value_str,"フィールドの値", entry_data)
 
   if '::' in value_str: # 書式設定がある場合
     if isinstance(entry_data,str) or isinstance(entry_data,int):
@@ -230,6 +217,31 @@ def handle_cond(cond_list, bib_entry):
     print('False')
     if len(cond_list)>2 :
       return expand_format(cond_list[2],bib_entry)
+
+def conditional(cond_list, bib_entry):
+  print("cond_list: ",cond_list)
+  res = ''
+  # 複数条件かどうかを確認
+  cond_str = cond_list[0].split('::',1)[1] # 「cond::」を削除
+
+  if "&&" in cond_str:
+    multi_cond_str = cond_str.split("&&")
+    res = ifthenelse(multi_cond_str[0],bib_entry) and ifthenelse(multi_cond_str[1],bib_entry)
+  elif "||" in cond_str:
+    multi_cond_str = cond_str.split("||")
+    res = ifthenelse(multi_cond_str[0],bib_entry) or ifthenelse(multi_cond_str[1],bib_entry)
+  else:
+    res = ifthenelse(cond_str,bib_entry)
+ 
+  if res: # 結果が真の場合は次のステップを実施して終了
+    print("true: ", cond_list[1])
+    return cond_list[1]
+  else:
+    if len(cond_list)>2 :
+      print("false: ", cond_list[2])
+      return cond_list[2]
+
+
 # cond関数の処理
 def ifthenelse(cond_str,bib_entry):
   # 文字列から条件式とパラメタを構成
@@ -326,7 +338,6 @@ cite_key = '' # 引用キー
 # 特定フィールドの書式情報：field_format
 
 for entry_data in bib_data:
-
   bib_item = ['',''] # 変換後の文献リスト項目
 
   if not entry_data.get('skip'): # skipしないエントリの場合のみ
@@ -343,13 +354,45 @@ for entry_data in bib_data:
     else:
       bib_driver = bib_yml['driver'].get('other')
 
-    # # 文献タイプ（article, book, etc.）の書式を取得
+    # 文献タイプ（article, book, etc.）の書式を取得
     driver_format = bib_driver.get(bib_entry.entry_data['entrytype'])
+    # print('bib_driver: ', driver_format)
 
     if driver_format: # articleやbookなどの処理
       for field_format in driver_format: # 順番にフィールドを処理
-        bib_item[1] += expand_format(field_format, bib_entry)
-    print(bib_item)
-  if bib_item:
-    bib_list.append(bib_item)
-export_latex(bib_list)
+        field_key = '' # フィールドキー
+        formatter = [] # フィールド内容のフォーマット
+
+        while isinstance(field_format,list): # 条件分岐を処理
+          field_format = conditional(field_format,bib_entry)
+        
+        if field_format:
+          field_key = list(field_format.keys())[0] # フィールドを取得
+          field_format = field_format.get(field_key) # そのフィールドの書式を設定
+          
+          print("field_key:", field_key)
+          if field_key in NAMES: # nameリストの処理
+            if bib_entry.entry_data.get(field_key):
+              bib_entry.listtotal = len(bib_entry.entry_data.get(field_key))
+              for i in range(1,bib_entry.listtotal+1):
+                bib_entry.listcount = i
+                for format_item in field_format:
+                  while isinstance(format_item, list) and "cond::" in format_item[0]:
+                    format_item = conditional(format_item, bib_entry)
+                  formatter.append(format_item)
+          else:
+            for format_item in field_format:
+              while isinstance(format_item, list) and "cond::" in format_item[0]:
+                format_item = conditional(format_item, bib_entry)
+              if format_item:
+                formatter.append(format_item)
+
+        print(field_key, formatter)
+
+
+
+
+#     print(bib_item)
+#   if bib_item:
+#     bib_list.append(bib_item)
+# export_latex(bib_list)
