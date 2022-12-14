@@ -18,6 +18,7 @@ parenyear: &parenyeardot
       - value::pubstate
   - text::"). "
 
+
 family-giveni: &family-giveni 
   - 
     - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
@@ -192,21 +193,54 @@ driver:
             - cond::ifdef[field::translator,false]
             -
               - author: 
-                - cond::ifdef[field::author,true]
                 -
-                  *jname
-              - authortype:
-                - cond::ifdef[field::author,true]
-                -
-                  - cond::ifdef[field::authortype,true]
+                  - cond::ifdef[field::author,true]
                   -
-                    - text::"("
-                    - value::authortype
-                    - text::") "
+                    *jname
+              - authortype:
+                - 
+                  - cond::ifdef[field::author,true]
+                  -
+                    - cond::ifdef[field::authortype,true]
+                    -
+                      - text::"("
+                      - value::authortype
+                      - text::") "
               - editor: 
+                -
                   - cond::ifdef[field::editor,true]
                   -
                     *jname
+
+              - editortype:
+                - 
+                  - cond::ifdef[field::editor,true]
+                  -
+                    - cond::ifdef[field::editortype,true]
+                    -
+                      - text::"("
+                      - value::editortype
+                      - text::")"
+                    -
+                      - text::"(編)"
+              - year: *parenyeardot
+              - title: 
+                - value::title
+                -
+                  - cond::ifdef[field::subtitle,true]
+                  - 
+                    - delim::EMDASH
+                    - delim::EMDASH
+                    - value::subtitle
+                    - delim::EMDASH
+                    - delim::EMDASH
+                - punct::" "
+                -
+                  - cond::ifdef[field::edition,true]
+                  -
+                    - value::edition
+                - value::publisher
+
 
             # - editortype:
             #   - 
