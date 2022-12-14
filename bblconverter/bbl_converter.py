@@ -24,6 +24,16 @@ BIBFIELDS = ['author','editor','editora','translator','translatora',
 NAMES = ['author','editor','editora','translator','translatora','origauthor']
 NAMEPART = ['family','familyi','given','giveni']
 
+# ========== bibエントリクラス ==========
+class BibEntry:
+  def __init__(self):
+    self.reset()
+  def reset(self):
+    self.listcount = 0
+    self.listtotal = 1
+    self.field_data = ''
+    self.entry_data = ''
+
 # ========== ymlファイルの読み込み ==========
 def load_yml(file_path):
   bib_contents =[]
@@ -33,16 +43,31 @@ def load_yml(file_path):
     return yml_data
 
 # ========== formatデータの展開 ==========
-def expand_format(field_format,entry_data,listcount,listtotal):
-  # print(field_format,entry_data)
+def expand_format(field_format,field_data,entry_data,listcount,listtotal):
+  print("フィールド書式:", field_format,"データ:", field_data)
   outstr = ''
+
+  if isinstance(field_format, list): 
+    if 'cond::' in field_format[0]:
+      res = handle_cond(field_format, field_data,entry_data,listcount, listtotal)
+      if res:
+        outstr += res
+
   for item in field_format:
-    if isinstance(item, str):
+    print("フィールドアイテム", item)
+
+    if isinstance(item, list):
+      if 'cond::' in item[0]:
+        print("これはリスト",item)
+        res = handle_cond(item, field_data,entry_data,listcount, listtotal)
+        if res:
+          outstr += res
+    elif isinstance(item, str):
       if '::' in item: # 出力
         tmp = item.split('::',1)
         match tmp[0]:
           case 'value': # フィールドから値を取得
-            outstr += retrieve_value(tmp[1], entry_data)
+            outstr += retrieve_value(tmp[1], field_data)
           case 'text': # テキストの出力
             outstr += print_text(tmp[1])
           case 'delim': # delimは対応する文字列に置き換え
@@ -54,30 +79,31 @@ def expand_format(field_format,entry_data,listcount,listtotal):
           case _:
             # print("hogehoge",tmp[0])
             pass
-      elif isinstance(entry_data,list): # name リストの場合の処理
+      elif isinstance(field_data,list): # name リストの場合の処理
         listcount = 1
-        listtotal = len(entry_data)
+        listtotal = len(field_data)
         name_format = field_format.get(item)
-        for name_item in entry_data:
-          outstr += expand_format(name_format,name_item,listcount,listtotal)
+        print('ネーム書式',field_format.get(item),'リスト：',field_data)
+
+        for name_item in field_data:
+          outstr += expand_format(name_format,name_item,entry_data,listcount,listtotal)
           listcount += 1
       else:
-        if entry_data.get(item):
-          field_data = entry_data.get(item)
+        if field_data.get(item):
+          field_data = field_data.get(item)
           if isinstance(field_data,str):
             outstr += field_data
           else:
-            outstr += expand_format(field_format,field_data,listcount,len(field_data))
-    elif isinstance(item, list):
-      if 'cond::' in item[0]:
-        outstr += handle_cond(item, entry_data,listcount, listtotal)
+            print("ほげ:",item,field_format)
+
+            outstr += expand_format(field_format,field_data,entry_data,listcount,len(field_data))
     else:
       if isinstance(item, dict):
-        #  print('dict',item.items())
-         outstr = expand_format(dict(item.items()),entry_data,listcount,listtotal)
+         print('dict',item.items())
+         outstr = expand_format(dict(item.items()),field_data,entry_data,listcount,listtotal)
       else:
         print('list',item)
-        outstr = expand_format(item,entry_data,listcount, listtotal)
+        outstr = expand_format(item,field_data,entry_data,listcount, listtotal)
 
   # outstr = str(outstr)
   return outstr
@@ -140,27 +166,32 @@ def handle_url(url_str): # urlはタグで囲む
   outstr += "\\url{"+str(url_content)+"\\url}"
   return outstr
 
-def handle_cond(cond_list, entry_data,listcount, listtotal):
+def handle_cond(cond_list, field_data,entry_data,listcount, listtotal):
   res = ''
   # 複数条件かどうかを確認
   cond_str = cond_list[0].split('::',1)[1] # 「cond::」を削除
+  print('条件式', cond_str)
+
   if "&&" in cond_str:
     multi_cond_str = cond_str.split("&&")
-    res = ifthenelse(multi_cond_str[0],entry_data,listcount,listtotal) and ifthenelse(multi_cond_str[1],entry_data,listcount,listtotal)
+    res = ifthenelse(multi_cond_str[0],field_data,entry_data,listcount,listtotal) and ifthenelse(multi_cond_str[1],field_data,entry_data,listcount,listtotal)
   elif "||" in cond_str:
     multi_cond_str = cond_str.split("||")
-    res = ifthenelse(multi_cond_str[0],entry_data,listcount,listtotal) or ifthenelse(multi_cond_str[1],entry_data,listcount,listtotal)
+    res = ifthenelse(multi_cond_str[0],field_data,entry_data,listcount,listtotal) or ifthenelse(multi_cond_str[1],field_data,entry_data,listcount,listtotal)
   else:
-    res = ifthenelse(cond_str,entry_data,listcount,listtotal)
-
+    res = ifthenelse(cond_str,field_data,entry_data,listcount,listtotal)
+ 
   if res: # 結果が真の場合は次のステップを実施して終了
-    return expand_format(cond_list[1],entry_data,listcount,listtotal)
+    print('true:', cond_list[1])
+    return expand_format(cond_list[1],field_data,entry_data,listcount,listtotal)
   else:
+    print('こっち？')
+    print('リスト',cond_list)
+    print('then',len(cond_list))
     if len(cond_list)>2 :
-      return expand_format(cond_list[2],entry_data,listcount,listtotal)
-
+      return expand_format(cond_list[2],field_data,entry_data,listcount,listtotal)
 # cond関数の処理
-def ifthenelse(cond_str,entry_data,listcount,listtotal):
+def ifthenelse(cond_str,field_data,entry_data,listcount,listtotal):
   # 文字列から条件式とパラメタを構成
   cond_function = cond_str.split('[',1)[0]
 
@@ -270,8 +301,8 @@ for entry_data in bib_data:
 
     if driver_format: # articleやbookなどの処理
       for field_format in driver_format: # 順番にフィールドを処理
-        bib_item += expand_format(field_format, entry_data,0,0)
-  print(bib_item)
+        bib_item += expand_format(field_format, entry_data,entry_data,0,0)
+    print(bib_item)
   if bib_item:
     bib_list.append(bib_item)
 # export_latex(bib_list)

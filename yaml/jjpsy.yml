@@ -83,34 +83,6 @@ jname: &jname
                   - text::" "
                   - value::given
 
-# jname: &jname 
-#   - 
-#     - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
-#     -
-#       - text::"..."
-#     -
-#       - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
-#       -
-#         - text::""
-#       -
-#         - cond::ifequal[listcount,1]
-#         - 
-#           - value::family
-#           - text::" ぐ"
-#           - value::given
-#         -
-#           - cond::ifless[listcount,maxnames]
-#           -
-#             - text::"・"
-#             - value::family
-#             - text::" が"
-#             - value::given
-#           -
-#             - value::family
-#             - text::" ぎ"
-#             - value::given
-
-  # - count::1
 
 bookpart: &book
   - author: 
@@ -214,17 +186,56 @@ driver:
             - url::["https://doi.org/",value::doi]
     book: 
       -
-        editor: *jname
-      -
         - cond::ifdef[field::related,false]
         -
-          - cond::ifdef[field::translator,false]
-          -
-            - editor: *jname
-        -
-          - text::"hohoho"
-      - title: 
-        - value::title
+          - 
+            - cond::ifdef[field::translator,false]
+            -
+              - author: 
+                - cond::ifdef[field::author,true]
+                -
+                  *jname
+              - authortype:
+                - cond::ifdef[field::author,true]
+                -
+                  - cond::ifdef[field::authortype,true]
+                  -
+                    - text::"("
+                    - value::authortype
+                    - text::") "
+              - editor: 
+                  - cond::ifdef[field::editor,true]
+                  -
+                    *jname
+
+            # - editortype:
+            #   - 
+            #     - cond::ifdef[field::editor,true]
+            #     -
+            #       - cond::ifdef[field::editortype,true]
+            #       -
+            #         - text::"("
+            #         - value::editortype
+            #         - text::")"
+            #       -
+            #         - text::"(編)"
+            # - year: *parenyeardot
+            # - title: 
+            #   - value::title
+            #   -
+            #     - cond::ifdef[field::subtitle,true]
+            #     - 
+            #       - delim::EMDASH
+            #       - delim::EMDASH
+            #       - value::subtitle
+            #       - delim::EMDASH
+            #       - delim::EMDASH
+            #   - punct::" "
+            #   -
+            #     - cond::ifdef[field::edition,true]
+            #     -
+            #       - value::edition
+            #   - value::publisher
 
       # - text::"gge"
       # - text::"hoge"
