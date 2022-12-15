@@ -33,6 +33,7 @@ class BibEntry:
     self.listtotal = 1
     self.entry_data = ''
     self.related_entry = ''
+    self.isrelated = False
 
 # ========== ymlファイルの読み込み ==========
 def load_yml(file_path):
@@ -143,6 +144,8 @@ def handle_cond(cond_list, bib_entry):
     # print('False')
     if len(cond_list)>2 :
       return expand_format(cond_list[2],bib_entry)
+    else:
+      return
 
 def conditional(cond_list, bib_entry):
   # print("cond_list: ",cond_list)
@@ -178,7 +181,6 @@ def conditional(cond_list, bib_entry):
 def ifthenelse(cond_str,bib_entry):
   # 文字列から条件式とパラメタを構成
   cond_function = cond_str.split('[',1)[0]
-
   listcount = bib_entry.listcount
   listtotal = bib_entry.listtotal
 
@@ -194,7 +196,7 @@ def ifthenelse(cond_str,bib_entry):
     param1 = globals()[param1]
   else:
     if '::' in param1:
-      param1 = param1.split('::')[1]
+      param1 = param1.split('::',1)[1]
  
   if param2 in locals() :
     param2 = locals()[param2]
@@ -202,7 +204,9 @@ def ifthenelse(cond_str,bib_entry):
       param2 = globals()[param2]
   else:
     if '::' in param2:
-      param2 = param2.split('::')[1]
+      param2 = param2.split('::',1)[1]
+
+  print("conditional: ", cond_str, "param1: ",param1, "param2: ",param2)
 
   match cond_function:
     case 'ifequal':
@@ -218,12 +222,27 @@ def ifthenelse(cond_str,bib_entry):
     case 'iflesseq':
       return True if int(param1)<=int(param2) else False
     case 'ifdef':
-      if param2 =='true' and param1 in bib_entry.entry_data:
-        return True
-      elif param2 =='false' and param1 not in bib_entry.entry_data:
-        return True
+      if bib_entry.isrelated:
+        if param2 =='true' and param1 in bib_entry.related_entry:
+          return True
+        elif param2 =='false' and param1 not in bib_entry.related_entry:
+          return True
+        else:
+          return False
       else:
-        return False
+        if param2 =='true' and param1 in bib_entry.entry_data:
+          return True
+        elif param2 =='false' and param1 not in bib_entry.entry_data:
+          return True
+        elif 'related::' in param1:
+          print('related::')
+          param1 = param1.replace('related::','')
+          if param2 =='true' and param1 in bib_entry.related_entry:
+            return True
+          elif param2 =='false' and param1 not in bib_entry.related_entry:
+            return True
+        else:
+          return False
 
 
 # LaTeXのbibitemとして出力
@@ -275,7 +294,7 @@ for entry_data in bib_data:
     if 'relatedtype' in entry_data: # relatedがある場合はそれを取得
       related_entry_id = entry_data.get('related')
       bib_entry.related_entry = [x for x in bib_data if x['entry'] == related_entry_id][0]
-
+      print("related: ",bib_entry.related_entry)
     # entryの言語を調べ，言語が指定されていればそちらのdriverを選択
     if 'language' in entry_data:
       entry_language = entry_data.get('language')[0]
@@ -287,31 +306,36 @@ for entry_data in bib_data:
     driver_format = bib_driver.get(bib_entry.entry_data['entrytype'])
     # print('bib_driver: ', driver_format)
 
-    if driver_format: # articleやbookなどの処理
+    if driver_format: 
       for field_format in driver_format: # 順番にフィールドを処理
-        print(field_format)
         field_key = '' # フィールドキー
         formatter = [] # フィールド内容のフォーマット
 
         while isinstance(field_format,list): # 条件分岐を処理
           field_format = conditional(field_format,bib_entry)
         
-        is_related = False # related フィールドの処理かどうかのフラグ
-
         if field_format:
+          if isinstance(field_format,str):
+            bib_item[1] += format_field_data(field_format, '')
+            continue
           field_key = list(field_format.keys())[0] # フィールドを取得            
           field_format = field_format.get(field_key) # そのフィールドの書式を設定
           bibitem_data = bib_entry.entry_data.get(field_key)
+          bib_entry.isrelated = False # related フィールドの処理かどうかのフラグ
 
-          # if "related::" in field_key: 
-          #   is_related = True
-          #   field_key = field_key.replace("related::","")
-          #   print(field_key)
+          if "related::" in field_key:
+            field_key = field_key.replace("related::","")
+            bib_entry.isrelated = True # related フィールドの処理かどうかのフラグ
 
+            if bib_entry.related_entry:
+              bibitem_data = bib_entry.related_entry.get(field_key)
+            else: # related データがなければ今ループの処理をスキップ
+              continue
 
+          print('key: ', field_key, 'bibitem_data: ',bibitem_data, 'field format: ',field_format)
           if field_key in NAMES: # nameリストの処理
-            if bib_entry.entry_data.get(field_key):
-              bib_entry.listtotal = len(bib_entry.entry_data.get(field_key))
+            if bibitem_data:
+              bib_entry.listtotal = len(bibitem_data)
               for i in range(1,bib_entry.listtotal+1):
                 bib_entry.listcount = i
                 for format_item in field_format:
@@ -331,13 +355,13 @@ for entry_data in bib_data:
           if formatter:
           # 取り出したキーとフォーマットで文献項目を作成
             if field_key in NAMES: # nameフィールドの場合
-              name_list = bib_entry.entry_data.get(field_key)
+              name_list = bibitem_data
               for i in range(len(name_list)):
                 format_list = formatter[i]
                 name_data = name_list[i]
-                print("format_list:",format_list)
+                # print("format_list:",format_list)
                 for j in format_list:
-                  print("format: ",j)
+                  # print("format: ",j)
 
                   bib_item[1] += format_field_data(j, name_data)
             else:
@@ -345,7 +369,11 @@ for entry_data in bib_data:
                 formatter = sum(formatter,[])
               # print("formatter:", formatter)
               for i in formatter:
-                bib_item[1] += format_field_data(i, bib_entry.entry_data)
+                if bib_entry.isrelated:
+                  bib_item[1] += format_field_data(i, bib_entry.related_entry)
+
+                else:
+                  bib_item[1] += format_field_data(i, bib_entry.entry_data)
 
     print(bib_item[0],bib_item[1])
 

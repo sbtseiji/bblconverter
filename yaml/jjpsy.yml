@@ -118,7 +118,7 @@ jtitle: &jtitle
       - value::subtitle
       - delim::EMDASH
       - delim::EMDASH
-  - punct::" "
+  - punct::""
 
 volume: &volume
   - 
@@ -137,6 +137,24 @@ volume: &volume
       -
         - text::", No."
         - value::number
+
+bookvolume: &bookvolume
+  -
+    - cond::ifdef[field::volume,true]
+    -
+      - 
+        - text::" "
+        - value::volume
+      -
+        - cond::ifdef[field::number,true]
+        - value::number
+    -
+      - cond::ifdef[field::number,true]
+      -
+        - text::" "
+        - value::number
+
+
 
 comma-pages-dot: &comma-pages-dot
   -
@@ -188,9 +206,22 @@ driver:
         - cond::ifdef[field::edition,true]
         - edition:
           - value::edition
+      -
+        - cond::ifdef[field::related::author,true]
+        - text::" "
       - related::author: *jauthor
       - related::authortype: *authortype
+      -
+        - cond::ifdef[field::editor,true]
+        - text::" "
+      - related::editor: *jeditor
+      - related::editortype: *jeditortype
+      - related::series:
+        - text::" "
+        - value::series
+      - related::volume: *bookvolume
       - publisher:
+        - text::"　"
         - value::publisher
 
 
