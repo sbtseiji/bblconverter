@@ -13,16 +13,16 @@ EMDASH = '—'
 CHAR_COLON = '&#58;'
 LINEBREAK = '\n'
 
-BIBFIELDS = ['author','editor','editora','translator','translatora',
-             'authortype','editortype','editoratype','translatortype',
-             'translatoratype','origauthor','family','familyi',
-             'given','giveni','pubstate',
-             'year', 'endyear','origyear','title','subtitle',
-             'journaltitle','volume','volumes','number','pages'
-             'edition','doi','series','language', 'type',
-             'publisher','origpublisher','urlday','urlmonth','urlyear','url']
+# BIBFIELDS = ['author','editor','editora','translator','translatora',
+#              'authortype','editortype','editoratype','translatortype',
+#              'translatoratype','origauthor','family','familyi',
+#              'given','giveni','pubstate',
+#              'year', 'endyear','origyear','title','subtitle',
+#              'journaltitle','volume','volumes','number','pages'
+#              'edition','doi','series','language', 'type',
+#              'publisher','origpublisher','urlday','urlmonth','urlyear','url']
 NAMES = ['author','editor','editora','translator','translatora','origauthor']
-NAMEPART = ['family','familyi','given','giveni']
+# NAMEPART = ['family','familyi','given','giveni']
 
 # ========== bibエントリクラス ==========
 class BibEntry:
@@ -32,6 +32,7 @@ class BibEntry:
     self.listcount = 0
     self.listtotal = 1
     self.entry_data = ''
+    self.related_entry = ''
 
 # ========== ymlファイルの読み込み ==========
 def load_yml(file_path):
@@ -43,7 +44,7 @@ def load_yml(file_path):
 
 # ========== formatデータの展開 ==========
 def format_field_data(field_format, bib_entry): 
-  # print(field_format,bib_entry)
+  print(field_format,bib_entry)
 
   (cont_type, cont_value) = field_format.split('::',1)
   match cont_type:
@@ -55,8 +56,8 @@ def format_field_data(field_format, bib_entry):
       return str(globals()[cont_value])
     case 'punct': # ユニット区切りの処理
       return handle_punct(cont_value)
-    case 'url': # URL
-      return handle_url(cont_value)
+    case 'url': # URLの処理
+      return handle_url(cont_value, bib_entry)
     case _:
       # print("hogehoge",tmp[0])
       return
@@ -108,13 +109,17 @@ def handle_punct(punct_str):
     outstr += punct_char
   return outstr            
 
-def handle_url(url_str): # urlはタグで囲む
-  outstr= ''
+def handle_url(url_str, bib_entry): # urlはタグで囲む
+  url_string = ''
 
-  match_obj = re.search(r"\[\"(.*?)\"\s*,\s*(.*?)\]",url_str)
-  url_content = match_obj[1]
-  outstr += "\\url{"+str(url_content)+"\\url}"
-  return outstr
+  match_obj = re.search(r'\[(.*?)\]',url_str)
+  if match_obj:
+    match_str = match_obj.group(1)
+    match_list = match_str.split(',')
+    url_string = match_list[0].strip('"')+ format_field_data(match_list[1], bib_entry)
+
+  return "\\url{"+str(url_string)+"\\url}"
+
 
 def handle_cond(cond_list, bib_entry):
   res = ''
@@ -265,8 +270,11 @@ for entry_data in bib_data:
     bib_item[0] = entry_data.get('entry')
 
     bib_entry = BibEntry() # エントリクラスの作成
-    bib_entry.field_data = entry_data
     bib_entry.entry_data = entry_data
+
+    if 'relatedtype' in entry_data: # relatedがある場合はそれを取得
+      related_entry_id = entry_data.get('related')
+      bib_entry.related_entry = [x for x in bib_data if x['entry'] == related_entry_id][0]
 
     # entryの言語を調べ，言語が指定されていればそちらのdriverを選択
     if 'language' in entry_data:
@@ -281,16 +289,26 @@ for entry_data in bib_data:
 
     if driver_format: # articleやbookなどの処理
       for field_format in driver_format: # 順番にフィールドを処理
+        print(field_format)
         field_key = '' # フィールドキー
         formatter = [] # フィールド内容のフォーマット
 
         while isinstance(field_format,list): # 条件分岐を処理
           field_format = conditional(field_format,bib_entry)
         
+        is_related = False # related フィールドの処理かどうかのフラグ
+
         if field_format:
-          field_key = list(field_format.keys())[0] # フィールドを取得
+          field_key = list(field_format.keys())[0] # フィールドを取得            
           field_format = field_format.get(field_key) # そのフィールドの書式を設定
-          
+          bibitem_data = bib_entry.entry_data.get(field_key)
+
+          # if "related::" in field_key: 
+          #   is_related = True
+          #   field_key = field_key.replace("related::","")
+          #   print(field_key)
+
+
           if field_key in NAMES: # nameリストの処理
             if bib_entry.entry_data.get(field_key):
               bib_entry.listtotal = len(bib_entry.entry_data.get(field_key))
@@ -305,7 +323,10 @@ for entry_data in bib_data:
               while isinstance(format_item, list) and "cond::" in format_item[0]:
                 format_item = conditional(format_item, bib_entry)
               if format_item:
-                formatter.append(format_item)
+                if isinstance(format_item,list): # フォーマットが入れ子リストになっている場合は展開
+                  formatter.extend(format_item)
+                else:
+                  formatter.append(format_item)
 
           if formatter:
           # 取り出したキーとフォーマットで文献項目を作成
@@ -314,15 +335,19 @@ for entry_data in bib_data:
               for i in range(len(name_list)):
                 format_list = formatter[i]
                 name_data = name_list[i]
-                for i in format_list:
-                  bib_item[1] += format_field_data(i, name_data)
+                print("format_list:",format_list)
+                for j in format_list:
+                  print("format: ",j)
+
+                  bib_item[1] += format_field_data(j, name_data)
             else:
               if isinstance(formatter[0],list): # フォーマットが入れ子リストになっている場合は展開
                 formatter = sum(formatter,[])
+              # print("formatter:", formatter)
               for i in formatter:
                 bib_item[1] += format_field_data(i, bib_entry.entry_data)
 
-    print(bib_item)
+    print(bib_item[0],bib_item[1])
 
 
 

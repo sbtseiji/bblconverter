@@ -20,8 +20,7 @@ parenyear: &parenyeardot
 family-giveni: &family-giveni 
   - 
     - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
-    -
-      - text::"... "
+    - text::"... "
     -
       - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
       -
@@ -32,34 +31,31 @@ family-giveni: &family-giveni
           - value::family
           - text::", "
           - value::giveni
+        - cond::ifless[listcount,maxnames]
         -
-          - cond::ifless[listcount,maxnames]
+          - cond::ifequal[listcount,listtotal]
           -
-            - cond::ifequal[listcount,listtotal]
-            -
-              - text::", & "
-              - value::family
-              - text::", "
-              - value::giveni
-            -
-              - text::", "
-              - value::family
-              - text::", "
-              - value::giveni                
-          -
+            - text::", & "
             - value::family
             - text::", "
             - value::giveni
+          -
+            - text::", "
+            - value::family
+            - text::", "
+            - value::giveni                
+        -
+          - value::family
+          - text::", "
+          - value::giveni
   # - count::1
 
 jname: &jname 
     - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
-    -
-      - text::"..."
+    - text::"..."
     -
       - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
-      -
-        - text::""
+      - text::""
       - 
         - cond::ifequal[listcount,1]
         - 
@@ -78,191 +74,126 @@ jname: &jname
             - text::" "
             - value::given
 
-
-bookpart: &book
-  - author: 
+jauthor: &jauthor
+  -
+    - cond::ifdef[field::author,true]
     -
-      - cond::ifdef[field::author,true]
-      -
-        *jname
-  - authortype:
-    - 
-      - cond::ifdef[field::author,true]
-      -
-        - cond::ifdef[field::authortype,true]
-        -
-          - text::"("
-          - value::authortype
-          - text::") "
-  - editor: 
-    - cond::ifdef[field::editor,true]
-    -  *jname
+      *jname
 
-  - editortype:
+authortype: &authortype
+  - 
+    - cond::ifdef[field::author,true]
+    -
+      - cond::ifdef[field::authortype,true]
+      -
+        - text::"("
+        - value::authortype
+        - text::") "
+
+jeditor: &jeditor
+  -
     - cond::ifdef[field::editor,true]
-    - cond::ifdef[field::editortype,true]
+    -
+      *jname
+
+jeditortype: &jeditortype
+  - 
+    - cond::ifdef[field::editor,true]
+    -
+      - cond::ifdef[field::editortype,true]
       -
         - text::"("
         - value::editortype
         - text::")"
-      - text::"(編)"
-  - year: *parenyeardot
-  - title: 
-    - value::title
-    -
-      - cond::ifdef[field::subtitle,true]
-      - 
-        - delim::EMDASH
-        - delim::EMDASH
-        - value::subtitle
-        - delim::EMDASH
-        - delim::EMDASH
-    - punct::" "
-    -
-      - cond::ifdef[field::edition,true]
       -
-        - value::edition
-    - value::publisher
+        - text::"(編)"
+
+jtitle: &jtitle
+  - value::title
+  -
+    - cond::ifdef[field::subtitle,true]
+    - 
+      - delim::EMDASH
+      - delim::EMDASH
+      - value::subtitle
+      - delim::EMDASH
+      - delim::EMDASH
+  - punct::" "
+
+volume: &volume
+  - 
+    - cond::ifdef[field::volume,true]
+    -
+      - text::", "
+      - value::volume::italic
+  -
+    - cond::ifdef[field::number,true]
+    -
+      - cond::ifdef[field::volume,true]
+      -
+        - text::"("
+        - value::number
+        - text::")"
+      -
+        - text::", No."
+        - value::number
+
+comma-pages-dot: &comma-pages-dot
+  -
+    - cond::ifdef[field::pages,true]
+    -
+      - text::", "
+      - value::pages
+      - text::"."
+  - punct::""
+
+howpublished: &howpublished
+  -
+    - cond::ifdef[field::howpublished,true]
+    - 
+      - text::"　"
+      - value::howpublished
+      - punct::"."
+
+doi: &doi
+  - 
+    - cond::ifdef[field::doi,true]
+    - 
+      - text::" "
+      - url::["https://doi.org/",value::doi]
 
 
+################# 各文献種別の書式 ################# 
 driver:
   japanese:
     article:
-      - author: *jname
+      - author: *jauthor
       - year: *parenyeardot
-      - title: 
-        - value::title
-        -
-          - cond::ifdef[field::subtitle,true]
-          - 
-            - delim::EMDASH
-            - delim::EMDASH
-            - value::subtitle
-            - delim::EMDASH
-            - delim::EMDASH
-        - punct::" "
+      - title: *jtitle
       - journaltitle:
         - value::journaltitle
-      - volume:
-        - 
-          - cond::ifdef[field::volume,true]
-          -
-            - text::", "
-            - value::volume::italic
-        -
-          - cond::ifdef[field::number,true]
-          -
-            - cond::ifdef[field::volume,true]
-            -
-              - text::"("
-              - value::number
-              - text::")"
-            -
-              - text::", No."
-              - value::number
-      - pages:
-        -
-          - cond::ifdef[field::pages,true]
-          -
-            - text::", "
-            - value::pages
-            - text::"."
-        - punct::""
-      - doi:
-        - 
-          - cond::ifdef[field::doi,true]
-          - 
-            - delim::LINEBREAK
-            - url::["https://doi.org/",value::doi]
-    book: 
-      - author: 
-        -
-          - cond::ifdef[field::author,true]
-          -
-            *jname
-      - authortype:
-        - 
-          - cond::ifdef[field::author,true]
-          -
-            - cond::ifdef[field::authortype,true]
-            -
-              - text::"("
-              - value::authortype
-              - text::") "
-      - editor: 
-        -
-          - cond::ifdef[field::editor,true]
-          -
-            *jname
+      - volume: *volume
+      - pages: *comma-pages-dot
+      - howpublished: *howpublished
+      - doi: *doi
 
-      - editortype:
-        - 
-          - cond::ifdef[field::editor,true]
-          -
-            - cond::ifdef[field::editortype,true]
-            -
-              - text::"("
-              - value::editortype
-              - text::")"
-            -
-              - text::"(編)"
+    book: 
+      - author: *jauthor
+      - authortype: *authortype
+      - editor: *jeditor
+      - editortype: *jeditortype
       - year: *parenyeardot
-      - title: 
-        - value::title
-        -
-          - cond::ifdef[field::subtitle,true]
-          - 
-            - delim::EMDASH
-            - delim::EMDASH
-            - value::subtitle
-            - delim::EMDASH
-            - delim::EMDASH
-        - punct::" "
+      - title: *jtitle
       -
         - cond::ifdef[field::edition,true]
         - edition:
           - value::edition
-          - text::"hoge"
+      - related::author: *jauthor
+      - related::authortype: *authortype
       - publisher:
         - value::publisher
 
 
-  other:
-    article:
-      - author: *family-giveni
-      - year: *parenyeardot
-      - title: 
-        - value::title
-        -
-          - cond::ifdef[field::subtitle,true]
-          - 
-            - delim::COLON
-            - delim::SPACE
-            - value::subtitle
-        - punct::". "
-      - journaltitle:
-        - value::journaltitle::italic
-      - volume:
-        - 
-          - cond::ifdef[field::volume,true]
-          -
-            - text::", "
-            - value::volume::italic
-        -
-          - cond::ifdef[field::number,true]
-          -
-            - cond::ifdef[field::volume,true]
-            -
-              - text::"("
-              - value::number
-              - text::")"
-            -
-              - text::"No."
-              - value::number
-      - pages:
-        -
-          - cond::ifdef[field::pages,true]
-          -
-            - text::", "
-            - value::pages
-        - punct::"."
+  
+
+# 
