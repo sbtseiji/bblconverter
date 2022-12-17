@@ -6,79 +6,98 @@ names:
   - editor
   - editora
   - translator
+  - translatora
   - origauthor
 
 parenyear: &parenyeardot
   - text::"("
-  - 
-    - cond::ifdef[year,true]
+  - - cond::ifdef[year,true]
     - value::year
     - value::pubstate
   - text::"). "
 
 
-family-giveni: &family-giveni 
-  - 
-    - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
-    - text::"... "
-    -
-      - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
-      -
-        - text::""
-      -
-        - cond::ifequal[listcount,1]
-        - 
-          - value::family
-          - text::", "
-          - value::giveni
-        - cond::ifless[listcount,maxnames]
-        -
-          - cond::ifequal[listcount,listtotal]
-          -
-            - text::", & "
-            - value::family
-            - text::", "
-            - value::giveni
-          -
-            - text::", "
-            - value::family
-            - text::", "
-            - value::giveni                
-        -
-          - value::family
-          - text::", "
-          - value::giveni
-  # - count::1
-
 jname: &jname 
     - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
     - text::"..."
-    -
-      - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
+    - - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
       - text::""
-      - 
-        - cond::ifequal[listcount,1]
-        - 
-          - value::family
+      - - cond::ifequal[listcount,1]
+        - - value::family
           - text::" "
           - value::given
-        -
-          - cond::ifless[listcount,maxnames]
-          -
-            - text::"・"
+        - - cond::ifless[listcount,maxnames]
+          - - text::"・"
             - value::family
             - text::" "
             - value::given
-          -
-            - value::family
+          - - value::family
             - text::" "
             - value::given
+
+enamej: &enamej
+    - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
+    - text::"..."
+    - - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
+      - text::""
+      - - cond::ifequal[listcount,1]
+        - - value::family
+          - text::"，"
+          - value::given
+        - - cond::iflesseq[listcount,maxnames]&&ifequal[listcount,listtotal]
+          - - text::"，& "
+            - value::family
+            - text::"，"
+            - value::given
+          - - cond::ifless[listcount,maxnames]
+            - - text::"，"
+              - value::family
+              - text::"，"
+              - value::given
+            - - value::family
+              - text::"，"
+              - value::given
+
+ename: &ename
+    - cond::ifequal[listcount,maxnames]&&ifless[listcount,listtotal]
+    - text::"..."
+    - - cond::ifgreater[listcount,maxnames]&&ifless[listcount,listtotal]
+      - text::""
+      - - cond::ifequal[listcount,1]
+        - - value::family
+          - text::", "
+          - value::given
+        - - cond::iflesseq[listcount,maxnames]&&ifequal[listcount,listtotal]
+          - - text::", & "
+            - value::family
+            - text::", "
+            - value::given
+          - - cond::ifless[listcount,maxnames]
+            - - text::", "
+              - value::family
+              - text::", "
+              - value::given
+            - - value::family
+              - text::", "
+              - value::given
 
 jauthor: &jauthor
   -
     - cond::ifdef[field::author,true]
     -
       *jname
+
+jauthore: &jauthore
+  -
+    - cond::ifdef[field::author,true]
+    -
+      *enamej
+
+origauthor: &origauthor
+  -
+    - cond::ifdef[field::origauthor,true]
+    -
+      *ename
 
 authortype: &authortype
   - 
@@ -98,7 +117,7 @@ jeditor: &jeditor
 
 jeditortype: &jeditortype
   - 
-    - cond::ifdef[field::editor,true]
+    - cond::ifdef[field::editortype,true]
     -
       - cond::ifdef[field::editortype,true]
       -
@@ -107,6 +126,43 @@ jeditortype: &jeditortype
         - text::")"
       -
         - text::"(編)"
+
+jtranslator: &jtranslator
+  -
+    - cond::ifdef[field::translator,true]
+    -
+      *jname
+
+jtranslatora: &jtranslatora
+  -
+    - cond::ifdef[field::translatora,true]
+    -
+      *jname
+
+
+jtranslatortype: &jtranslatortype
+  - 
+    - cond::ifdef[field::translator,true]
+    -
+      - cond::ifdef[field::translatortype,true]
+      -
+        - text::"("
+        - value::translatortype
+        - text::")"
+      -
+        - text::"(訳)"
+
+jtranslatoratype: &jtranslatoratype
+  - 
+    - cond::ifdef[field::translatora,true]
+    -
+      - cond::ifdef[field::translatoratype,true]
+      -
+        - text::"("
+        - value::translatoratype
+        - text::")"
+      -
+        - text::"(訳)"
 
 jtitle: &jtitle
   - value::title
@@ -119,6 +175,18 @@ jtitle: &jtitle
       - delim::EMDASH
       - delim::EMDASH
   - punct::""
+
+jtitlesp: &jtitlesp
+  - value::title
+  -
+    - cond::ifdef[field::subtitle,true]
+    - 
+      - delim::EMDASH
+      - delim::EMDASH
+      - value::subtitle
+      - delim::EMDASH
+      - delim::EMDASH
+  - punct::" "
 
 volume: &volume
   - 
@@ -155,6 +223,11 @@ bookvolume: &bookvolume
         - value::number
 
 
+author-editor-space: 
+  - &aespace
+    - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
+    - text::" "
+
 
 comma-pages-dot: &comma-pages-dot
   -
@@ -181,13 +254,44 @@ doi: &doi
       - url::["https://doi.org/",value::doi]
 
 
+jbook: &jbook
+    - author: *jauthor
+    - authortype: *authortype
+    - *aespace
+    - editor: *jeditor
+    - editortype: *jeditortype
+    - year: *parenyeardot
+    - title: *jtitle
+    -
+      - cond::ifdef[field::edition,true]
+      - edition:
+        - value::edition
+    -
+      - cond::ifdef[field::related::author,true]
+      - text::" "
+    - related::author: *jauthor
+    - related::authortype: *authortype
+    -
+      - cond::ifdef[field::related::editor,true]
+      - text::" "
+    - related::editor: *jeditor
+    - related::editortype: *jeditortype
+    - related::series:
+      - text::" "
+      - value::series
+    - related::volume: *bookvolume
+    - publisher:
+      - text::"　"
+      - value::publisher
+
+
 ################# 各文献種別の書式 ################# 
 driver:
   japanese:
     article:
       - author: *jauthor
       - year: *parenyeardot
-      - title: *jtitle
+      - title: *jtitlesp
       - journaltitle:
         - value::journaltitle
       - volume: *volume
@@ -195,27 +299,62 @@ driver:
       - howpublished: *howpublished
       - doi: *doi
 
-    book: 
-      - author: *jauthor
-      - authortype: *authortype
-      - editor: *jeditor
-      - editortype: *jeditortype
+    book:
+      - - cond::ifdef[field::translator,true]&&ifdef[field::related,false]
+        - - origauthor: *origauthor
+          - origyear:
+            - text::"("
+            - value::origyear
+            - text::"). "
+          - origtitle:
+            - value::origtitle::italic
+            - - cond::ifdef[field::origsubtitle,true]
+              - - delim::COLON::italic
+                - text::" "
+                - value::origsubtitle::italic
+            - punct::"."
+            - text::" "
+          - origpublisher:
+            - value::origpublisher
+            - delim::LINEBREAK
+            - text::"("
+      - - cond::ifequal[value::relationtype,translationof]
+        - related::author:
+          - text::"hoge"
+      - - cond::ifdef[field::translator,true]
+        - author: *jauthore
+        - author: *jauthor
+      - - cond::ifdef[field::translator,true]
+        - authortype: *authortype
+        - authortype: *authortype
+      - *aespace
+      - - cond::ifdef[field::translator,true]
+        - editor: *jeditor
+        - editor: *jeditor
+      - - cond::ifdef[field::translator,true]
+        - editortype: *jeditortype
+        - editortype: *jeditortype
       - year: *parenyeardot
       - title: *jtitle
-      -
-        - cond::ifdef[field::edition,true]
+      - - cond::ifdef[field::edition,true]
         - edition:
           - value::edition
-      -
-        - cond::ifdef[field::related::author,true]
+      - - cond::ifdef[field::related::author,true]
         - text::" "
       - related::author: *jauthor
       - related::authortype: *authortype
-      -
-        - cond::ifdef[field::editor,true]
+      - - cond::ifdef[field::related::editor,true]
         - text::" "
       - related::editor: *jeditor
       - related::editortype: *jeditortype
+      - - cond::ifdef[field::translator,true]
+        - text::" "
+      - translator: *jtranslator
+      - translatortype: *jtranslatortype
+      - - cond::ifdef[field::translatora,true]
+        - text::" "
+      - translatora: *jtranslatora
+      - translatoratype: *jtranslatoratype
       - related::series:
         - text::" "
         - value::series
@@ -223,8 +362,11 @@ driver:
       - publisher:
         - text::"　"
         - value::publisher
+      - - cond::ifdef[field::translator,true]
+        - text::")"
 
 
-  
-
+  other:
+    article:
+    - text::a
 # 
