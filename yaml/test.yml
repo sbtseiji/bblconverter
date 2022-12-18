@@ -53,84 +53,6 @@
 #   year: 2012
 #   dateera: ce
 #   related: 7b20af74749cb5ff6167e521e21868ca
-# - entry: 長谷川99
-#   entrytype: article
-#   skip: false
-#   author:
-#   - family: 長谷川
-#     familyi: 長.
-#     given: 龍樹
-#     giveni: 龍.
-#   - family: 多田
-#     familyi: 多.
-#     given: 奏恵
-#     giveni: 奏.
-#   - family: 米満
-#     familyi: 米.
-#     given: 文哉
-#     giveni: 文.
-#   - family: 池田
-#     familyi: 池.
-#     given: 鮎美
-#     giveni: 鮎.
-#   - family: 山田
-#     familyi: 山.
-#     given: 祐樹
-#     giveni: 祐.
-#   - family: 高橋
-#     familyi: 高.
-#     given: 康介
-#     giveni: 康.
-#   - family: 近藤
-#     familyi: 近.
-#     given: 洋史
-#     giveni: 洋.
-#   language:
-#   - japanese
-#   sortinit: H
-#   sortinithash: 23a3aa7c24e56cfa16945d55545109b5
-#   labeldatesource: nodate
-#   labelnamesource: author
-#   labeltitlesource: title
-#   journaltitle: 心理学研究
-#   pubstate: 印刷中
-#   subtitle: OSF事前登録チュートリアル
-#   title: 実証的研究の事前登録の現状と実践
-# - entry: 金政2021
-#   entrytype: article
-#   skip: false
-#   author:
-#   - family: 金政
-#     familyi: 金.
-#     given: 祐司
-#     giveni: 祐.
-#   - family: 古村
-#     familyi: 古.
-#     given: 健太郎
-#     giveni: 健.
-#   - family: 浅野
-#     familyi: 浅.
-#     given: 良輔
-#     giveni: 良.
-#   - family: 荒井
-#     familyi: 荒.
-#     given: 崇史
-#     giveni: 崇.
-#   language:
-#   - japanese
-#   sortinit: K
-#   sortinithash: c02bf6bff1c488450c352b40f5d853ab
-#   extradatescope: labelyear
-#   labeldatesource:
-#   labelnamesource: author
-#   labeltitlesource: title
-#   howpublished: Advance online publication
-#   journaltitle: 心理学研究
-#   subtitle: 恋愛関係と夫婦関係の縦断調査から
-#   title: 愛着不安は親密な関係内の暴力の先行要因となり得るのか？
-#   year: 2021
-#   dateera: ce
-#   doi: 10.4992/jjpsy.92.20013
 # - entry: 7b20af74749cb5ff6167e521e21868ca
 #   entrytype: mvbook
 #   skip: true
@@ -150,31 +72,109 @@
 #   clonesourcekey: 大山&#58;心理学研究法
 #   editortype: 監修
 #   series: 心理学研究法  
-# - entry: 川上2019
-#   entrytype: article
-#   skip: false
-#   author:
-#   - family: 川上
-#     familyi: 川.
-#     given: 直秋
-#     giveni: 直.
-#   language:
-#   - japanese
-#   sortinit: K
-#   sortinithash: c02bf6bff1c488450c352b40f5d853ab
-#   extradatescope: labelyear
-#   labeldatesource:
-#   labelnamesource: author
-#   labeltitlesource: title
-#   journaltitle: 心理学研究
-#   number: 1
-#   subtitle: スマートフォン使用と単語の感情価の関係
-#   title: 指先が変える単語の意味
-#   volume: 91
-#   year: 2019
-#   dateera: ce
-#   pages: 23--33
-#   doi: 10.4992/jjpsy.91.18060
+- entry: 長谷川99
+  entrytype: article
+  skip: false
+  author:
+  - family: 長谷川
+    familyi: 長.
+    given: 龍樹
+    giveni: 龍.
+  - family: 多田
+    familyi: 多.
+    given: 奏恵
+    giveni: 奏.
+  - family: 米満
+    familyi: 米.
+    given: 文哉
+    giveni: 文.
+  - family: 池田
+    familyi: 池.
+    given: 鮎美
+    giveni: 鮎.
+  - family: 山田
+    familyi: 山.
+    given: 祐樹
+    giveni: 祐.
+  - family: 高橋
+    familyi: 高.
+    given: 康介
+    giveni: 康.
+  - family: 近藤
+    familyi: 近.
+    given: 洋史
+    giveni: 洋.
+  language:
+  - japanese
+  sortinit: H
+  sortinithash: 23a3aa7c24e56cfa16945d55545109b5
+  labeldatesource: nodate
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 心理学研究
+  pubstate: 印刷中
+  subtitle: OSF事前登録チュートリアル
+  title: 実証的研究の事前登録の現状と実践
+- entry: 金政2021
+  entrytype: article
+  skip: false
+  author:
+  - family: 金政
+    familyi: 金.
+    given: 祐司
+    giveni: 祐.
+  - family: 古村
+    familyi: 古.
+    given: 健太郎
+    giveni: 健.
+  - family: 浅野
+    familyi: 浅.
+    given: 良輔
+    giveni: 良.
+  - family: 荒井
+    familyi: 荒.
+    given: 崇史
+    giveni: 崇.
+  language:
+  - japanese
+  sortinit: K
+  sortinithash: c02bf6bff1c488450c352b40f5d853ab
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  howpublished: Advance online publication
+  journaltitle: 心理学研究
+  subtitle: 恋愛関係と夫婦関係の縦断調査から
+  title: 愛着不安は親密な関係内の暴力の先行要因となり得るのか？
+  year: 2021
+  dateera: ce
+  doi: 10.4992/jjpsy.92.20013
+- entry: 川上2019
+  entrytype: article
+  skip: false
+  author:
+  - family: 川上
+    familyi: 川.
+    given: 直秋
+    giveni: 直.
+  language:
+  - japanese
+  sortinit: K
+  sortinithash: c02bf6bff1c488450c352b40f5d853ab
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 心理学研究
+  number: 1
+  subtitle: スマートフォン使用と単語の感情価の関係
+  title: 指先が変える単語の意味
+  volume: 91
+  year: 2019
+  dateera: ce
+  pages: 23--33
+  doi: 10.4992/jjpsy.91.18060
 - entry: Izard1991
   entrytype: book
   skip: false
@@ -215,82 +215,82 @@
   year: 1996
   dateera: ce
   origdateera: ce
-- entry: Rosen2015
-  entrytype: book
-  skip: false
-  author:
-  - family: Rosen
-    familyi: R.
-    given: L. D.
-    giveni: L. D.
-  - family: Cheever
-    familyi: C.
-    given: N.
-    giveni: N.
-  - family: Carrier
-    familyi: C.
-    given: L. M.
-    giveni: L. M.
-  publisher:
-  - Wiley
-  sortinit: R
-  sortinithash: 5e1c39a9d46ffb6bebd8f801023a9486
-  extradatescope: labelyear
-  labeldatesource:
-  labelnamesource: author
-  labeltitlesource: title
-  title: The Wiley Blackwell Handbook of Psychology, Technology and Society
-  year: 2015
-  dateera: ce
-- entry: a69b52af7daa466df5b1015726534d6e
-  entrytype: book
-  skip: true
-  author:
-  - family: Rosen
-    familyi: R.
-    given: N. J.
-    giveni: N. J.
-  location:
-  - New York
-  publisher:
-  - Broadway
-  sortinit: R
-  sortinithash: 5e1c39a9d46ffb6bebd8f801023a9486
-  labeldatesource:
-  labelnamesource: author
-  labeltitlesource: title
-  clonesourcekey: Rosen2005
-  subtitle: How to turn regret into opportunity
-  title: If only
-  year: 2005
-  dateera: ce
-- entry: ローズ2008
-  entrytype: book
-  skip: false
-  author:
-  - family: ローズ
-    familyi: ロ.
-    given: N. J.
-    giveni: N. J.
-  translator:
-  - family: 村田
-    familyi: 村.
-    given: 光二
-    giveni: 光.
-  language:
-  - japanese
-  publisher:
-  - ナカニシヤ出版
-  sortinit: R
-  sortinithash: 5e1c39a9d46ffb6bebd8f801023a9486
-  extradatescope: labelyear
-  labeldatesource:
-  labelnamesource: author
-  labeltitlesource: title
-  relatedtype: translationof
-  subtitle: イフ・オンリーの心理学
-  title: 後悔を好機に変える
-  translatortype: 監訳
-  year: 2008
-  dateera: ce
-  related: a69b52af7daa466df5b1015726534d6e
+# - entry: Rosen2015
+#   entrytype: book
+#   skip: false
+#   author:
+#   - family: Rosen
+#     familyi: R.
+#     given: L. D.
+#     giveni: L. D.
+#   - family: Cheever
+#     familyi: C.
+#     given: N.
+#     giveni: N.
+#   - family: Carrier
+#     familyi: C.
+#     given: L. M.
+#     giveni: L. M.
+#   publisher:
+#   - Wiley
+#   sortinit: R
+#   sortinithash: 5e1c39a9d46ffb6bebd8f801023a9486
+#   extradatescope: labelyear
+#   labeldatesource:
+#   labelnamesource: author
+#   labeltitlesource: title
+#   title: The Wiley Blackwell Handbook of Psychology, Technology and Society
+#   year: 2015
+#   dateera: ce
+# - entry: a69b52af7daa466df5b1015726534d6e
+#   entrytype: book
+#   skip: true
+#   author:
+#   - family: Rosen
+#     familyi: R.
+#     given: N. J.
+#     giveni: N. J.
+#   location:
+#   - New York
+#   publisher:
+#   - Broadway
+#   sortinit: R
+#   sortinithash: 5e1c39a9d46ffb6bebd8f801023a9486
+#   labeldatesource:
+#   labelnamesource: author
+#   labeltitlesource: title
+#   clonesourcekey: Rosen2005
+#   subtitle: How to turn regret into opportunity
+#   title: If only
+#   year: 2005
+#   dateera: ce
+# - entry: ローズ2008
+#   entrytype: book
+#   skip: false
+#   author:
+#   - family: ローズ
+#     familyi: ロ.
+#     given: N. J.
+#     giveni: N. J.
+#   translator:
+#   - family: 村田
+#     familyi: 村.
+#     given: 光二
+#     giveni: 光.
+#   language:
+#   - japanese
+#   publisher:
+#   - ナカニシヤ出版
+#   sortinit: R
+#   sortinithash: 5e1c39a9d46ffb6bebd8f801023a9486
+#   extradatescope: labelyear
+#   labeldatesource:
+#   labelnamesource: author
+#   labeltitlesource: title
+#   relatedtype: translationof
+#   subtitle: イフ・オンリーの心理学
+#   title: 後悔を好機に変える
+#   translatortype: 監訳
+#   year: 2008
+#   dateera: ce
+#   related: a69b52af7daa466df5b1015726534d6e

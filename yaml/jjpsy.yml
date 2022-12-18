@@ -84,8 +84,7 @@ ename: &ename
 jauthor: &jauthor
   -
     - cond::ifdef[field::author,true]
-    -
-      *jname
+    - *jname
 
 jauthore: &jauthore
   -
@@ -223,13 +222,13 @@ bookvolume: &bookvolume
         - value::number
 
 
-author-editor-space: 
+AuthorEditorSpace: 
   - &aespace
     - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
     - text::" "
 
 
-comma-pages-dot: &comma-pages-dot
+CommaPagesDot: &CommaPagesDot
   -
     - cond::ifdef[field::pages,true]
     -
@@ -295,7 +294,7 @@ driver:
       - journaltitle:
         - value::journaltitle
       - volume: *volume
-      - pages: *comma-pages-dot
+      - pages: *CommaPagesDot
       - howpublished: *howpublished
       - doi: *doi
 
