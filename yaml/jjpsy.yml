@@ -110,21 +110,47 @@ authortype: &authortype
 
 jeditor: &jeditor
   -
-    - cond::ifdef[field::editor,true]
-    -
-      *jname
+    *jname
 
 jeditortype: &jeditortype
   - 
     - cond::ifdef[field::editortype,true]
     -
-      - cond::ifdef[field::editortype,true]
-      -
-        - text::"("
-        - value::editortype
-        - text::")"
-      -
-        - text::"(編)"
+      - text::"("
+      - value::editortype
+      - text::")"
+    -
+      - text::"(編)"
+
+jeditortyper: &jeditortyper
+  - 
+    - cond::ifdef[field::related:editortype,true]
+    -
+      - text::"("
+      - value::related:editortype
+      - text::")"
+    -
+      - text::"(編)"
+
+editortype: &editortype
+  - 
+    - cond::ifdef[field::editortype,true]
+    -
+      - text::"("
+      - value::editortype
+      - text::")"
+    -
+      - text::"(Ed.)"
+
+editortyper: &editortyper
+  - 
+    - cond::ifdef[field::related:editortype,true]
+    - - text::"("
+      - value::related:editortype
+      - text::")"
+    - cond::ifgreater[total::related:editor,1]
+      - text::"(Eds.)"
+      - text::"(Ed.)"
 
 jtranslator: &jtranslator
   -
@@ -266,19 +292,19 @@ jbook: &jbook
       - edition:
         - value::edition
     -
-      - cond::ifdef[field::related::author,true]
+      - cond::ifdef[field::related:author,true]
       - text::" "
-    - related::author: *jauthor
-    - related::authortype: *authortype
+    - related:author: *jauthor
+    - related:authortype: *authortype
     -
-      - cond::ifdef[field::related::editor,true]
+      - cond::ifdef[field::related:editor,true]
       - text::" "
-    - related::editor: *jeditor
-    - related::editortype: *jeditortype
-    - related::series:
+    - related:editor: *jeditor
+    - related:editortype: *jeditortype
+    - related:series:
       - text::" "
       - value::series
-    - related::volume: *bookvolume
+    - related:volume: *bookvolume
     - publisher:
       - text::"　"
       - value::publisher
@@ -318,7 +344,7 @@ driver:
             - delim::LINEBREAK
             - text::"("
       - - cond::ifequal[value::relationtype,translationof]
-        - related::author:
+        - related:author:
           - text::"hoge"
       - - cond::ifdef[field::translator,true]
         - author: *jauthore
@@ -328,7 +354,7 @@ driver:
         - authortype: *authortype
       - *aespace
       - - cond::ifdef[field::translator,true]
-        - editor: *jeditor
+        - editor: *jname
         - editor: *jeditor
       - - cond::ifdef[field::translator,true]
         - editortype: *jeditortype
@@ -336,28 +362,30 @@ driver:
       - year: *parenyeardot
       - title: *jtitle
       - - cond::ifdef[field::edition,true]
-        - edition:
-          - value::edition
-      - - cond::ifdef[field::related::author,true]
-        - text::" "
-      - related::author: *jauthor
-      - related::authortype: *authortype
-      - - cond::ifdef[field::related::editor,true]
-        - text::" "
-      - related::editor: *jeditor
-      - related::editortype: *jeditortype
+        - edition: value::edition
+      - - cond::ifdef[field::related:author,true]
+        - - text::" "
+          - related:author: *jauthor
+          - related:authortype: *authortype
+      - - cond::ifdef[field::related:editor,true]
+        - - text::" "
+          - related:editor: *jname
+          - related:editortype: *jeditortyper
       - - cond::ifdef[field::translator,true]
-        - text::" "
-      - translator: *jtranslator
-      - translatortype: *jtranslatortype
+        - - text::" "
+          - translator: *jtranslator
+          - translatortype: *jtranslatortype
       - - cond::ifdef[field::translatora,true]
+        - - text::" "
+          - translatora: *jtranslatora
+          - translatoratype: *jtranslatoratype
+      - related:series:
         - text::" "
-      - translatora: *jtranslatora
-      - translatoratype: *jtranslatoratype
-      - related::series:
-        - text::" "
-        - value::series
-      - related::volume: *bookvolume
+        - value::related:series
+      - - cond::ifdef[field::volume,true]
+        - volume: value::volume
+      - - cond::ifdef[field::number,true]
+        - number: value::number
       - publisher:
         - text::"　"
         - value::publisher
