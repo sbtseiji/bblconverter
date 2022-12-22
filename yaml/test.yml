@@ -1,19 +1,152 @@
-- entry: 藤永2013
+- entry: Abrams2020
+  entrytype: online
+  skip: false
+  author:
+  - family: Abrams
+    familyi: A.
+    given: Z.
+    giveni: Z.
+  organization:
+  - American Psychological Association
+  sortinit: A
+  sortinithash: 2f401846e2029bad6b3ecc16d50031e2
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  title: Building a safe space in the pandemic
+  urlday: 31
+  urlmonth: 12
+  urlyear: 2021
+  year: 2020
+  dateera: ce
+  urldateera: ce
+  urlraw: https&#58;//www.apa.org/topics/covid-19/pandemic-safe-space#
+  url: https&#58;//www.apa.org/topics/covid-19/pandemic-safe-space#
+- entry: Adler1970
   entrytype: book
   skip: false
   author:
-  - family: 藤永
-    familyi: 藤.
-    given: 保
-    giveni: 保.
+  - family: Adler
+    familyi: A.
+    given: A.
+    giveni: A.
+  origpublisher:
+  - George Allen \& Unwin
+  publisher:
+  - Gateway
+  sortinit: A
+  sortinithash: 2f401846e2029bad6b3ecc16d50031e2
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  origyear: 1930
+  title: The education of children
+  year: 1970
+  dateera: ce
+  origdateera: ce
+- entry: APA2013
+  entrytype: book
+  skip: false
+  author:
+  - family: American Psychiatric Association
+    familyi: A.
+  publisher:
+  - American Psychiatric Association
+  sortinit: A
+  sortinithash: 2f401846e2029bad6b3ecc16d50031e2
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  edition: 5
+  title: Diagnostic and statistical manual of mental disorders
+  year: 2013
+  dateera: ce
+- entry: 浅野2020
+  entrytype: incollection
+  skip: false
+  author:
+  - family: 浅野
+    familyi: 浅.
+    given: 倫子
+    giveni: 倫.
+  - family: 横澤
+    familyi: 横.
+    given: 一彦
+    giveni: 一.
+  editor:
+  - family: 横澤
+    familyi: 横.
+    given: 一彦
+    giveni: 一.
+  language:
+  - japanese
+  publisher:
+  - 勁草書房
+  sortinit: A
+  sortinithash: 2f401846e2029bad6b3ecc16d50031e2
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  authortype: 編
+  editortype: 監修
+  series: シリーズ統合的認知
+  subtitle: 統合の多様性
+  title: 共感覚
+  year: 2020
+  dateera: ce
+- entry: Clement2002
+  entrytype: book
+  skip: false
+  author:
+  - family: Clement
+    familyi: C.
+    given: E.
+    giveni: E.
+  publisher:
+  - Wiley
+  sortinit: C
+  sortinithash: 4d103a86280481745c9c897c925753c0
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  subtitle: The Cornerstone of Learning
+  title: Cognitive Flexibility
+  year: 2002
+  dateera: ce
+- entry: Freud1956
+  entrytype: mvbook
+  skip: false
+  author:
+  - family: Freud
+    familyi: F.
+    given: S.
+    giveni: S.
+  publisher:
+  - Hogarth Press
+  sortinit: F
+  sortinithash: 2638baaa20439f1b5a8f80c6c08a13b4
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  endyear: 1974
+  title: Standard editions of complete psychological works of Sigmund Freud
+  volumes: 1-24
+  year: 1956
+  enddateera: ce
+  dateera: ce
+- entry: 藤永2013
+  entrytype: book
+  skip: false
   editor:
   - family: 藤永
     familyi: 藤.
     given: 保
-    giveni: 保.
-  - family: 山田
-    familyi: 藤.
-    given: 佳子
     giveni: 保.
   language:
   - japanese
@@ -53,128 +186,193 @@
   year: 2012
   dateera: ce
   related: 7b20af74749cb5ff6167e521e21868ca
-- entry: 7b20af74749cb5ff6167e521e21868ca
-  entrytype: mvbook
-  skip: true
-  editor:
-  - family: 大山
-    familyi: 大.
-    given: 正
+- entry: 長谷川99
+  entrytype: article
+  skip: false
+  author:
+  - family: 長谷川
+    familyi: 長.
+    given: 龍樹
+    giveni: 龍.
+  - family: 多田
+    familyi: 多.
+    given: 奏恵
+    giveni: 奏.
+  - family: 米満
+    familyi: 米.
+    given: 文哉
+    giveni: 文.
+  - family: 池田
+    familyi: 池.
+    given: 鮎美
+    giveni: 鮎.
+  - family: 山田
+    familyi: 山.
+    given: 祐樹
+    giveni: 祐.
+  - family: 高橋
+    familyi: 高.
+    given: 康介
+    giveni: 康.
+  - family: 近藤
+    familyi: 近.
+    given: 洋史
+    giveni: 洋.
+  language:
+  - japanese
+  sortinit: H
+  sortinithash: 23a3aa7c24e56cfa16945d55545109b5
+  labeldatesource: nodate
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 心理学研究
+  pubstate: 印刷中
+  subtitle: OSF事前登録チュートリアル
+  title: 実証的研究の事前登録の現状と実践
+- entry: 長谷川2016
+  entrytype: book
+  skip: false
+  author:
+  - family: 長谷川
+    familyi: 長.
+    given: 寿一
+    giveni: 寿.
+  - family: 東條
+    familyi: 東.
+    given: 正城
     giveni: 正.
+  - family: 大島
+    familyi: 大.
+    given: 尚
+    giveni: 尚.
+  - family: 丹野
+    familyi: 丹.
+    given: 義彦
+    giveni: 義.
+  - family: 廣中
+    familyi: 廣.
+    given: 直行
+    giveni: 直.
   language:
   - japanese
   publisher:
-  - 誠信書房
-  sortinit: 大
-  sortinithash: a75196ba8066497edc05727be2f56feb
-  labeldatesource: nodate
-  labelnamesource: editor
-  clonesourcekey: 大山&#58;心理学研究法
-  editortype: 監修
-  series: 心理学研究法  
-# - entry: 長谷川99
-#   entrytype: article
-#   skip: false
-#   author:
-#   - family: 長谷川
-#     familyi: 長.
-#     given: 龍樹
-#     giveni: 龍.
-#   - family: 多田
-#     familyi: 多.
-#     given: 奏恵
-#     giveni: 奏.
-#   - family: 米満
-#     familyi: 米.
-#     given: 文哉
-#     giveni: 文.
-#   - family: 池田
-#     familyi: 池.
-#     given: 鮎美
-#     giveni: 鮎.
-#   - family: 山田
-#     familyi: 山.
-#     given: 祐樹
-#     giveni: 祐.
-#   - family: 高橋
-#     familyi: 高.
-#     given: 康介
-#     giveni: 康.
-#   - family: 近藤
-#     familyi: 近.
-#     given: 洋史
-#     giveni: 洋.
-#   language:
-#   - japanese
-#   sortinit: H
-#   sortinithash: 23a3aa7c24e56cfa16945d55545109b5
-#   labeldatesource: nodate
-#   labelnamesource: author
-#   labeltitlesource: title
-#   journaltitle: 心理学研究
-#   pubstate: 印刷中
-#   subtitle: OSF事前登録チュートリアル
-#   title: 実証的研究の事前登録の現状と実践
-# - entry: 金政2021
-#   entrytype: article
-#   skip: false
-#   author:
-#   - family: 金政
-#     familyi: 金.
-#     given: 祐司
-#     giveni: 祐.
-#   - family: 古村
-#     familyi: 古.
-#     given: 健太郎
-#     giveni: 健.
-#   - family: 浅野
-#     familyi: 浅.
-#     given: 良輔
-#     giveni: 良.
-#   - family: 荒井
-#     familyi: 荒.
-#     given: 崇史
-#     giveni: 崇.
-#   language:
-#   - japanese
-#   sortinit: K
-#   sortinithash: c02bf6bff1c488450c352b40f5d853ab
-#   extradatescope: labelyear
-#   labeldatesource:
-#   labelnamesource: author
-#   labeltitlesource: title
-#   howpublished: Advance online publication
-#   journaltitle: 心理学研究
-#   subtitle: 恋愛関係と夫婦関係の縦断調査から
-#   title: 愛着不安は親密な関係内の暴力の先行要因となり得るのか？
-#   year: 2021
-#   dateera: ce
-#   doi: 10.4992/jjpsy.92.20013
-# - entry: 川上2019
-#   entrytype: article
-#   skip: false
-#   author:
-#   - family: 川上
-#     familyi: 川.
-#     given: 直秋
-#     giveni: 直.
-#   language:
-#   - japanese
-#   sortinit: K
-#   sortinithash: c02bf6bff1c488450c352b40f5d853ab
-#   extradatescope: labelyear
-#   labeldatesource:
-#   labelnamesource: author
-#   labeltitlesource: title
-#   journaltitle: 心理学研究
-#   number: 1
-#   subtitle: スマートフォン使用と単語の感情価の関係
-#   title: 指先が変える単語の意味
-#   volume: 91
-#   year: 2019
-#   dateera: ce
-#   pages: 23--33
-#   doi: 10.4992/jjpsy.91.18060
+  - 有斐閣
+  sortinit: H
+  sortinithash: 23a3aa7c24e56cfa16945d55545109b5
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  edition: 第3版
+  title: はじめて出会う心理学
+  year: 2016
+  dateera: ce
+- entry: Helmholtz1925
+  entrytype: book
+  skip: false
+  author:
+  - family: von Helmholtz
+    familyi: v.
+    given: H.
+    giveni: H.
+  translator:
+  - family: Southall
+    familyi: S.
+    given: J. P. C.
+    giveni: J. P. C.
+  publisher:
+  - Optical Society of America
+  sortinit: H
+  sortinithash: 23a3aa7c24e56cfa16945d55545109b5
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  origyear: 1910
+  title: Treatise on Physiological Optics
+  translatortype: Ed., \& Trans.
+  volume: 3
+  year: 1925
+  dateera: ce
+  origdateera: ce
+- entry: 堀2009
+  entrytype: book
+  skip: false
+  author:
+  - family: 堀
+    familyi: 堀.
+    given: 洋道
+    giveni: 洋.
+  editor:
+  - family: 吉田
+    familyi: 吉.
+    given: 富二雄
+    giveni: 富.
+  - family: 松井
+    familyi: 松.
+    given: 豊
+    giveni: 豊.
+  - family: 宮本
+    familyi: 宮.
+    given: 聡介
+    giveni: 聡.
+  language:
+  - japanese
+  publisher:
+  - 福村出版
+  sortinit: H
+  sortinithash: 23a3aa7c24e56cfa16945d55545109b5
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  authortype: 監修
+  edition: 改訂版
+  title: 新編 社会心理学
+  year: 2009
+  dateera: ce
+- entry: 法務総合研究所2019
+  entrytype: report
+  skip: false
+  author:
+  - family: 法務総合研究所
+    familyi: 法.
+  institution:
+  - 昭和情報プロセス
+  language:
+  - japanese
+  sortinit: H
+  sortinithash: 23a3aa7c24e56cfa16945d55545109b5
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  subtitle: 平成の刑事政策
+  title: 令和元年版 犯罪白書
+  year: 2019
+  dateera: ce
+- entry: 一川2016
+  entrytype: book
+  skip: false
+  author:
+  - family: 一川
+    familyi: 一.
+    given: 誠
+    giveni: 誠.
+  language:
+  - japanese
+  publisher:
+  - PHP研究所
+  sortinit: I
+  sortinithash: 8d291c51ee89b6cd86bf5379f0b151d8
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  subtitle: 思考は10時から14時，記憶は16時から
+  title: 「時間の使い方」を科学する
+  year: 2016
+  dateera: ce
 - entry: Izard1991
   entrytype: book
   skip: false
@@ -215,33 +413,683 @@
   year: 1996
   dateera: ce
   origdateera: ce
-# - entry: Rosen2015
-#   entrytype: book
-#   skip: false
-#   author:
-#   - family: Rosen
-#     familyi: R.
-#     given: L. D.
-#     giveni: L. D.
-#   - family: Cheever
-#     familyi: C.
-#     given: N.
-#     giveni: N.
-#   - family: Carrier
-#     familyi: C.
-#     given: L. M.
-#     giveni: L. M.
-#   publisher:
-#   - Wiley
-#   sortinit: R
-#   sortinithash: 5e1c39a9d46ffb6bebd8f801023a9486
-#   extradatescope: labelyear
-#   labeldatesource:
-#   labelnamesource: author
-#   labeltitlesource: title
-#   title: The Wiley Blackwell Handbook of Psychology, Technology and Society
-#   year: 2015
-#   dateera: ce
+- entry: 金政2021
+  entrytype: article
+  skip: false
+  author:
+  - family: 金政
+    familyi: 金.
+    given: 祐司
+    giveni: 祐.
+  - family: 古村
+    familyi: 古.
+    given: 健太郎
+    giveni: 健.
+  - family: 浅野
+    familyi: 浅.
+    given: 良輔
+    giveni: 良.
+  - family: 荒井
+    familyi: 荒.
+    given: 崇史
+    giveni: 崇.
+  language:
+  - japanese
+  sortinit: K
+  sortinithash: c02bf6bff1c488450c352b40f5d853ab
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  howpublished: Advance online publication
+  journaltitle: 心理学研究
+  subtitle: 恋愛関係と夫婦関係の縦断調査から
+  title: 愛着不安は親密な関係内の暴力の先行要因となり得るのか？
+  year: 2021
+  dateera: ce
+  doi: 10.4992/jjpsy.92.20013
+- entry: Katahira2020
+  entrytype: article
+  skip: false
+  author:
+  - family: Katahira
+    familyi: K.
+    given: K.
+    giveni: K.
+  - family: Kunisato
+    familyi: K.
+    given: Y.
+    giveni: Y.
+  - family: Yamashita
+    familyi: Y.
+    given: Y.
+    giveni: Y.
+  - family: Suzuki
+    familyi: S.
+    given: S.
+    giveni: S.
+  sortinit: K
+  sortinithash: c02bf6bff1c488450c352b40f5d853ab
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: Frontiers in Big Data
+  title: Commentary&#58; ``A robust data-driven approach identifies four personality
+    types across four large data sets.''
+  volume: 3
+  year: 2020
+  dateera: ce
+  pages: 8
+  doi: 10.3389/fdata.2020.00008
+- entry: ec641d9f245a2228db81a66eb3726322
+  entrytype: book
+  skip: true
+  author:
+  - family: Katz
+    familyi: K.
+    given: D.
+    giveni: D.
+  sortinit: K
+  sortinithash: c02bf6bff1c488450c352b40f5d853ab
+  labeldatesource:
+  labelnamesource: author
+  clonesourcekey: Katz1930
+  year: 1930
+  dateera: ce
+- entry: Katz1935
+  entrytype: book
+  skip: false
+  author:
+  - family: Katz
+    familyi: K.
+    given: D.
+    giveni: D.
+  translator:
+  - family: MacLeod
+    familyi: M.
+    given: R. B.
+    giveni: R. B.
+  - family: Fox
+    familyi: F.
+    given: C. W.
+    giveni: C. W.
+  publisher:
+  - Kegan Paul
+  sortinit: K
+  sortinithash: c02bf6bff1c488450c352b40f5d853ab
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  relatedtype: translationof
+  title: The world of colour
+  year: 1935
+  dateera: ce
+  related: ec641d9f245a2228db81a66eb3726322
+- entry: 川上2019
+  entrytype: article
+  skip: false
+  author:
+  - family: 川上
+    familyi: 川.
+    given: 直秋
+    giveni: 直.
+  language:
+  - japanese
+  sortinit: K
+  sortinithash: c02bf6bff1c488450c352b40f5d853ab
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 心理学研究
+  number: 1
+  subtitle: スマートフォン使用と単語の感情価の関係
+  title: 指先が変える単語の意味
+  volume: 91
+  year: 2019
+  dateera: ce
+  pages: 23--33
+  doi: 10.4992/jjpsy.91.18060
+- entry: Lamb2015
+  entrytype: incollection
+  skip: false
+  author:
+  - family: Lamb
+    familyi: L.
+    given: M. E.
+    giveni: M. E.
+  editor:
+  - family: Lerner
+    familyi: L.
+    given: R. M.
+    giveni: R. M.
+  publisher:
+  - Wiley
+  sortinit: L
+  sortinithash: 7c47d417cecb1f4bd38d1825c427a61a
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  authortype: editor
+  editortype: Series Ed.
+  series: Handbook of child psychology and developmental science
+  title: Socioemotional processes
+  volume: 3
+  year: 2015
+  dateera: ce
+- entry: 2ab10236a36d3e38d24a8a9c91492041
+  entrytype: mvbook
+  skip: true
+  editor:
+  - family: Lerner
+    familyi: L.
+    given: R. M.
+    giveni: R. M.
+  sortinit: L
+  sortinithash: 7c47d417cecb1f4bd38d1825c427a61a
+  labeldatesource: nodate
+  labelnamesource: editor
+  clonesourcekey: Lerner&#58;Handbook
+  editortype: Series Ed.
+  series: Handbook of Child Psychology and Developmental Science
+- entry: 松井2010
+  entrytype: book
+  skip: false
+  author:
+  - family: 松井
+    familyi: 松.
+    given: 豊
+    giveni: 豊.
+  language:
+  - japanese
+  publisher:
+  - 河出書房新社
+  sortinit: M
+  sortinithash: 4625c616857f13d17ce56f7d4f97d451
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  edition: 改訂新版
+  subtitle: 卒業論文や修士論文を書くために
+  title: 心理学論文の書き方
+  year: 2010
+  dateera: ce
+- entry: 森川2010
+  entrytype: article
+  skip: false
+  author:
+  - family: 森川
+    familyi: 森.
+    given: 和則
+    giveni: 和.
+  language:
+  - japanese
+  sortinit: M
+  sortinithash: 4625c616857f13d17ce56f7d4f97d451
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 心理学ワールド
+  number: 51
+  subtitle: 38年間のトレンド
+  title: 知覚心理学は右肩下がりか，右肩上がりか
+  year: 2010
+  dateera: ce
+  pages: 5--8
+- entry: Morioka2018
+  entrytype: inbook
+  skip: false
+  author:
+  - family: Morioka
+    familyi: M.
+    given: M.
+    giveni: M.
+  editor:
+  - family: Konopka
+    familyi: K.
+    given: A.
+    giveni: A.
+  - family: Hermans
+    familyi: H.
+    given: H. J. M.
+    giveni: H. J. M.
+  - family: Gonçalves
+    familyi: G.
+    given: M. M.
+    giveni: M. M.
+  publisher:
+  - Routledge
+  sortinit: M
+  sortinithash: 4625c616857f13d17ce56f7d4f97d451
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  booksubtitle: Bridging Psychotherapeutic and Cultural Traditions
+  booktitle: Handbook of Dialogical Self Theory and Psychotherapy
+  title: On the constitution of self-experience in the psychotherapeutic dialogue
+  year: 2018
+  dateera: ce
+  pages: 206--219
+- entry: 向田2009
+  entrytype: thesis
+  skip: false
+  author:
+  - family: 向田
+    familyi: 向.
+    given: 久美子
+    giveni: 久.
+  institution:
+  - 白百合女子大学大学院
+  language:
+  - japanese
+  sortinit: M
+  sortinithash: 4625c616857f13d17ce56f7d4f97d451
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  subtitle: 文化圏間比較と世代間比較を通して
+  title: 語りに見るライフ・スクリプトの文化心理学的研究
+  type: 博士論文
+  year: 2009
+  dateera: ce
+- entry: 内藤2018
+  entrytype: inbook
+  skip: false
+  author:
+  - family: 内藤
+    familyi: 内.
+    given: 美加
+    giveni: 美.
+  editor:
+  - family: 鈴木
+    familyi: 鈴.
+    given: 國文
+    giveni: 國.
+  - family: 内海
+    familyi: 内.
+    given: 健
+    giveni: 健.
+  - family: 清水
+    familyi: 清.
+    given: 光恵
+    giveni: 光.
+  language:
+  - japanese
+  publisher:
+  - 星和書店
+  sortinit: N
+  sortinithash: 22369a73d5f88983a108b63f07f37084
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  booktitle: 発達障害の精神病理I
+  subtitle: 自閉スペクトラム症の未解決課題再考
+  title: 記憶の発達と心的時間移動
+  year: 2018
+  dateera: ce
+  pages: 77--96
+- entry: 中道2019
+  entrytype: article
+  skip: false
+  author:
+  - family: 中道
+    familyi: 中.
+    given: 圭人
+    giveni: 圭.
+  language:
+  - japanese
+  sortinit: N
+  sortinithash: 22369a73d5f88983a108b63f07f37084
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 千葉大学教育学部研究紀要
+  title: 幼児における他者の感情推測のための表情と身体的手がかりの利用
+  volume: 67
+  year: 2019
+  dateera: ce
+  pages: 285--292
+- entry: 中沢1978
+  entrytype: article
+  skip: false
+  author:
+  - family: 中沢
+    familyi: 中.
+    given: 潤
+    giveni: 潤.
+  - family: 国本
+    familyi: 国.
+    given: 小百合
+    giveni: 小.
+  - family: 祐宗
+    familyi: 祐.
+    given: 省三
+    giveni: 省.
+  language:
+  - japanese
+  sortinit: N
+  sortinithash: 22369a73d5f88983a108b63f07f37084
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 心理学研究
+  subtitle: 非次元性課題における過剰訓練効果
+  title: 幼児の弁別学習
+  volume: 49
+  year: 1978
+  dateera: ce
+  pages: 131--136
+- entry: 日本心理学会2022
+  entrytype: online
+  skip: false
+  author:
+  - family: 日本心理学会
+    familyi: 日.
+  language:
+  - japanese
+  organization:
+  - 日本心理学会
+  sortinit: N
+  sortinithash: 22369a73d5f88983a108b63f07f37084
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  title: 執筆・投稿の手びき2022年版
+  urlday: 25
+  urlmonth: 10
+  urlyear: 2022
+  year: 2022
+  dateera: ce
+  urldateera: ce
+  urlraw: https&#58;//psych.or.jp/manual/
+  url: https&#58;//psych.or.jp/manual/
+- entry: 野島2018
+  entrytype: mvbook
+  skip: false
+  editor:
+  - family: 野島
+    familyi: 野.
+    given: 一彦
+    giveni: 一.
+  - family: 繁桝
+    familyi: 繁.
+    given: 算男
+    giveni: 算.
+  language:
+  - japanese
+  publisher:
+  - 遠見書房
+  sortinit: N
+  sortinithash: 22369a73d5f88983a108b63f07f37084
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: editor
+  editortype: 監修
+  endyear: 2020
+  series: 公認心理師の基礎と実践
+  volumes: 全23巻
+  year: 2018
+  enddateera: ce
+  dateera: ce
+- entry: OSeaghdha99
+  entrytype: article
+  skip: false
+  author:
+  - family: O'Seaghdha
+    familyi: O.
+    given: P. G.
+    giveni: P. G.
+  sortinit: O
+  sortinithash: 2cd7140a07aea5341f9e2771efe90aae
+  labeldatesource: nodate
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: Japanese Psychological Research
+  pubstate: in press
+  subtitle: Proximate units at the lexical-phonological interface
+  title: Across the great divide
+- entry: Oe2016
+  entrytype: inproceedings
+  skip: false
+  author:
+  - family: Oe
+    familyi: O.
+    given: T.
+    giveni: T.
+  - family: Aoki
+    familyi: A.
+    given: R.
+    giveni: R.
+  - family: Numazaki
+    familyi: N.
+    given: M.
+    giveni: M.
+  location:
+  - San Diego, CA.
+  sortinit: O
+  sortinithash: 2cd7140a07aea5341f9e2771efe90aae
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  eventtitle: The 17th Annual Meeting of the Society for Personality and Social Psychology
+  title: Perceived causal attributions of body temperature increase as a moderator
+    of the effects of physical warmth on implicit associations of social warmth
+  type: Poster presentation
+  year: 2016
+  dateera: ce
+- entry: Osaka2007
+  entrytype: book
+  skip: false
+  editor:
+  - family: Osaka
+    familyi: O.
+    given: N.
+    giveni: N.
+  - family: Rentschler
+    familyi: R.
+    given: I.
+    giveni: I.
+  - family: Biederman
+    familyi: B.
+    given: I.
+    giveni: I.
+  publisher:
+  - Springer
+  sortinit: O
+  sortinithash: 2cd7140a07aea5341f9e2771efe90aae
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: editor
+  labeltitlesource: title
+  title: Object recognition, attention, and action
+  year: 2007
+  dateera: ce
+- entry: Overton2015
+  entrytype: book
+  skip: false
+  editor:
+  - family: Overton
+    familyi: O.
+    given: W. F.
+    giveni: W. F.
+  - family: Molenaar
+    familyi: M.
+    given: P. C. M.
+    giveni: P. C. M.
+  publisher:
+  - Wiley
+  sortinit: O
+  sortinithash: 2cd7140a07aea5341f9e2771efe90aae
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: editor
+  labeltitlesource: title
+  relatedtype: mvbook
+  title: Theory and Method
+  volume: 1
+  year: 2015
+  dateera: ce
+  related: 2ab10236a36d3e38d24a8a9c91492041
+- entry: 大谷2022
+  entrytype: article
+  skip: false
+  author:
+  - family: 大谷
+    familyi: 大.
+    given: 美貴
+    giveni: 美.
+  - family: 岡田
+    familyi: 岡.
+    given: あかり
+    giveni: あ.
+  - family: 丸山
+    familyi: 丸.
+    given: 直樹
+    giveni: 直.
+  - family: 松井
+    familyi: 松.
+    given: 奈緒美
+    giveni: 奈.
+  - family: 眞鍋
+    familyi: 眞.
+    given: 久美子
+    giveni: 久.
+  - family: 坂本
+    familyi: 坂.
+    given: 諒
+    giveni: 諒.
+  - family: 山本
+    familyi: 山.
+    given: 淳一
+    giveni: 淳.
+  - family: 西村
+    familyi: 西.
+    given: 一也
+    giveni: 一.
+  - family: 春日
+    familyi: 春.
+    given: 麻衣
+    giveni: 麻.
+  - family: 清水
+    familyi: 清.
+    given: 真
+    giveni: 真.
+  - family: 阿部
+    familyi: 阿.
+    given: 竜太
+    giveni: 竜.
+  - family: 島田
+    familyi: 島.
+    given: 悠
+    giveni: 悠.
+  - family: 谷口
+    familyi: 谷.
+    given: 幸治
+    giveni: 幸.
+  - family: 上田
+    familyi: 上.
+    given: 久美子
+    giveni: 久.
+  - family: 小林
+    familyi: 小.
+    given: 里恵
+    giveni: 里.
+  - family: 岡本
+    familyi: 岡.
+    given: 有香
+    giveni: 有.
+  - family: 白井
+    familyi: 白.
+    given: 太郎
+    giveni: 太.
+  - family: 鈴木
+    familyi: 鈴.
+    given: 敏行
+    giveni: 敏.
+  - family: 佐々木
+    familyi: 佐.
+    given: 智恵美
+    giveni: 智.
+  - family: 山田
+    familyi: 山.
+    given: 徹
+    giveni: 徹.
+  - family: 多田
+    familyi: 多.
+    given: 剛
+    giveni: 剛.
+  - family: 中島
+    familyi: 中.
+    given: 奈津子
+    giveni: 奈.
+  - family: 谷口
+    familyi: 谷.
+    given: 昭彦
+    giveni: 昭.
+  - family: 野田
+    familyi: 野.
+    given: 愛
+    giveni: 愛.
+  - family: 高木
+    familyi: 高.
+    given: 由紀子
+    giveni: 由.
+  language:
+  - japanese
+  sortinit: O
+  sortinithash: 2cd7140a07aea5341f9e2771efe90aae
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 架空心理学研究
+  number: 3
+  subtitle: 20を超えると何かが起こる
+  title: マジカルナンバー20
+  volume: 32
+  year: 2022
+  dateera: ce
+  pages: 80--89
+  doi: 35.3582/fmp-2pahm
+- entry: Rosen2015
+  entrytype: book
+  skip: false
+  author:
+  - family: Rosen
+    familyi: R.
+    given: L. D.
+    giveni: L. D.
+  - family: Cheever
+    familyi: C.
+    given: N.
+    giveni: N.
+  - family: Carrier
+    familyi: C.
+    given: L. M.
+    giveni: L. M.
+  publisher:
+  - Wiley
+  sortinit: R
+  sortinithash: 5e1c39a9d46ffb6bebd8f801023a9486
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  title: The Wiley Blackwell Handbook of Psychology, Technology and Society
+  year: 2015
+  dateera: ce
 - entry: a69b52af7daa466df5b1015726534d6e
   entrytype: book
   skip: true
@@ -294,3 +1142,461 @@
   year: 2008
   dateera: ce
   related: a69b52af7daa466df5b1015726534d6e
+- entry: 齊藤2019
+  entrytype: article
+  skip: false
+  author:
+  - family: 齊藤
+    familyi: 齊.
+    given: 慈子
+    giveni: 慈.
+  language:
+  - japanese
+  sortinit: S
+  sortinithash: b164b07b29984b41daf1e85279fbc5ab
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 心理学ワールド
+  number: 86
+  subtitle: 38年間のトレンド
+  title: 時に手を抜くイクメン，マーモセットのパパ
+  year: 2019
+  dateera: ce
+  pages: 25--26
+- entry: 坂本2013
+  entrytype: inbook
+  skip: false
+  author:
+  - family: 坂本
+    familyi: 坂.
+    given: 真士
+    giveni: 真.
+  editor:
+  - family: 坂本
+    familyi: 坂.
+    given: 真士
+    giveni: 真.
+  - family: 大平
+    familyi: 大.
+    given: 英樹
+    giveni: 英.
+  language:
+  - japanese
+  publisher:
+  - 世界思想社
+  sortinit: S
+  sortinithash: b164b07b29984b41daf1e85279fbc5ab
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  booktitle: 心理学論文道場
+  subtitle: 基礎から始める英語論文執筆
+  title: 論文投稿に向けて
+  year: 2013
+  dateera: ce
+  pages: 16--50
+- entry: 坂野1994
+  entrytype: article
+  skip: false
+  author:
+  - family: 坂野
+    familyi: 坂.
+    given: 雄二
+    giveni: 雄.
+  - family: 福井
+    familyi: 福.
+    given: 知美
+    giveni: 知.
+  - family: 熊野
+    familyi: 熊.
+    given: 宏昭
+    giveni: 宏.
+  - family: 堀江
+    familyi: 堀.
+    given: はるみ
+    giveni: は.
+  - family: 川原
+    familyi: 川.
+    given: 健資
+    giveni: 健.
+  - family: 山本
+    familyi: 山.
+    given: 晴義
+    giveni: 晴.
+  - family: 野村
+    familyi: 野.
+    given: 忍
+    giveni: 忍.
+  - family: 末松
+    familyi: 末.
+    given: 弘行
+    giveni: 弘.
+  language:
+  - japanese
+  sortinit: S
+  sortinithash: fd67ad5a9ef0f7456bdd9aab10fe1495
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 心身医学
+  number: 8
+  title: 新しい気分調査票の開発とその信頼性・妥当性の検討
+  volume: 34
+  year: 1994
+  dateera: ce
+  pages: 629--636
+  doi: 10.15064/jjpm.34.8_629
+- entry: サトウ2013
+  entrytype: misc
+  skip: false
+  author:
+  - family: サトウ
+    familyi: サ.
+    given: タツヤ
+    giveni: タ.
+  language:
+  - japanese
+  sortinit: S
+  sortinithash: b164b07b29984b41daf1e85279fbc5ab
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  howpublished: 7月8日夕刊
+  journaltitle: 読売新聞
+  subtitle: 悩み事 どうやって打開？
+  title: ちょっとココロ学
+  year: 2013
+  dateera: ce
+  pages: 7
+- entry: Takahashi2017
+  entrytype: article
+  skip: false
+  author:
+  - family: Takahashi
+    familyi: T.
+    given: N.
+    giveni: N.
+  - family: Isaka
+    familyi: I.
+    given: Y.
+    giveni: Y.
+  - family: Yamamoto
+    familyi: Y.
+    given: T.
+    giveni: T.
+  - family: Nakamura
+    familyi: N.
+    given: T.
+    giveni: T.
+  sortinit: T
+  sortinithash: 9af77f0292593c26bde9a56e688eaee9
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: Journal of Deaf Studies and Deaf Education
+  number: 1
+  title: Vocabulary and Grammar Differences Between Deaf and Hearing Students
+  volume: 22
+  year: 2017
+  dateera: ce
+  pages: 88--104
+  doi: 10.1093/deafed/enw055
+- entry: Tsukamoto2015
+  entrytype: thesis
+  skip: false
+  author:
+  - family: Tsukamoto
+    familyi: T.
+    given: S.
+    giveni: S.
+  institution:
+  - Kyoto University
+  sortinit: T
+  sortinithash: 9af77f0292593c26bde9a56e688eaee9
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  title: The Role of Psychological Essentialism in Intergroup Attitude Formation
+  type: Unpublished master's thesis
+  year: 2015
+  dateera: ce
+- entry: 都築2018
+  entrytype: inproceedings
+  skip: false
+  author:
+  - family: 都築
+    familyi: 都.
+    given: 誉史
+    giveni: 誉.
+  - family: 武田
+    familyi: 武.
+    given: 裕司
+    giveni: 裕.
+  - family: 千葉
+    familyi: 千.
+    given: 元気
+    giveni: 元.
+  language:
+  - japanese
+  sortinit: T
+  sortinithash: 9af77f0292593c26bde9a56e688eaee9
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  booktitle: 日本心理学会第82回大会発表論文集
+  subtitle: 聴覚プローブ法を用いた実験的検討
+  title: 認知資源が多肢選択意思決定における魅力効果に及ぼす影響
+  year: 2018
+  dateera: ce
+  pages: 493
+- entry: Wiskunde2019
+  entrytype: article
+  skip: false
+  author:
+  - family: Wiskunde
+    familyi: W.
+    given: B.
+    giveni: B.
+  - family: Arslan
+    familyi: A.
+    given: M.
+    giveni: M.
+  - family: Fischer
+    familyi: F.
+    given: P.
+    giveni: P.
+  - family: Nowak
+    familyi: N.
+    given: L.
+    giveni: L.
+  - family: Vanb dena Berg
+    familyi: V. d. B.
+    given: O.
+    giveni: O.
+  - family: Coetzee
+    familyi: C.
+    given: L.
+    giveni: L.
+  - family: Juárez
+    familyi: J.
+    given: U.
+    giveni: U.
+  - family: Riyaziyyat
+    familyi: R.
+    given: E.
+    giveni: E.
+  - family: Wang
+    familyi: W.
+    given: C.
+    giveni: C.
+  - family: Zhang
+    familyi: Z.
+    given: I.
+    giveni: I.
+  - family: Li
+    familyi: L.
+    given: P.
+    giveni: P.
+  - family: Yang
+    familyi: Y.
+    given: R.
+    giveni: R.
+  - family: Kumar
+    familyi: K.
+    given: B.
+    giveni: B.
+  - family: Xu
+    familyi: X.
+    given: A.
+    giveni: A.
+  - family: Martinez
+    familyi: M.
+    given: R.
+    giveni: R.
+  - family: McIntosh
+    familyi: M.
+    given: V.
+    giveni: V.
+  - family: Ibáñez
+    familyi: I.
+    given: L. M.
+    giveni: L. M.
+  - family: Mäkinen
+    familyi: M.
+    given: G.
+    giveni: G.
+  - family: Virtanen
+    familyi: V.
+    given: E.
+    giveni: E.
+  - family: Kristine
+    familyi: K.
+    given: Simisola
+    giveni: S.
+  - family: Méabh
+    familyi: M.
+    given: Neasa
+    giveni: N.
+  - family: Moana
+    familyi: M.
+    given: Sebastião
+    giveni: S.
+  - family: Livia
+    familyi: L.
+    given: Kamala
+    giveni: K.
+  - family: Céleste
+    familyi: C.
+    given: Bruno
+    giveni: B.
+  - family: Kovács
+    familyi: K.
+    given: A.
+    giveni: A.
+  sortinit: W
+  sortinithash: 4315d78024d0cea9b57a0c6f0e35ed0d
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: Journal of Improbable Mathematics
+  number: 1
+  subtitle: Twenty One Pilots, Nicolas Bourbaki, and the empty set
+  title: Indie pop rocks mathematics
+  volume: 27
+  year: 2019
+  dateera: ce
+  pages: 1935--1968
+  doi: 10.0000/3mp7y-537
+- entry: 矢嶋2013
+  entrytype: article
+  skip: false
+  author:
+  - family: 矢嶋
+    familyi: 矢.
+    given: 美保
+    giveni: 美.
+  - family: 長谷川
+    familyi: 長.
+    given: 晃
+    giveni: 晃.
+  language:
+  - japanese
+  sortinit: Y
+  sortinithash: fd67ad5a9ef0f7456bdd9aab10fe1495
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  journaltitle: 感情心理学研究
+  number: 3
+  subtitle: 日本の親子のデータを用いた検討
+  title: 家族機能が中学生の社交不安に及ぼす影響
+  volume: 27
+  year: 2013
+  dateera: ce
+  pages: 83--94
+  doi: 10.4092/jsre.27.3_83
+- entry: Yokoyama2020
+  entrytype: article
+  skip: false
+  author:
+  - family: Yokoyama
+    familyi: Y.
+    given: T.
+    giveni: T.
+  - family: Kato
+    familyi: K.
+    given: R.
+    giveni: R.
+  - family: Inoue
+    familyi: I.
+    given: K.
+    giveni: K.
+  - family: Takeda
+    familyi: T.
+    given: Y.
+    giveni: Y.
+  sortinit: Y
+  sortinithash: fd67ad5a9ef0f7456bdd9aab10fe1495
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  howpublished: Advance online publication
+  journaltitle: Japanese Psychological Research
+  title: Cuing Effects by Biologically and Behaviorally Relevant Symbolic Cues
+  year: 2020
+  dateera: ce
+  doi: 10.1111/jpr.12318
+- entry: Yoshimura2021
+  entrytype: online
+  skip: false
+  author:
+  - family: Yoshimura
+    familyi: Y.
+    given: N.
+    giveni: N.
+  - family: Morimoto
+    familyi: M.
+    given: K.
+    giveni: K.
+  - family: Murai
+    familyi: M.
+    given: M.
+    giveni: M.
+  - family: Kihara
+    familyi: K.
+    given: Y.
+    giveni: Y.
+  - family: Marmolejo-Ramos
+    familyi: M\bibinithyphendelim R.
+    given: F.
+    giveni: F.
+  - family: Kubik
+    familyi: K.
+    given: V.
+    giveni: V.
+  - family: Yamada
+    familyi: Y.
+    given: Y.
+    giveni: Y.
+  sortinit: Y
+  sortinithash: fd67ad5a9ef0f7456bdd9aab10fe1495
+  extradatescope: labelyear
+  labeldatesource:
+  labelnamesource: author
+  labeltitlesource: title
+  eprinttype: PsyArXiv
+  subtitle: A cross-cultural replication report of Ganel and Goodale (2018)
+  title: Age of smile
+  year: 2021
+  dateera: ce
+  doi: 10.31234/osf.io/dtx6
+- entry: 7b20af74749cb5ff6167e521e21868ca
+  entrytype: mvbook
+  skip: true
+  editor:
+  - family: 大山
+    familyi: 大.
+    given: 正
+    giveni: 正.
+  language:
+  - japanese
+  publisher:
+  - 誠信書房
+  sortinit: 大
+  sortinithash: a75196ba8066497edc05727be2f56feb
+  labeldatesource: nodate
+  labelnamesource: editor
+  clonesourcekey: 大山&#58;心理学研究法
+  editortype: 監修
+  series: 心理学研究法

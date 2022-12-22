@@ -11,6 +11,7 @@ SPACE  = ' '
 COMMA  = ','
 PERIOD = '.'
 DOT    = '.'
+DOTS   = '...'
 EMDASH = '—'
 CHAR_COLON = '&#58;'
 LINEBREAK = '\n'
@@ -51,9 +52,11 @@ def parse_name_list(field_key, field_yaml, bib_entry):
   # nameリストの処理
   if field_key in bib_names:
     bibitem_data = copy.deepcopy(bib_entry.entry_data.get(field_key))
+    # print("bibitem_data", bibitem_data)
   elif field_key.replace('related:','') in bib_names and bib_entry.related_entry:
     field_key = field_key.replace('related:','')
     bibitem_data = copy.deepcopy(bib_entry.related_entry.get(field_key))
+    # print("bibitem_data", bibitem_data)
 
   if not bibitem_data is None:
 
@@ -107,6 +110,7 @@ def parse_yaml(item_yaml, bib_entry):
   elif isinstance(left_item,list):
     # 最初の項目に条件文があるなら条件文の処理
     if "cond::" in left_item[0]:
+      # print('left_item', left_item, bib_entry)
       left_item = conditional(left_item, bib_entry)
       res = parse_yaml(left_item,  bib_entry)
       if res:
@@ -126,7 +130,6 @@ def parse_yaml(item_yaml, bib_entry):
         else:
           res.append(res2)
       if res:
-        # print("appended res: ", res)
         return res
   # dictの場合，キーと値を設定して終了
   elif isinstance(left_item,dict):
@@ -134,7 +137,8 @@ def parse_yaml(item_yaml, bib_entry):
     dict_value = left_item.get(dict_key)
 
     # name list の場合
-    if dict_key in bib_names:
+    if dict_key.replace('related:','') in bib_names:
+      # print("dict_key",dict_key, bib_entry)
       dict_value = parse_name_list(dict_key, dict_value, bib_entry)
 
     else:
@@ -198,6 +202,10 @@ def format_field_data(field_format, bib_entry):
       return retrieve_value(cont_value, bib_entry)
     case 'text': # テキストの出力
       return print_text(cont_value)
+    case 'italic': # テキストの出力
+      return handle_italic(cont_value)
+    case 'bold': # テキストの出力
+      return handle_bold(cont_value)
     case 'delim': # delimは対応する文字列に置き換え
       return str(globals()[cont_value])
     case 'punct': # ユニット区切りの処理
@@ -212,36 +220,41 @@ def field_render(formatter, entry_data):
 
   is_related = False
   res_str = ''
-  print('========== レンダリング ==========')
-  print(formatter)
-
+  # print('========== レンダリング ==========')
+  
   field_key = list(formatter.keys())[0]
   field_format = formatter.get(field_key)
+  # print('field key: ', field_key, field_format, entry_data.entry_data.get(field_key))
+
   if field_key == 'TEXT':
     return format_field_data(field_format, entry_data)
 
   # relatedフィールドなら，文献情報はrelated_entry
   if "related:" in field_key:
-    entry_data = copy.deepcopy(bib_entry.related_entry)
+    entry_data = copy.deepcopy(entry_data.related_entry)
     if not entry_data:
       return
     field_key = field_key.replace('related:','')
   else:
-    entry_data = copy.deepcopy(bib_entry.entry_data)
+    entry_data = copy.deepcopy(entry_data.entry_data)
 
   # name listの場合はname_listのみに限定して処理
   if field_key in bib_names:
-    entry_data = entry_data.get(field_key)
-    name_size = len(entry_data)
+    name_data = entry_data.get(field_key)
+    name_size = len(name_data)
+    # print("name_data", name_data)
 
     if name_size == 1:
       for name_item in field_format:
-        res_str += format_field_data(name_item, entry_data[0])
+        # print("name_item" , name_item, name_data[0])
+        res_str += format_field_data(name_item, name_data[0])
     else:
       for i in range(name_size):
         for name_item in field_format[i]:
-          res_str += format_field_data(name_item, entry_data[i])
+          res_str += format_field_data(name_item, name_data[i])
+          # print("res_str" , res_str)
     res_str = res_str.strip()
+    return res_str
 
   else:
     if isinstance(field_format,str):
@@ -256,20 +269,20 @@ def retrieve_value(field_key, entry_data):
   outstr = ''
   field_value = ''
 
-  if '::' in field_key: # 書式設定がある場合
-    (field_key, field_style) = field_key.split('::',1)
-    field_value = copy.deepcopy(entry_data.get(field_key))
-    if isinstance(field_value, list):
-      field_value=copy.deepcopy(field_value[0])
-    outstr += '\\'+str(field_style)+"{"
+  # if '::' in field_key: # 書式設定がある場合
+  #   (field_key, field_style) = field_key.split('::',1)
+  #   field_value = copy.deepcopy(entry_data.get(field_key))
+  #   if isinstance(field_value, list):
+  #     field_value=copy.deepcopy(field_value[0])
+  #   outstr += '\\'+str(field_style)+"{"
+  #   outstr += str(field_value)
+  #   outstr += '\\'+str(field_style)+"}"
+  # else: # 書式設定なしの場合はそのまま
+  field_value = copy.deepcopy(entry_data.get(field_key))
+  if isinstance(field_value, list):
+    field_value=copy.deepcopy(field_value[0])
+  if not field_value is None:
     outstr += str(field_value)
-    outstr += '\\'+str(field_style)+"}"
-  else: # 書式設定なしの場合はそのまま
-    field_value = copy.deepcopy(entry_data.get(field_key))
-    if isinstance(field_value, list):
-      field_value=copy.deepcopy(field_value[0])
-    if not field_value is None:
-      outstr += str(field_value)
   return outstr
 
 # text:: の処理
@@ -288,27 +301,42 @@ def print_text(text_str):
     outstr += str(text_str.strip().replace('\"',''))
   return outstr
 
+def handle_italic(italic):
+  if italic == 'true':
+    return "\\italic{"
+  else:
+    return "\\italic}"
+
+def handle_bold(bold):
+  if bold == 'true':
+    return "\\bold{"
+  else:
+    return "\\bold}"
+
 def handle_punct(punct_str):
-  outstr = ''
+  punct_char = punct_str.strip('\"')
+  # print('punct:', punct_char)
+  # outstr = punct_str.rstrip(punct_char) # 同じマークが連続しないようにする
+  # if punct_char =="　": # 全角スペースの場合は空白を削除
+  #   outstr = punct_str.rstrip()
+  # if punct_str == punct_str.rstrip('?'): # 末尾が?でないならマークを追加
+  #   outstr += punct_char
+  return "\\punct\\"+punct_char      
 
-  punct_char = punct_str.replace('\"','')
-  outstr = outstr.rstrip(punct_char) # 同じマークが連続しないようにする
-  if punct_char =="　": # 全角スペースの場合は空白を削除
-    outstr = outstr.rstrip()
-  if outstr == outstr.rstrip('?'): # 末尾が?でないならマークを追加
-    outstr += punct_char
-  return outstr            
-
-def handle_url(url_str, bib_entry): # urlはタグで囲む
+def handle_url(url, bib_entry): # urlはタグで囲む
   url_string = ''
+  if url == 'true':
+    return "\\url{"
+  else:
+    return "\\url}"
 
-  match_obj = re.search(r'\[(.*?)\]',url_str)
-  if match_obj:
-    match_str = match_obj.group(1)
-    match_list = match_str.split(',')
-    url_string = match_list[0].strip('"')+ format_field_data(match_list[1], bib_entry)
+  # match_obj = re.search(r'\[(.*?)\]',url_str)
+  # if match_obj:
+  #   match_str = match_obj.group(1)
+  #   match_list = match_str.split(',')
+  #   url_string = match_list[0].strip('"')+ format_field_data(match_list[1], bib_entry)
 
-  return "\\url{"+str(url_string)+"\\url}"
+  # return "\\url{"+str(url_string)+"\\url}"
 
 
 def conditional(cond_list, bib_entry):
@@ -362,7 +390,7 @@ def ifthenelse(cond_str,bib_entry):
     param1 = match_obj[1].split(',')[0]
     param2 = match_obj[1].split(',')[1]
 
-  # print("param1", param1, "param2", param2)
+  # print("param1", param1, "param2", param2, bib_entry.related_entry)
   if "related:" in param1 :
     param1_related = True
     param1 = param1.replace('related:','')
@@ -424,9 +452,9 @@ def ifthenelse(cond_str,bib_entry):
 
   match cond_function:
     case 'ifequal':
-      return True if str(param1)==str(param2) else False
+      return True if str(param1).strip()==str(param2).strip() else False
     case 'ifunequal':
-      return True if str(param1)!=str(param2) else False
+      return True if str(param1).strip()!=str(param2).strip() else False
     case 'ifgreater':
       return True if int(param1)>int(param2) else False
     case 'ifgreatereq':
@@ -436,27 +464,19 @@ def ifthenelse(cond_str,bib_entry):
     case 'iflesseq':
       return True if int(param1)<=int(param2) else False
     case 'ifdef':
-      # print('OOO param1_related',param1_related, 'Param2',param2, 'realted entry: ', bib_entry.related_entry )
       if param1_related:
         if param2 =='true' and (param1 in bib_entry.related_entry):
-          # print("****ggparam_related", param1, param2, bib_entry.related_entry)
           return True
         elif param2 =='false' and (param1 not in bib_entry.related_entry):
-          # print("****kkparam_related", param1, param2, bib_entry.related_entry)
           return True
         else:
-          # print("****param_related", param1, param2, bib_entry.related_entry)
           return False
       else:
-        # print("****", param1, param2, bib_entry.entry_data)
         if param2 =='true' and param1 in bib_entry.entry_data:
-          # print('true')
           return True
         elif param2 =='false' and (param1 not in bib_entry.entry_data):
-          # print('true')
           return True
         else:
-          # print('false')
           return False
 
 
@@ -503,6 +523,7 @@ bib_list = [] # 最終的な変換結果を入れるためのリスト
 for entry_data in bib_data:
   bib_yml = copy.deepcopy(bib_yml_raw)
   bib_item = ['',[]] # 変換後の文献リスト項目
+  # print(bib_item)
   if not entry_data.get('skip'): # skipしないエントリの場合のみ
     bib_item[0] = entry_data.get('entry')
 
@@ -534,37 +555,37 @@ for entry_data in bib_data:
 
       # yamlリストを1項目ずつ順番に処理
       for field_yaml in driver_yaml: # 順番にフィールドを処理
-        # print("###### start field ########")
-        # print("field_yaml: ", field_yaml)
-
         formatter = parse_yaml(field_yaml, bib_entry)
         # print("formatter: ", formatter)
         if formatter:
           res = parse_formatter(formatter)
           res = peelout_list(res)
           if isinstance(res, list) and len(res)>2:
-            field_list.extend(res)
+            field_list.extend(copy.deepcopy(res))
           elif res:
-            field_list.append(res)
+            field_list.append(copy.deepcopy(res))
           
-      print('field_list, ', field_list)
+      # print('field_list, ', field_list)
 
 #     ========== レンダリング ==========
       for list_item in field_list:
+        res_str = ""
         list_item = peelout_list(list_item)
-        print('list_item: ',list_item)
+        # print('list_item: ',list_item)
+        # print(bib_item)
         if len(list_item) > 0:
           if isinstance(list_item,list) and len(list_item) > 1:
             for item in list_item:
               item = peelout_list(item)
-              res_str = field_render(item,bib_entry)
+              res_str += field_render(item,bib_entry)
           else:
             res_str = field_render(list_item,bib_entry)
 
           if res_str:
             bib_item[1].append(res_str)
 
-      print(bib_item)
 #     if bib_item:
-#       bib_list.append(bib_item)
+    bib_list.append(bib_item)
+  print(bib_item)
+# print(bib_list)
 # export_latex(bib_list)
