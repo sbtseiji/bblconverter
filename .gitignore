@@ -3,3 +3,5 @@ python/__pycache__/*.pyc
 *.pyc
 .DS_Store
 yaml/out.yml
+msgfmt.py
+pygettext.py
