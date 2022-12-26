@@ -23,7 +23,7 @@ bblconverter --infile [your bbl file or yaml bib file] --outfile [destination fi
   <dt ><code>-i INFILE, --infile INFILE</code></dt>
   <dd>The file path of the input file. Either .bbl or .yml</dd>
   <dt ><code>-o OUTFILE, --outfile OUTFILE</code></dt>
-  <dd>File path of the output file. Either .tex, .md, or .docx. The extension of the output file name determines the destination format. If no output file is specified, the conversion result is output to a file with the same name as the input file and a .tex extension.</dd>
+  <dd>File path of the output file. Either .tex, .md, or .docx. The extension of the output file name determines the destination format. If no output file is specified, the conversion result is output to a file with the same name as the input file and a .tex extension. If the output file is .yml or .yaml file, then the YAML bib file converted from .bbl will be exported.</dd>
   <dt ><code>-y YAML, --yaml YAML</code></dt>
   <dd>File path of the bibliography formatter YAML.</dd>
   <dt ><code>-b, --bibitem</code></dt>

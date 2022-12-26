@@ -22,7 +22,7 @@ bblconverter --infile [文献データファイル bblまたはyaml] --outfile [
   <dt ><code>-i INFILE, --infile INFILE</code></dt>
   <dd>入力ファイルのファイルパス（<code>.bbl</code>または<code>.yml</code>）。</dd>
   <dt ><code>-o OUTFILE, --outfile OUTFILE</code></dt>
-  <dd>出力ファイルのファイルパス（<code>.tex</code>、<code>.md</code>、<code>.docx</code>のいずれか）。出力ファイル名の拡張子によって、変換先の形式が決まります。出力ファイルを指定しない場合、変換結果は入力ファイルと同名で拡張子が.texのファイルに出力されます。</dd>
+  <dd>出力ファイルのファイルパス（<code>.tex</code>、<code>.md</code>、<code>.docx</code>のいずれか）。出力ファイル名の拡張子によって、変換先の形式が決まります。出力ファイルを指定しない場合、変換結果は入力ファイルと同名で拡張子が.texのファイルに出力されます。出力ファイルが.ymlまたは.yamlファイルの場合、.bblから変換されたYAML形式のbibファイルがエクスポートされます。</dd>
   <dt ><code>-y YAML, --yaml YAML</code></dt>
   <dd>文献リスト・フォーマッタYAMLのファイルパス。</dd>
   <dt ><code>-b, --bibitem</code></dt>
