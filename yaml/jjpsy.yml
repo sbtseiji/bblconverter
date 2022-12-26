@@ -36,14 +36,14 @@ month: &month
     - text::"December"
 
 parenyear: &parenyeardot
-  - text::" ("
+  - text::"("
   - - cond::ifdef[year,true]
     - value::year
     - value::pubstate
   - text::"). "
 
 parenyearr: &parenyeardotr
-  - text::" ("
+  - text::"("
   - value::related:year
   - text::"). "
 
@@ -120,7 +120,7 @@ authortype: &authortype
     - - cond::ifdef[field::authortype,true]
       - - text::"("
         - value::authortype
-        - text::") "
+        - text::")"
 
 jeditortype: &jeditortype
   - - cond::ifdef[field::editortype,true]
@@ -140,10 +140,10 @@ editortype: &editortype
   - - cond::ifdef[field::editortype,true]
     - - text::" ("
       - value::editortype
-      - text::") "
+      - text::")"
     - - cond::ifgreater[total::editor,1]
-      - text::" (Eds.) "
-      - text::" (Ed.) "
+      - text::" (Eds.)"
+      - text::" (Ed.)"
 
 editortype+comma: &editortypec
   - - cond::ifdef[field::editortype,true]
@@ -158,10 +158,10 @@ editortyper: &editortyper
   - - cond::ifdef[field::related:editortype,true]
     - - text::" ("
       - value::related:editortype
-      - text::") "
+      - text::")"
     - - cond::ifgreater[total::related:editor,1]
-      - text::" (Eds.) "
-      - text::" (Ed.) "
+      - text::" (Eds.)"
+      - text::" (Ed.)"
 
 jtranslatortype: &jtranslatortype
   - - cond::ifdef[field::translator,true]
@@ -254,144 +254,349 @@ doi: &doi
 
 ################# 各文献種別の書式 ################# 
 driver:
-  japanese:
-    ### 論文
-    article:
-      - author: *jname
-      - year: *parenyeardot
-      - title: *jtitle
-      - text::" "
-      - journaltitle: value::journaltitle
-      - - cond::ifdef[field::volume,true]
-        - volume: *volume
-      - - cond::ifdef[field::pages,true]
-        - pages: *CommaPagesDot
-      - howpublished: *howpublished
-      - doi: *doi
-
-    ### 報告書
-    report:
-      - author: *jname
-      - year: *parenyeardot
-      - title: *jtitle
-      - - cond::ifdef[field::institution,true]
-        - - text::"　"
-          - institution: value::institution
-
-    ### 学位論文
-    thesis:
-      - author: *jname
-      - year: *parenyeardot
-      - title: *jtitle
-      - text::"　"
-      - institution: value::institution
-      - type: value::type
-
-    ### オンライン
-    online:
-      - author: *jname
-      - year: *parenyeardot
-      - title: *jtitle
-      - text::"　"
-      - organization: value::organization
-      - text::"　"
-      - - cond::ifdef[field::urldateera,true]
-        - - text::"Retrieved "
-          - urlmonth: *month
-          - text::" "
-          - urlday: value::urlday
-          - text::", "
-          - urlyear: value::urlyear
-          - text::", from"
-          - url::true
-          - url: value::url
-          - url::false
-      - eprinttype: value::eprinttype
-      - text::"."
-      - doi: *doi
-
-    inproceedings:
-      - author: *jname
-      - year: *parenyeardot
-      - title: *jtitle
-      - text::" "
-      - booktitle: value::booktitle
-      - text::", "
-      - pages: value::pages
-      - text::"."
-
-    ### 書籍
-    book:
-    ## 翻訳書（related）
-      - - cond::ifequal[value::relatedtype,translationof] 
-        - - - cond::ifdef[field::related:author,true]
-            - - related:author: *ename
-              - related:authortype: *authortype
-          - - cond::ifdef[field::related:editor,true]
-            - - related:editor: *jname
-              - related:editortype: *editortyper
-          - related:year: *parenyeardotr
-          - related:title:
-            - italic::true
-            - value::related:title
-            - - cond::ifdef[field::related:subtitle,true]
-              - - delim::COLON
-                - text::" "
-                - value::related:subtitle
-            - italic::false
-            - punct::". "
-          - related:publisher: value::related:publisher
-          - delim::LINEBREAK
-          - text::"("
-          - - cond::ifdef[field::author,true]
-            - - author: *ename
-          - - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
+  ### 論文
+  article:
+    - - cond::ifequal[value::language,japanese]
+      - - author: *jname
+        - text::" "
+        - year: *parenyeardot
+        - title: *jtitle
+        - text::" "
+        - journaltitle: value::journaltitle
+        - - cond::ifdef[field::volume,true]
+          - volume: *volume
+        - - cond::ifdef[field::pages,true]
+          - pages: *CommaPagesDot
+        - howpublished: *howpublished
+        - doi: *doi
+      - - author: *ename
+        - text::" "
+        - year: *parenyeardot
+        - title: value::title
+        - - cond::ifdef[field::subtitle,true]
+          - - delim::COLON
             - text::" "
-          - - cond::ifdef[field::editor,true]
-            - - editor: *ename
-          - text::" "
-          - translator: *jname
-          - translatortype: *jtranslatortype
-          - year:
-            - text::" ("
-            - value::year
-            - text::"). "
-          - title: *jtitle
-          - text::"　"
-          - publisher: value::publisher
+            - subtitle: value::subtitle
+        - punct::". "
+        - italic::true
+        - journaltitle: value::journaltitle
+        - - cond::ifdef[field::volume,true]
+          - - text::", "
+            - volume: value::volume
+        - italic::false
+        - - cond::ifdef[field::number,true]
+          - - text::" ("
+            - number: value::number
+            - text::")"
+        - pages: *CommaPagesDot
+        - howpublished: *howpublished
+        - punct::"."
+        - doi: *doi
+
+  ### 報告書
+  report:
+    - author: *jname
+    - text::" "
+    - year: *parenyeardot
+    - title: *jtitle
+    - - cond::ifdef[field::institution,true]
+      - - text::"　"
+        - institution: value::institution
+
+  ### 学位論文
+  thesis:
+    - - cond::ifequal[value::language,japanese]
+      - - author: *jname
+        - text::" "
+        - year: *parenyeardot
+        - title: *jtitle
+        - text::"　"
+        - institution: value::institution
+        - type: value::type
+      - - author: *ename
+        - text::" "
+        - year: *parenyeardot
+        - italic::true
+        - title: value::title
+        - - cond::ifdef[field::subtitle,true]
+          - - delim::COLON
+            - text::" "
+            - subtitle: value::subtitle
+        - italic::false
+        - type: 
+          - text::" ("
+          - value::type
           - text::")"
-      ## 翻訳書（origauthor）
-        - - cond::ifdef[field::translator,true] 
-          - - origauthor: *ename
-            - origauthortype: *authortype
-            - origyear: 
-              - text::" ("
-              - value::origyear
-              - text::"). "
-            - italic::true
-            - origtitle: value::origtitle
-            - - cond::ifdef[field::origsubtitle,true]
-              - - text::":"
-                - value::origsubtitle
-            - italic::false
-            - punct::". "
-            - origpublisher: value::origpublisher
+        - punct::". "
+        - institution: value::institution
+        - punct::"."
+
+  ### オンライン
+  online:
+    - - cond::ifequal[value::language,japanese]
+      - - author: *jname
+        - text::" "
+        - year: *parenyeardot
+        - title: *jtitle
+        - text::"　"
+        - organization: value::organization
+        - text::"　"
+        - - cond::ifdef[field::urldateera,true]
+          - - text::"Retrieved "
+            - urlmonth: *month
+            - text::" "
+            - urlday: value::urlday
+            - text::", "
+            - urlyear: value::urlyear
+            - text::", from "
+            - url::true
+            - url: value::url
+            - url::false
+        - eprinttype: value::eprinttype
+        - text::"."
+        - doi: *doi
+      - - author: *ename
+        - text::" "
+        - year: *parenyeardot
+        - italic::true
+        - title: value::title
+        - - cond::ifdef[field::subtitle,true]
+          - - delim::COLON
+            - text::" "
+            - subtitle: value::subtitle
+        - italic::false
+        - punct::". "
+        - - cond::ifdef[field::urldateera,true]
+          - - text::"Retrieved "
+            - urlmonth: *month
+            - text::" "
+            - urlday: value::urlday
+            - text::", "
+            - urlyear: value::urlyear
+            - text::", from "
+            - url::true
+            - url: value::url
+            - url::false
+        - eprinttype: value::eprinttype
+        - text::"."
+        - doi: *doi
+
+  ### 学会発表
+  inproceedings:
+    - - cond::ifequal[value::language,japanese]
+      - - author: *jname
+        - text::" "
+        - year: *parenyeardot
+        - title: *jtitle
+        - text::" "
+        - booktitle: value::booktitle
+        - text::", "
+        - pages: value::pages
+        - text::"."
+      - - author: *ename
+        - text::" "
+        - year: *parenyeardot
+        - italic::true
+        - title: value::title
+        - - cond::ifdef[field::subtitle,true]
+          - - delim::COLON
+            - text::" "
+            - subtitle: value::subtitle
+        - italic::false
+        - type: 
+          - text::" ["
+          - value::type
+          - text::"]"
+        - punct::". "
+        - eventtitle: value::eventtitle
+        - - cond::ifdef[field::location,true]
+          - - text::", "
+            - location: 
+              - value::location
+              - punct::"."
+
+
+  ### 編集書の1章
+  inbook:
+    - - cond::ifequal[value::language,japanese]
+      - - author: *jname
+        - text::" "
+        - year: *parenyeardot
+        - title: *jtitle
+        - text::" "
+        - editor: *jname
+        - editortype: *jeditortype
+        - text::" "
+        - booktitle: *jbooktitle
+        - pages:
+          - text::"(pp. "
+          - value::pages
+          - text::")"
+        - publisher:
+          - text::"　"
+          - value::publisher
+      - - author: *ename
+        - year: *parenyeardot
+        - italic::true
+        - title: value::title
+        - - cond::ifdef[field::subtitle,true]
+          - - delim::COLON
+            - text::" "
+            - subtitle: value::subtitle
+        - italic::false
+        - punct::". "
+        - text::"In "
+        - editor: *enamegf
+        - editortype: *editortypec
+        - text::" "
+        - italic::true
+        - booktitle: value::booktitle
+        - - cond::ifdef[field::booksubtitle,true]
+          - - delim::COLON
+            - text::" "
+            - booksubtitle: value::booksubtitle
+        - italic::false
+        - text::" (pp. "
+        - pages: value::pages
+        - text::"). "
+        - publisher: value::publisher
+        - text::"."
+
+  ### 数巻にわたる書籍
+  mvbook:
+    - - cond::ifequal[value::language,japanese]
+      - - - cond::ifdef[field::author,true]
+          - - author: *jname
+            - text::" "
+        - - cond::ifdef[field::editor,true]
+          - - editor: *jname
+            - editortype: *jeditortype
+            - text::" "
+        - year: 
+          - text::"("
+          - value::year
+          - - cond::ifdef[field::endyear,true]
+            - - text::"--"
+              - value::endyear
+          - text::"). "
+        - title: *jtitle
+        - text::" "
+        - series: value::series
+        - text::"("
+        - vomumes: value::volumes
+        - text::")"
+        - publisher:
+          - text::"　"
+          - value::publisher
+      - - - cond::ifdef[field::author,true]
+          - - author: *ename
+            - text::" "
+        - - cond::ifdef[field::editor,true]
+          - - editor: *ename
+            - editortype: *editortype
+            - text::" "
+        - year: 
+          - text::"("
+          - value::year
+          - - cond::ifdef[field::endyear,true]
+            - - text::"--"
+              - value::endyear
+          - text::"). "
+        - italic::true
+        - title: value::title
+        - - cond::ifdef[field::subtitle,true]
+          - - delim::COLON
+            - text::" "
+            - subtitle: value::subtitle
+        - italic::false
+        - text::" "
+        - volumes:
+          - text::"(Vols. "
+          - value::volumes
+          - text::"). "
+        - publisher: value::publisher
+        - text::"."
+
+  ### シリーズの1巻
+  incollection:
+    - - cond::ifequal[value::language,japanese]
+      - - author: *jname
+        - authortype: *authortype
+        - text::" "
+        - year: *parenyeardot
+        - title: *jtitle
+        - text::"　"
+        - editor: *jname
+        - editortype: *jeditortype
+        - text::" "
+        - series: value::series
+        - publisher:
+          - text::"　"
+          - value::publisher
+      - - author: *ename
+        - authortype: *authortype
+        - year: *parenyeardot
+        - italic::true
+        - title: value::title
+        - - cond::ifdef[field::subtitle,true]
+          - - delim::COLON
+            - text::" "
+            - subtitle: value::subtitle
+        - italic::false
+        - punct::". "
+        - text::"("
+        - editor: *enamegf
+        - text::", "
+        - editortype: value::editortype
+        - text::"). "
+        - italic::true
+        - series: value::series
+        - italic::false
+        - punct::". "
+        - italic::true
+        - volume:
+          - text::"Vol. "
+          - value::volume
+        - italic::false
+        - text::". "
+        - publisher: value::publisher
+        - text::"."
+
+  ### 書籍
+  book:
+    - - cond::ifequal[value::language,japanese]
+      - - - cond::ifequal[value::relatedtype,translationof] 
+          - - - cond::ifdef[field::related:author,true]
+              - - related:author: *ename
+                - related:authortype: *authortype
+                - text::" "
+            - - cond::ifdef[field::related:editor,true]
+              - - related:editor: *jname
+                - related:editortype: *editortyper
+                - text::" "
+            - related:year: *parenyeardotr
+            - related:title:
+              - italic::true
+              - value::related:title
+              - - cond::ifdef[field::related:subtitle,true]
+                - - delim::COLON
+                  - text::" "
+                  - value::related:subtitle
+              - italic::false
+              - punct::". "
+            - related:publisher: value::related:publisher
+            - text::"."
             - delim::LINEBREAK
             - text::"("
             - - cond::ifdef[field::author,true]
               - - author: *ename
-            - - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
-              - text::" "
+                - text::" "
             - - cond::ifdef[field::editor,true]
               - - editor: *ename
-                - editortype: *jeditortype
-            - text::" "
+                - text::" "
             - translator: *jname
             - translatortype: *jtranslatortype
-            - - cond::ifdef[field::translatora,true]
-              - - text::" "
-                - translatora: *jname
-                - translatoratype: *jtranslatoratype
+            - text::" "
             - year:
               - text::" ("
               - value::year
@@ -400,363 +605,175 @@ driver:
             - text::"　"
             - publisher: value::publisher
             - text::")"
-        ## シリーズの一部
-          - - cond::ifdef[field::related,true] 
-            - - - cond::ifdef[field::author,true]
-                - - author: *jname
-              - - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
-                - text::" "
-              - - cond::ifdef[field::editor,true]
-                - - editor: *jname
-                  - editortype: *jeditortype
-              - year:
+        ## 翻訳書（origauthor）
+          - - cond::ifdef[field::translator,true] 
+            - - origauthor: *ename
+              - origauthortype: *authortype
+              - text::" "
+              - origyear: 
                 - text::" ("
+                - value::origyear
+                - text::"). "
+              - italic::true
+              - origtitle: value::origtitle
+              - - cond::ifdef[field::origsubtitle,true]
+                - - text::":"
+                  - value::origsubtitle
+              - italic::false
+              - punct::". "
+              - origpublisher: value::origpublisher
+              - text::"."
+              - delim::LINEBREAK
+              - text::"("
+              - - cond::ifdef[field::author,true]
+                - - author: *ename
+                  - text::" "
+              - - cond::ifdef[field::editor,true]
+                - - editor: *ename
+                  - editortype: *jeditortype
+                  - text::" "
+              - translator: *jname
+              - translatortype: *jtranslatortype
+              - text::" "
+              - - cond::ifdef[field::translatora,true]
+                - - translatora: *jname
+                  - translatoratype: *jtranslatoratype
+                  - text::" "
+              - year:
+                - text::"("
                 - value::year
                 - text::"). "
               - title: *jtitle
-              - text::" "
-              - - cond::ifdef[field::related:author,true]
-                - - related:author: *jname
-              - - cond::ifdef[field::related:author,true]&&ifdef[field::related:editor,true]
-                - text::" "
-              - - cond::ifdef[field::related:editor,true]
-                - - related:editor: *jname
-                  - related:editortype: *jeditortyper
-              - text::" "
-              - related:series: value::related:series
-              - volume: *bookvolume
               - text::"　"
               - publisher: value::publisher
-        ## それ以外
-            - - - cond::ifdef[field::author,true] 
-                - - author: *jname
-                  - authortype: *authortype
-              - - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
-                - text::" "
-              - - cond::ifdef[field::editor,true]
-                - - editor: *jname
-                  - editortype: *jeditortype
-              - year: *parenyeardot
-              - title: *jtitle
-              - - cond::ifdef[field::edition,true]
-                - - text::" "
-                  - edition: value::edition
-              - - cond::ifdef[field::volume,true]
-                - volume: value::volume
-              - - cond::ifdef[field::number,true]
-                - number: value::number
-              - publisher:
-                - text::"　"
-                - value::publisher
-    ### 編集書の1章
-    inbook:
-      - author: *jname
-      - year: *parenyeardot
-      - title: *jtitle
-      - text::" "
-      - editor: *jname
-      - editortype: *jeditortype
-      - booktitle: *jbooktitle
-      - pages:
-        - text::"(pp. "
-        - value::pages
-        - text::")"
-      - publisher:
-        - text::"　"
-        - value::publisher
-    ### 数巻にわたる書籍
-    mvbook:
-      - - cond::ifdef[field::author,true]
-        - author: *jname
-      - - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
-        - text::" "
-      - - cond::ifdef[field::editor,true]
-        - - editor: *jname
-          - editortype: *jeditortype
-      - year: 
-        - text::"("
-        - value::year
-        - - cond::ifdef[field::endyear,true]
-          - - text::"--"
-            - value::endyear
-        - text::"). "
-      - title: *jtitle
-      - text::" "
-      - series: value::series
-      - text::"("
-      - vomumes: value::volumes
-      - text::")"
-      - publisher:
-        - text::"　"
-        - value::publisher
-
-    ### シリーズの1巻
-    incollection:
-      - author: *jname
-      - authortype: *authortype
-      - year: *parenyeardot
-      - title: *jtitle
-      - text::"　"
-      - editor: *jname
-      - editortype: *jeditortype
-      - text::" "
-      - series: value::series
-      - publisher:
-        - text::"　"
-        - value::publisher
-
-    misc:
-      - author: *jname
-      - year: *parenyeardot
-      - title: *jtitle
-      - text::"　"
-      - journaltitle: value::journaltitle
-      - text::"　"
-      - howpublished: value::howpublished
-      - text::", "
-      - pages: value::pages
-      - text::"."
-
-########## 外国語文献 ##########
-  other:
-    article:
-      - author: *ename
-      - year: *parenyeardot
-      - title: value::title
-      - - cond::ifdef[field::subtitle,true]
-        - - delim::COLON
-          - text::" "
-          - subtitle: value::subtitle
-      - punct::". "
-      - italic::true
-      - journaltitle: value::journaltitle
-      - - cond::ifdef[field::volume,true]
-        - - text::", "
-          - volume: value::volume
-      - italic::false
-      - - cond::ifdef[field::number,true]
-        - - text::" ("
-          - number: value::number
-          - text::")"
-          - text::", "
-      - pages: *CommaPagesDot
-      - howpublished: *howpublished
-      - punct::"."
-      - doi: *doi
-
-    online:
-      - author: *ename
-      - year: *parenyeardot
-      - italic::true
-      - title: value::title
-      - - cond::ifdef[field::subtitle,true]
-        - - delim::COLON
-          - text::" "
-          - subtitle: value::subtitle
-      - italic::false
-      - punct::". "
-      - - cond::ifdef[field::urldateera,true]
-        - - text::"Retrieved "
-          - urlmonth: *month
-          - text::" "
-          - urlday: value::urlday
-          - text::", "
-          - urlyear: value::urlyear
-          - text::", from"
-          - url::true
-          - url: value::url
-          - url::false
-      - eprinttype: value::eprinttype
-      - text::"."
-      - doi: *doi
-
-    thesis:
-      - author: *ename
-      - year: *parenyeardot
-      - italic::true
-      - title: value::title
-      - - cond::ifdef[field::subtitle,true]
-        - - delim::COLON
-          - text::" "
-          - subtitle: value::subtitle
-      - italic::false
-      - type: 
-        - text::" ("
-        - value::type
-        - text::")"
-      - punct::". "
-      - institution: value::institution
-      - punct::"."
-
-    inproceedings:
-      - author: *ename
-      - year: *parenyeardot
-      - italic::true
-      - title: value::title
-      - - cond::ifdef[field::subtitle,true]
-        - - delim::COLON
-          - text::" "
-          - subtitle: value::subtitle
-      - italic::false
-      - type: 
-        - text::" ["
-        - value::type
-        - text::"]"
-      - punct::". "
-      - eventtitle: value::eventtitle
-      - - cond::ifdef[field::location,true]
-        - - text::", "
-          - location: 
-            - value::location
-            - punct::"."
-
-    book:
-      - - cond::ifdef[field::author,true]
-        - author: *ename
-      - - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
-        - text::" "
-      - - cond::ifdef[field::editor,true]
-        - - editor: *ename
-          - editortype: *editortype
-      - year: *parenyeardot
-      - italic::true
-      - title: value::title
-      - - cond::ifdef[field::subtitle,true]
-        - - delim::COLON
-          - text::" "
-          - subtitle: value::subtitle
-      - - cond::ifdef[field::related,true]&&ifequal[value::relatedtype,mvbook]
-        - - text::" ("
-          - related:editor: *enamegf
-          - text::", "
-          - related:editortype: value::related:editortype
-          - text::"), "
-          - related:series: value::related:series
-      - - cond::ifdef[field::related,false]&&ifdef[field::translator,true]
-        - - text::" ("
-          - - cond::ifdef[field::volume,true]
-            - - text::"Vol. "
-              - volume: value::volume
-              - text::", "
-          - translator: *enamegf
-          - text::", "
-          - translatortype: value::translatortype
-          - text::"). "
-        - - italic::false
-
-          - - cond::ifdef[field::translator,true]
-            - - text::" ("
-              - translator: *enamegf
-              - text::", "
-              - translatortype: *translatortype
               - text::")"
-
-          - punct::". "
-          - - cond::ifdef[field::volume,true]
-            - - italic::true
-              - volume: 
-                - text::"Vol. "
-                - value::volume
-                - italic::false
-                - text::". "
-      - publisher: value::publisher
-      - text::"."
-      - - cond::ifdef[field::origyear,true]
-        - - text::" (Original work published "
-          - origyear: value::origyear
-          - - cond::ifdef[field::origpublisher,true]
-            - - text::", "
-              - origpublisher: value::origpublisher
-          - text::")"
-      - - cond::ifdef[field::related,true]&&ifequal[value::relatedtype,translationof]
-        - - text::" (Original work published "
-          - related:year: value::related:year
-          - text::")"
-
-    inbook:
-      - author: *ename
-      - year: *parenyeardot
-      - italic::true
-      - title: value::title
-      - - cond::ifdef[field::subtitle,true]
-        - - delim::COLON
+          ## シリーズの一部
+            - - cond::ifdef[field::related,true] 
+              - - - cond::ifdef[field::author,true]
+                  - - author: *jname
+                - - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
+                  - text::" "
+                - - cond::ifdef[field::editor,true]
+                  - - editor: *jname
+                    - editortype: *jeditortype
+                    - text::" "
+                - year:
+                  - text::"("
+                  - value::year
+                  - text::"). "
+                - title: *jtitle
+                - text::" "
+                - - cond::ifdef[field::related:author,true]
+                  - - related:author: *jname
+                - - cond::ifdef[field::related:author,true]&&ifdef[field::related:editor,true]
+                  - text::" "
+                - - cond::ifdef[field::related:editor,true]
+                  - - related:editor: *jname
+                    - related:editortype: *jeditortyper
+                - text::" "
+                - related:series: value::related:series
+                - volume: *bookvolume
+                - text::"　"
+                - publisher: value::publisher
+          ## それ以外
+              - - - cond::ifdef[field::author,true] 
+                  - - author: *jname
+                    - authortype: *authortype
+                    - text::" "
+                # - - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
+                #   - text::" "
+                - - cond::ifdef[field::editor,true]
+                  - - editor: *jname
+                    - editortype: *jeditortype
+                    - text::" "
+                - year: *parenyeardot
+                - title: *jtitle
+                - - cond::ifdef[field::edition,true]
+                  - - text::" "
+                    - edition: value::edition
+                - - cond::ifdef[field::volume,true]
+                  - volume: value::volume
+                - - cond::ifdef[field::number,true]
+                  - number: value::number
+                - publisher:
+                  - text::"　"
+                  - value::publisher
+      # 洋書
+      - - - cond::ifdef[field::author,true]
+          - author: *ename
+        - - cond::ifdef[field::author,true]&&ifdef[field::editor,true]
           - text::" "
-          - subtitle: value::subtitle
-      - italic::false
-      - punct::". "
-      - text::"In "
-      - editor: *enamegf
-      - editortype: *editortypec
-      - italic::true
-      - booktitle: value::booktitle
-      - - cond::ifdef[field::booksubtitle,true]
-        - - delim::COLON
-          - text::" "
-          - booksubtitle: value::booksubtitle
-      - italic::false
-      - text::" (pp. "
-      - pages: value::pages
-      - text::"). "
-      - publisher: value::publisher
-      - text::"."
+        - - cond::ifdef[field::editor,true]
+          - - editor: *ename
+            - editortype: *editortype
+        - text::" "
+        - year: *parenyeardot
+        - italic::true
+        - title: value::title
+        - - cond::ifdef[field::subtitle,true]
+          - - delim::COLON
+            - text::" "
+            - subtitle: value::subtitle
+        - italic::false
+        - - cond::ifdef[field::related,true]&&ifequal[value::relatedtype,mvbook]
+          - - text::" ("
+            - related:editor: *enamegf
+            - text::", "
+            - related:editortype: value::related:editortype
+            - text::"), "
+            - italic::true
+            - related:series: value::related:series
+            - italic::false
+        - - cond::ifdef[field::related,false]&&ifdef[field::translator,true]
+          - - text::" ("
+            - - cond::ifdef[field::volume,true]
+              - - text::"Vol. "
+                - volume: value::volume
+                - text::", "
+            - translator: *enamegf
+            - text::", "
+            - translatortype: value::translatortype
+            - text::"). "
+          - 
+            - - cond::ifdef[field::translator,true]
+              - - text::" ("
+                - translator: *enamegf
+                - text::", "
+                - translatortype: *translatortype
+                - text::")"
+            - punct::". "
+            - - cond::ifdef[field::volume,true]
+              - - italic::true
+                - volume: 
+                  - text::"Vol. "
+                  - value::volume
+                  - italic::false
+                  - text::". "
+        - publisher: value::publisher
+        - text::"."
+        - - cond::ifdef[field::origyear,true]
+          - - text::" (Original work published "
+            - origyear: value::origyear
+            - - cond::ifdef[field::origpublisher,true]
+              - - text::", "
+                - origpublisher: value::origpublisher
+            - text::")"
+        - - cond::ifdef[field::related,true]&&ifequal[value::relatedtype,translationof]
+          - - text::" (Original work published "
+            - related:year: value::related:year
+            - text::")"
 
-    mvbook:
-      - - cond::ifdef[field::author,true]
-        - author: *ename
-      - - cond::ifdef[field::editor,true]
-        - editor: *ename
-        - editortype: *editortype
-      - year: 
-        - text::"("
-        - value::year
-        - - cond::ifdef[field::endyear,true]
-          - - text::"--"
-            - value::endyear
-        - text::"). "
-      - italic::true
-      - title: value::title
-      - - cond::ifdef[field::subtitle,true]
-        - - delim::COLON
-          - text::" "
-          - subtitle: value::subtitle
-      - italic::false
-      - text::" "
-      - volumes:
-        - text::"(Vols. "
-        - value::volumes
-        - text::"). "
-      - publisher: value::publisher
-      - text::"."
+### その他（新聞記事等）
+  misc:
+    - author: *jname
+    - year: *parenyeardot
+    - title: *jtitle
+    - text::"　"
+    - journaltitle: value::journaltitle
+    - text::"　"
+    - howpublished: value::howpublished
+    - text::", "
+    - pages: value::pages
+    - text::"."
 
-    incollection:
-      - author: *ename
-      - authortype: *authortype
-      - year: *parenyeardot
-      - italic::true
-      - title: value::title
-      - - cond::ifdef[field::subtitle,true]
-        - - delim::COLON
-          - text::" "
-          - subtitle: value::subtitle
-      - italic::false
-      - punct::". "
-      - text::"("
-      - editor: *enamegf
-      - text::", "
-      - editortype: value::editortype
-      - text::"). "
-      - italic::true
-      - series: value::series
-      - italic::false
-      - punct::". "
-      - italic::true
-      - volume:
-        - text::"Vol. "
-        - value::volume
-      - italic::false
-      - text::". "
-      - publisher: value::publisher
-      - text::"."
-
-    
 # 

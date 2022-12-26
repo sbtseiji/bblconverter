@@ -11,11 +11,13 @@ SPACE  = ' '
 COMMA  = ','
 PERIOD = '.'
 DOT    = '.'
-DOTS   = '...'
+DOTS   = '<dots>'
 EMDASH = '—'
 CHAR_COLON = '&#58;'
 LINEBREAK = '\n'
 
+bib_variables = []
+bib_names = []
 
 # ========== bibエントリクラス ==========
 class BibEntry:
@@ -93,7 +95,6 @@ def parse_yaml(item_yaml, bib_entry):
   left_item = copy.deepcopy(item_yaml)
   # 1要素のみでネストになっているリストを展開
   left_item = peelout_list(left_item)
-
   # 文字列なら終了
   if isinstance(left_item, str):
     return left_item
@@ -115,6 +116,7 @@ def parse_yaml(item_yaml, bib_entry):
         res.append(res1)
       if res2:
         if isinstance(res2,list) and len(res2)>1:
+          res2 = flatten_list(res2)
           res.extend(res2)
         else:
           res.append(res2)
@@ -199,7 +201,7 @@ def field_render(formatter, entry_data):
 
   is_related = False
   res_str = ''
-  
+
   field_key = list(formatter.keys())[0]
   field_format = formatter.get(field_key)
 
@@ -223,11 +225,13 @@ def field_render(formatter, entry_data):
     if name_size == 1:
       for name_item in field_format:
         res_str += format_field_data(name_item, name_data[0])
+        
     else:
       for i in range(name_size):
         for name_item in field_format[i]:
           res_str += format_field_data(name_item, name_data[i])
     res_str = res_str.strip()
+    res_str = res_str.strip(',')
     return res_str
 
   else:
@@ -267,26 +271,26 @@ def print_text(text_str):
 
 def handle_italic(italic):
   if italic == 'true':
-    return "\\italic{"
+    return "<italic>"
   else:
-    return "\\italic}"
+    return "</italic>"
 
 def handle_bold(bold):
   if bold == 'true':
-    return "\\bold{"
+    return "<bold>"
   else:
-    return "\\bold}"
+    return "</bold>"
 
 def handle_punct(punct_str):
   punct_char = punct_str.strip('\"')
-  return "\\punct\\"+punct_char      
+  return "<punct>"+punct_char      
 
 def handle_url(url, bib_entry): # urlはタグで囲む
   url_string = ''
   if url == 'true':
-    return "\\url{"
+    return "<url>"
   else:
-    return "\\url}"
+    return "</url>"
 
 def conditional(cond_list, bib_entry):
   res = ''
@@ -349,8 +353,12 @@ def ifthenelse(cond_str,bib_entry):
     elif 'value::' in param1:
       if param1_related:
         param1 = bib_entry.related_entry.get(param1.replace('value::',''))
+        if isinstance(param1, list):
+          param1 = param1[0]
       else:
         param1 = bib_entry.entry_data.get(param1.replace('value::',''))
+        if isinstance(param1, list):
+          param1 = param1[0]
       if not param1:
         return False
     elif 'total::' in param1:
@@ -422,40 +430,21 @@ def ifthenelse(cond_str,bib_entry):
         else:
           return False
 
-
-# LaTeXのbibitemとして出力
-def export_latex(biblist):
-  for item in biblist:
-    bib_str = item[1]
-    bib_str = bib_str.replace("\\italic{","\\textit{")
-    bib_str = bib_str.replace("\\italic}","}")
-    bib_str = bib_str.replace("\\bold{","\\textbf{")
-    bib_str = bib_str.replace("\\bold}","}")
-    bib_str = bib_str.replace("\\url}","}")
-    bib_str = bib_str.replace(EMDASH,"---")
-    bib_str = bib_str.replace(CHAR_COLON,":")
-
-    bib_str = bib_str.replace('&',"\&")
-
-    print("\\bibitem{"+item[0]+"}", bib_str)
-
-
 # メインの処理
-def main():
+def bib_formatter(bib_yaml,format_yaml):
   # 文献データ
-  yaml = ruamel.yaml.YAML(typ='safe')
-  bib_data = load_yml('../yaml/test.yml')
+  bib_data = bib_yaml
 
   # 文献リストの書式
-  yaml = ruamel.yaml.YAML(typ='safe')
-  bib_yml_raw = load_yml('../yaml/jjpsy.yml')
+  bib_yml_raw = format_yaml
 
   # 変数を処理
   bib_variables = bib_yml_raw['constants']
   for key, value in bib_variables.items():
-    exec("%s = %s" % (key,value)) # keyの値を変数名，valueを変数値として処理
+    globals()[key] = value  #keyの値を変数名，valueを変数値として登録
 
   # ネームリストを処理
+  global bib_names
   bib_names = bib_yml_raw['names']
 
   bib_list = [] # 最終的な変換結果を入れるためのリスト
@@ -473,12 +462,15 @@ def main():
         related_entry_id = entry_data.get('related')
         bib_entry.related_entry = [x for x in bib_data if x['entry'] == related_entry_id][0]
 
-      # entryの言語を調べ，言語が指定されていればそちらのdriverを選択
-      if 'language' in entry_data:
-        entry_language = entry_data.get('language')[0]
-        bib_driver = bib_yml['driver'].get(entry_language)
-      else:
-        bib_driver = bib_yml['driver'].get('other')
+      # # entryの言語を調べ，言語が指定されていればそちらのdriverを選択
+      # if 'language' in entry_data:
+      #   entry_language = entry_data.get('language')[0]
+      #   bib_driver = bib_yml['driver'].get(entry_language)
+      # else:
+      #   bib_driver = bib_yml['driver'].get('other')
+
+      # フォーマット書式YAMLの設定
+      bib_driver = bib_yml.get('driver')
 
       # 文献タイプ（article, book, etc.）の書式を取得
       driver_yaml = copy.deepcopy(bib_driver.get(bib_entry.entry_data['entrytype']))
@@ -491,7 +483,6 @@ def main():
         # yamlリストを1項目ずつ順番に処理
         for field_yaml in driver_yaml: # 順番にフィールドを処理
           formatter = parse_yaml(field_yaml, bib_entry)
-          # print("formatter: ", formatter)
           if formatter:
             res = parse_formatter(formatter)
             res = peelout_list(res)
@@ -504,6 +495,7 @@ def main():
           res_str = ""
           list_item = peelout_list(list_item)
           if len(list_item) > 0:
+
             if isinstance(list_item,list) and len(list_item) > 1:
               for item in list_item:
                 item = peelout_list(item)
@@ -514,6 +506,6 @@ def main():
             if res_str:
               bib_item[1].append(res_str)
       bib_list.append(bib_item)
-    print(bib_item)
+  return bib_list
 
 # export_latex(bib_list)
