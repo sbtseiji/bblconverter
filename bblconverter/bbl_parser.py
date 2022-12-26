@@ -2,7 +2,7 @@ import copy
 import re
 import ruamel
 import ruamel.yaml
-import bbl_reader as bbl
+import bblconverter.bbl_reader as bbl
 from ruamel.yaml.comments import CommentedMap, CommentedSeq
 from collections import namedtuple
 

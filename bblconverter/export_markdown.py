@@ -1,5 +1,5 @@
 import re
-from export_cleaner import cleaner
+from bblconverter.export_cleaner import cleaner
 
 out_str = []
 def export_markdown(biblist, outfile):

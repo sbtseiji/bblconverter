@@ -1,7 +1,7 @@
 import re
 import ruamel
 import ruamel.yaml
-import LaTexAccents as utfconverter
+import bblconverter.LaTexAccents as utfconverter
 
 # BibLaTeXの記号の置き換え
 BIBINITPERIOD = '.'

@@ -1,6 +1,6 @@
 import re
 from docx import Document
-from export_cleaner import cleaner
+from bblconverter.export_cleaner import cleaner
 
 out_str = []
 def export_docx(biblist, outfile):
