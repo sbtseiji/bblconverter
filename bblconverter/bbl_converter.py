@@ -69,6 +69,9 @@ def main():
     export_markdown(biblist,out_path)
   elif args.outfile.endswith('.docx'):
     export_docx(biblist,out_path)
+  elif args.outfile.endswith('.yml') or args.outfile.endswith('.yaml'):
+    with open(out_path, 'w') as stream:
+      yaml.dump(bbl_yaml, stream=stream)
   elif args.outfile =='':
     in_path = args.infile.replace('.bbl','').replace('.yml','').replace('.yaml','')
     out_path = in_path+'.tex'
