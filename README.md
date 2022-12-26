@@ -20,13 +20,13 @@ bblconverter --infile [your bbl file or yaml bib file] --outfile [destination fi
 
 ### Options
 <dl>
-  <dt ><code>-i INFILE, --infile INFILE</code></dt>
+  <dt><code>-i INFILE, --infile INFILE</code></dt>
   <dd>The file path of the input file. Either .bbl or .yml</dd>
-  <dt ><code>-o OUTFILE, --outfile OUTFILE</code></dt>
+  <dt><code>-o OUTFILE, --outfile OUTFILE</code></dt>
   <dd>File path of the output file. Either .tex, .md, or .docx. The extension of the output file name determines the destination format. If no output file is specified, the conversion result is output to a file with the same name as the input file and a .tex extension. If the output file is .yml or .yaml file, then the YAML bib file converted from .bbl will be exported.</dd>
-  <dt ><code>-y YAML, --yaml YAML</code></dt>
+  <dt><code>-y YAML, --yaml YAML</code></dt>
   <dd>File path of the bibliography formatter YAML.</dd>
-  <dt ><code>-b, --bibitem</code></dt>
+  <dt><code>-b, --bibitem</code></dt>
   <dd>Switch whether the bibliography should be in bibitem format when the output format is LaTeX. If this option is set, the bibliography items are output as bibitems. Otherwise, they are output as plain LaTeX strings.</dd>
 </dl>
 
@@ -52,13 +52,21 @@ The `field name` must be the same as the field name used in BibLaTeX.
 In `field format`, the following commands can be used in list form to indicate how the field contents should be rendered.
 
 <dl>
-  <dt ><code>value::FIELDNAME</code></dt>
+  <dt><code>value::FIELDNAME</code></dt>
   <dd>Retrieves and displays the contents of the field.</dd>
-  <dt ><code>text::"STRING"</code></dt>
+  <dt><code>text::"STRING"</code></dt>
   <dd>Displays a string.</dd>
-  <dt ><code>delim::DELIMITER</code></dt>
+  <dt><code>italic::true</code></dt>
+  <dd>Begin italic.</dd>
+  <dt><code>italic::false</code></dt>
+  <dd>End italic.</dd>
+  <dt><code>bold::true</code></dt>
+  <dd>Begin bold.</dd>
+  <dt><code>bold::false</code></dt>
+  <dd>End bold.</dd>
+  <dt><code>delim::DELIMITER</code></dt>
   <dd>The delimiters that can be used are <code>COLON</code> (:), <code>SPACE</code> (&nbsp;), <code>COMMA</code> (,), <code>PERIOD</code> (.), <code>DOT</code> (.), <code>DOTS</code> (&hellip;), <code>EMDASH</code> (&mdash;), <code>NDASH</code> (&ndash;), <code>LINEBREAK</code> (\n). </dd>
-  <dt ><code>punct::"PUNCTUATION"</code></dt>
+  <dt><code>punct::"PUNCTUATION"</code></dt>
   <dd>Symbols specified as punctuation marks are processed so that they do not overlap if the same symbol immediately precedes them. For example, if you specified <code>punct::"."</code> immediately after the <code>value::title</code>, the title "my first paper" will appear as "my first paper." in the bibliography, and the title "my second paper." will also appear as "my second paper.", not "my second paper.."</dd>
 </dl>
 
@@ -106,30 +114,30 @@ YAML formatter can also perform basic conditional branching. Condition clauses a
 The condition clauses available in Formatter are:
 
 <dl>
-  <dt ><code>cond::ifequal[VALUE1,VALUE2]</code></dt>
+  <dt><code>cond::ifequal[VALUE1,VALUE2]</code></dt>
   <dd>Check if values 1 and 2 are the same.</dd>
-  <dt ><code>cond::ifgreater[VALUE1,VALUE2]</code></dt>
+  <dt><code>cond::ifgreater[VALUE1,VALUE2]</code></dt>
   <dd>Check if value 1 is greater than value 2.</dd>
-  <dt ><code>cond::ifgreatereq[VALUE1,VALUE2]</code></dt>
+  <dt><code>cond::ifgreatereq[VALUE1,VALUE2]</code></dt>
   <dd>Check if value 1 is greater than or equals to value 2.</dd>
-  <dt ><code>cond::ifless[VALUE1,VALUE2]</code></dt>
+  <dt><code>cond::ifless[VALUE1,VALUE2]</code></dt>
   <dd>Check if value 1 is smaller than value 2.</dd>
-  <dt ><code>cond::iflesseq[VALUE1,VALUE2]</code></dt>
+  <dt><code>cond::iflesseq[VALUE1,VALUE2]</code></dt>
   <dd>Check if value 1 is smaller than or equals to value 2.</dd>
-  <dt ><code>cond::ifdef[field::FIELDNAME,true]</code></dt>
+  <dt><code>cond::ifdef[field::FIELDNAME,true]</code></dt>
   <dd>Check if field <code>FIELDNAME</code> is defined.</dd>
-  <dt ><code>cond::ifdef[field::FIELDNAME,false]</code></dt>
+  <dt><code>cond::ifdef[field::FIELDNAME,false]</code></dt>
   <dd>Check if field <code>FIELDNAME</code> is undefined.</dd>
 </dl>
 
 You can also combine two conditional clauses using `&&`, `||`, or `^^`.
 
 <dl>
-  <dt ><code>&&</code>&nbsp;&nbsp;logical conjunction</dt>
+  <dt><code>&&</code>&nbsp;&nbsp;logical conjunction</dt>
   <dd>(Example) <code>cond::ifgreater[listcount,2]&&ifless[listcount,5]</code>(listcount is greater than 2 and smaller than 5)</dd>
-  <dt ><code>||</code>&nbsp;&nbsp;logical disjunction</dt>
+  <dt><code>||</code>&nbsp;&nbsp;logical disjunction</dt>
   <dd>(Example) <code>cond::ifgreater[listcount,2]||ifless[listcount,5]</code>(listcount is greater than 2 or smaller than 5)</dd>
-  <dt ><code>^^</code>&nbsp;&nbsp;exclusive disjunction</dt>
+  <dt><code>^^</code>&nbsp;&nbsp;exclusive disjunction</dt>
   <dd>(Example) <code>cond::ifgreater[listtotal,2]^^ifdef[field::title,false]</code>(either listtotal is greater than 2 or field <code>title</code> is not defined, not both.)</dd>
 </dl>
 

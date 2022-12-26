@@ -19,13 +19,13 @@ bblconverter --infile [文献データファイル bblまたはyaml] --outfile [
 
 ### Options
 <dl>
-  <dt ><code>-i INFILE, --infile INFILE</code></dt>
+  <dt><code>-i INFILE, --infile INFILE</code></dt>
   <dd>入力ファイルのファイルパス（<code>.bbl</code>または<code>.yml</code>）。</dd>
-  <dt ><code>-o OUTFILE, --outfile OUTFILE</code></dt>
+  <dt><code>-o OUTFILE, --outfile OUTFILE</code></dt>
   <dd>出力ファイルのファイルパス（<code>.tex</code>、<code>.md</code>、<code>.docx</code>のいずれか）。出力ファイル名の拡張子によって、変換先の形式が決まります。出力ファイルを指定しない場合、変換結果は入力ファイルと同名で拡張子が.texのファイルに出力されます。出力ファイルが.ymlまたは.yamlファイルの場合、.bblから変換されたYAML形式のbibファイルがエクスポートされます。</dd>
-  <dt ><code>-y YAML, --yaml YAML</code></dt>
+  <dt><code>-y YAML, --yaml YAML</code></dt>
   <dd>文献リスト・フォーマッタYAMLのファイルパス。</dd>
-  <dt ><code>-b, --bibitem</code></dt>
+  <dt><code>-b, --bibitem</code></dt>
   <dd>出力形式がLaTeXの場合、書誌事項をbibitem形式で出力するかどうかを切り替えます。このオプションを設定すると、書誌項目はbibitemとして出力されます。指定なしの場合は、プレーンなLaTeX文字列として出力されます。</dd>
 </dl>
 
@@ -51,13 +51,21 @@ constants:
 `フィールド書式`では、以下のコマンドをリスト形式で使用し、フィールドの内容がどのように表示されるべきかを指定します。
 
 <dl>
-  <dt ><code>value::フィールド名</code></dt>
+  <dt><code>value::フィールド名</code></dt>
   <dd>フィールドの内容を取得し、表示します。</dd>
-  <dt ><code>text::"文字列"</code></dt>
+  <dt><code>text::"文字列"</code></dt>
   <dd>文字列を表示します。</dd>
-  <dt ><code>delim::区切り文字</code></dt>
+  <dt><code>italic::true</code></dt>
+  <dd>イタリック体にする</dd>
+  <dt><code>italic::false</code></dt>
+  <dd>イタリック体を停止</dd>
+  <dt><code>bold::true</code></dt>
+  <dd>太字にする</dd>
+  <dt><code>bold::false</code></dt>
+  <dd>太字を停止</dd>
+  <dt><code>delim::区切り文字</code></dt>
   <dd>使用できる区切り文字は、<code>COLON</code> (:), <code>SPACE</code> (&nbsp;), <code>COMMA</code> (,), <code>PERIOD</code> (. ), <code>DOT</code> (.), <code>DOTS</code> (&hellip;), <code>EMDASH</code> (&mdash;), <code>NDASH</code> (&ndash;), <code>LINEBREAK</code> (\n)です。</dd>
-  <dt ><code>punct::"句読点"</code></dt>
+  <dt><code>punct::"句読点"</code></dt>
   <dd>句読点として指定された記号は、直前に同じ記号がある場合、重複しないように処理されます。たとえば<code>value::title</code>の後に<code>punct::"."</code>を指定した場合、「my first paper」というタイトルは文献リストでは「my first paper.」と表示され、「my second paper.」というタイトルの場合も、「my second paper..」ではなく「my second paper.」と表示されます。</dd>
 </dl>
 
@@ -105,30 +113,30 @@ driver:
 フォーマッタでは次の条件節を使用できます。
 
 <dl>
-  <dt ><code>cond::ifequal[値1,値2]</code></dt>
+  <dt><code>cond::ifequal[値1,値2]</code></dt>
   <dd>値1と値2が同じかどうかを確かめます。</dd>
-  <dt ><code>cond::ifgreater[値1,値2]</code></dt>
+  <dt><code>cond::ifgreater[値1,値2]</code></dt>
   <dd>値1が値2より大きいかどうかを確かめます。</dd>
-  <dt ><code>cond::ifgreatereq[値1,値2]</code></dt>
+  <dt><code>cond::ifgreatereq[値1,値2]</code></dt>
   <dd>値1が値2以上であるかどうかを確かめます。</dd>
-  <dt ><code>cond::ifless[値1,値2]</code></dt>
+  <dt><code>cond::ifless[値1,値2]</code></dt>
   <dd>値1が値2より小さいかどうかを確かめます。</dd>
-  <dt ><code>cond::iflesseq[値1,値2]</code></dt>
+  <dt><code>cond::iflesseq[値1,値2]</code></dt>
   <dd>値1が値2以下であるかどうかを確かめます。</dd>
-  <dt ><code>cond::ifdef[field::フィールド名,true]</code></dt>
+  <dt><code>cond::ifdef[field::フィールド名,true]</code></dt>
   <dd><code>フィールド名</code>の値が定義されているかどうかを確かめます。</dd>
-  <dt ><code>cond::ifdef[field::フィールド名,false]</code></dt>
+  <dt><code>cond::ifdef[field::フィールド名,false]</code></dt>
   <dd>フィールド名</code>の値が未定義かどうかを確かめます。</dd>
 </dl>
 
 また、`&&`、`||`、`^^`を使って、2つの条件節を組み合わせることもできます。
 
 <dl>
-  <dt ><code>&&</code>&nbsp;&nbsp;論理積</dt>
+  <dt><code>&&</code>&nbsp;&nbsp;論理積</dt>
   <dd>(例) <code>cond::ifgreater[listcount,2]&&ifless[listcount,5]</code>(listcountが2より大，かつ，5より小)</dd>
-  <dt ><code>||</code>&nbsp;&nbsp;論理和</dt>
+  <dt><code>||</code>&nbsp;&nbsp;論理和</dt>
   <dd>(例) <code>cond::ifgreater[listcount,2]||ifless[listcount,5]</code>(listcountが2より大，または，5より小)</dd>
-  <dt ><code>^^</code>&nbsp;&nbsp;排他的論理和</dt>
+  <dt><code>^^</code>&nbsp;&nbsp;排他的論理和</dt>
   <dd>(例) <code>cond::ifgreater[listtotal,2]^^ifdef[field::title,false]</code>(listtotalが2より大，<code>title</code>フィールドが未定義のいずれか一方のみが真)</dd>
 </dl>
 
