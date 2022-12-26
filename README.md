@@ -91,6 +91,8 @@ driver:
     - publisher: value::publisher
 ```
 
+As an example of a more complex formatter, attached to the yaml folder is the bibliography format for *The Japanese Journal of Psychology*.
+
 ### Conditional
 
 YAML formatter can also perform basic conditional branching. Condition clauses are indicated by keys beginning with `cond::` and are used in the following format: 
