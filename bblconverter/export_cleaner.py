@@ -28,6 +28,7 @@ def cleaner(instr, mode):
     outstr = re.sub(r'([^\\])&', r'\g<1>\\&', outstr)
 
     outstr = re.sub(r'—','---',outstr)
+    outstr = re.sub(r'–','--',outstr)
     outstr = re.sub(r'<dots>', r'{\\ldots}', outstr)
     outstr = re.sub(r'<italic>', r'\\textit{', outstr)
     outstr = re.sub(r'</italic>', '}', outstr)

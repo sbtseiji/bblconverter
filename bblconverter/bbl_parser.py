@@ -13,6 +13,7 @@ PERIOD = '.'
 DOT    = '.'
 DOTS   = '<dots>'
 EMDASH = '—'
+NDASH = '–'
 CHAR_COLON = '&#58;'
 LINEBREAK = '\n'
 

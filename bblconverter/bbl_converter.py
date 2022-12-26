@@ -26,7 +26,7 @@ def main():
             )
   parser.add_argument('-i', '--infile',default='', type= str, help = 'File path of the input file. Either .bbl or .yml')
   parser.add_argument('-o', '--outfile',default='', type= str, help = 'File path of the output file. Either .tex, .md, or .docx')
-  parser.add_argument('-y', '--yaml',default='', type= str, help = 'File path of the bibliography style yaml file.')
+  parser.add_argument('-y', '--yaml',default='', type= str, help = 'File path of the bibliography formatter YAML.')
   parser.add_argument('-b', '--bibitem',default=False, action= 'store_true', help = 'Switch whether the bibliography should be in bibitem format when the output format is .tex.')
 
   args = parser.parse_args()
