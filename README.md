@@ -23,18 +23,18 @@ bblconverter --infile [your bbl file or yaml bib file] --outfile [destination fi
   <dt><code>-i INFILE, --infile INFILE</code></dt>
   <dd>The file path of the input file. Either .bbl or .yml</dd>
   <dt><code>-o OUTFILE, --outfile OUTFILE</code></dt>
-  <dd>File path of the output file. Either .tex, .md, or .docx. The extension of the output file name determines the destination format. If no output file is specified, the conversion result is output to a file with the same name as the input file and a .tex extension. If the output file is .yml or .yaml file, then the YAML bib file converted from .bbl will be exported.</dd>
+  <dd>Specifies the file to output. Either .tex, .md, or .docx. The extension of the output file name determines the target format. If no output file is specified, the resulting file has the same name as the input file and ends with .tex. If .yml or .yaml is specified, then the YAML bib file converted from .bbl will be exported.</dd>
   <dt><code>-y YAML, --yaml YAML</code></dt>
   <dd>File path of the bibliography formatter YAML.</dd>
   <dt><code>-b, --bibitem</code></dt>
-  <dd>Switch whether the bibliography should be in bibitem format when the output format is LaTeX. If this option is set, the bibliography items are output as bibitems. Otherwise, they are output as plain LaTeX strings.</dd>
+  <dd>Toggle whether the bibliography should be in bibitem format when the output format is LaTeX. If this option is set, the bibliography items are output as bibitems. Otherwise they are output as simple LaTeX strings.</dd>
 </dl>
 
 ## Bibliography formatter YAML
 
-bblconverter creates a bibliography list from a bbl or yaml bibfile using a bibliography formatter created in YAML format. The bibliography formatter YAML file contains sections for `constants`, `names`, and `driver`. 
+bblconverter uses a bibliography formatter created in YAML format to create a bibliography list from a bbl or yaml bibfile. The YAML file of the bibliography formatter contains sections for `constants', `names' and `driver'. 
 
-The `constants` section contains constants to be used when creating the bibliography list, such as the maximum number of author names to be displayed. Each constant is defined in dictionary format as shown below. If there is no constant to be used, no definition is required.
+The `constants` section contains constants that are used when creating the bibliography list. For example, the maximum number of author names to display. Each constant is defined in the dictionary format as shown in the following example. No definition is required if there is no constant to use.
 
 ```
 constants:
